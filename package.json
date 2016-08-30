@@ -1,0 +1,16 @@
+{
+  "name": "wordpoints-buddypress",
+  "version": "1.0.0-alpha",
+  "description": "Integrates the WordPoints plugin with BuddyPress.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WordPoints/buddypress"
+  },
+  "author": "J.D. Grimes",
+  "license": "GPL-2.0+",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "~0.6.1",
+    "matchdep": "~0.3.0"
+  }
+}
