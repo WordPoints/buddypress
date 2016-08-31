@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
-# Install BuddyPress
-install-buddypress() {
+# We don't currently have any Codeception tests, so disable them.
+DO_WP_CEPT=0;
 
-	export BP_DEVELOP_DIR=/tmp/buddypress
-	export BP_TESTS_DIR=/tmp/buddypress/tests/phpunit
+# BuddyPress configuration.
+export BP_DEVELOP_DIR=/tmp/buddypress
+export BP_TESTS_DIR=/tmp/buddypress/tests/phpunit
+
+# Install BuddyPress.
+install-buddypress() {
 
 	mkdir -p "$WP_DEVELOP_DIR"
 	curl -L "https://github.com/buddypress/BuddyPress/archive/$BP_VERSION.tar.gz" \
