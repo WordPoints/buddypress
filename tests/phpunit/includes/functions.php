@@ -31,7 +31,7 @@ function wordpoints_bp_tests_manually_load_buddypress() {
 		exit( 1 );
 	}
 
-/*
+	/*
 	// Remove all of BuddyPress's tables from the DB so we start with a clean slate.
 	global $wpdb;
 
@@ -47,7 +47,7 @@ function wordpoints_bp_tests_manually_load_buddypress() {
 	$wpdb->query( 'PREPARE s1 FROM @dropcmd' );
 	$wpdb->query( 'EXECUTE s1' );
 	$wpdb->query( 'DEALLOCATE PREPARE s1' );
-*/
+	*/
 	require( getenv( 'BP_TESTS_DIR' ) . '/includes/loader.php' );
 
 	// Disable this until after WordPress is fully loaded.
