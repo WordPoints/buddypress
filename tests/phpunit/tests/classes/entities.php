@@ -151,7 +151,7 @@ class WordPoints_BP_Entity_Message_Test
 		$thread_id = messages_get_message_thread_id( $message_id );
 
 		// BuddyPress only fully deletes the message once all recipients have marked
-		// it as deleted.
+		// it as deleted. See https://buddypress.trac.wordpress.org/ticket/7235
 		foreach ( $message->get_recipients() as $user_id ) {
 
 			// The messages are only deleted for the current user.
