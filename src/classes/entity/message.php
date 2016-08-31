@@ -13,13 +13,9 @@
  * @since 1.0.0
  */
 class WordPoints_BP_Entity_Message
-	extends WordPoints_Entity_Stored_DB_Table
-	implements WordPoints_Entity_Restricted_VisibilityI {
-
-	/**
-	 * @since 1.0.0
-	 */
-	protected $wpdb_table_name = 'users';
+	extends WordPoints_Entity
+	implements WordPoints_Entityish_StoredI,
+		WordPoints_Entity_Restricted_VisibilityI {
 
 	/**
 	 * @since 1.0.0

@@ -1,0 +1,70 @@
+{
+    "files": {
+        "\/buddypress.php": {
+            "size": 1763,
+            "hash": "9eb6a5875470184224ea945cf7317ecd",
+            "errors": false
+        },
+        "\/classes\/entity\/message\/content.php": {
+            "size": 552,
+            "hash": "2a75a7aa18a4a0ad24409a59c5d82714",
+            "errors": false
+        },
+        "\/classes\/entity\/message\/date\/sent.php": {
+            "size": 565,
+            "hash": "ef1f5ce9a89269990da84382f2cf835e",
+            "errors": false
+        },
+        "\/classes\/entity\/message\/recipients.php": {
+            "size": 1181,
+            "hash": "64f0b9f6b82c7e47432cedc7470f8d31",
+            "errors": false
+        },
+        "\/classes\/entity\/message\/sender.php": {
+            "size": 694,
+            "hash": "7eec2fff9f79b58cb74c2a4af1c191e2",
+            "errors": false
+        },
+        "\/classes\/entity\/message\/subject.php": {
+            "size": 549,
+            "hash": "c4dad206437a6de9aed90dfcc03207fd",
+            "errors": false
+        },
+        "\/classes\/entity\/message\/thread.php": {
+            "size": 723,
+            "hash": "6c9924467ed3ce6051751ba902f95ae2",
+            "errors": false
+        },
+        "\/classes\/entity\/message.php": {
+            "size": 1323,
+            "hash": "4e1e0ca8576f86d93bcc174f286b304d",
+            "errors": false
+        },
+        "\/classes\/hook\/event\/message\/send.php": {
+            "size": 565,
+            "hash": "a271e2939b04f27a3fea4123476e19eb",
+            "errors": false
+        },
+        "\/classes\/index.php": {
+            "size": 762,
+            "hash": "badca9caa2db371f0e7756b7f770936e",
+            "errors": false
+        },
+        "\/includes\/actions.php": {
+            "size": 400,
+            "hash": "38cb680dd713b50e06f2fbe365158e2f",
+            "errors": false
+        },
+        "\/includes\/constants.php": {
+            "size": 250,
+            "hash": "9b4887af258704013f2159ea1e5bd46d",
+            "errors": false
+        },
+        "\/includes\/functions.php": {
+            "size": 2317,
+            "hash": "88c24b04ad069436980fdcafcf4d73a4",
+            "errors": false
+        }
+    },
+    "config_signature": "1aa3b14c2c456a8a30f226d26665e254"
+}

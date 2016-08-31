@@ -18,14 +18,14 @@ class WordPoints_BP_Hook_Event_Message_Send extends WordPoints_Hook_Event {
 	 * @since 1.0.0
 	 */
 	public function get_title() {
-		return __( 'Send Message', 'wordpoints' );
+		return __( 'Send Message', 'wordpoints-bp' );
 	}
 
 	/**
 	 * @since 1.0.0
 	 */
 	public function get_description() {
-		return __( 'Sending a message to another user on the BuddyPress social network.', 'wordpoints' );
+		return __( 'Sending a message to another user on the BuddyPress social network.', 'wordpoints-bp' );
 	}
 }
 

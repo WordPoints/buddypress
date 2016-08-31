@@ -39,7 +39,7 @@ class WordPoints_BP_Entity_Message_Sender
 	 * @since 1.0.0
 	 */
 	public function get_title() {
-		return __( 'Sender', 'wordpoints' );
+		return __( 'Sender', 'wordpoints-bp' );
 	}
 }
 
