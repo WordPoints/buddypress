@@ -16,7 +16,11 @@ install-buddypress() {
 	ln -s  "$BP_DEVELOP_DIR"/src "$WP_CORE_DIR"/wp-content/plugins/buddypress
 }
 
-# Install BuddyPress for the PHPUnit pass.
-alias setup-phpunit="setup-phpunit; install-buddypress";
+# Override commands.
+wordpoints-dev-lib-config() {
+
+	# Install BuddyPress for the PHPUnit pass.
+	alias setup-phpunit="setup-phpunit; install-buddypress";
+}
 
 # EOF
