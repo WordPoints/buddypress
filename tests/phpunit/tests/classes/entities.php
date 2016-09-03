@@ -46,7 +46,7 @@ class WordPoints_BP_Entity_Message_Test
 					'slug'           => 'bp_message',
 					'id_field'       => 'id',
 					'human_id_field' => 'subject',
-					'context'        => 'site',
+					'context'        => '',
 					'storage_info'   => array(
 						'type' => 'db',
 						'info' => array(
@@ -54,7 +54,7 @@ class WordPoints_BP_Entity_Message_Test
 							'table_name' => buddypress()->messages->table_name_messages,
 						),
 					),
-					'the_context'    => array( 'site' => 1, 'network' => 1 ),
+					'the_context'    => array(),
 					'create_func'    => array( $factory->bp->message, 'create_and_get' ),
 					'delete_func'    => array( $this, 'delete_message' ),
 					'can_view'       => array(

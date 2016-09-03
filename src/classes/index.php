@@ -9,6 +9,7 @@
 
 return array(
 	// auto-generated {
+	'wordpoints_bp_entity' => 'entity.php',
 	'wordpoints_bp_entity_message' => 'entity/message.php',
 	'wordpoints_bp_entity_message_content' => 'entity/message/content.php',
 	'wordpoints_bp_entity_message_date_sent' => 'entity/message/date/sent.php',

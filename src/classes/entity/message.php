@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Message hook entity.
+ * Message entity class.
  *
  * @package WordPoints_BuddyPress
  * @since 1.0.0
@@ -13,9 +13,18 @@
  * @since 1.0.0
  */
 class WordPoints_BP_Entity_Message
-	extends WordPoints_Entity
-	implements WordPoints_Entityish_StoredI,
-		WordPoints_Entity_Restricted_VisibilityI {
+	extends WordPoints_BP_Entity
+	implements WordPoints_Entity_Restricted_VisibilityI {
+
+	/**
+	 * @since 1.0.0
+	 */
+	protected $bp_component = 'messages';
+
+	/**
+	 * @since 1.0.0
+	 */
+	protected $bp_component_table_name = 'messages';
 
 	/**
 	 * @since 1.0.0
@@ -46,19 +55,6 @@ class WordPoints_BP_Entity_Message
 	 */
 	public function get_title() {
 		return __( 'Message', 'wordpoints-bp' );
-	}
-
-	/**
-	 * @since 1.0.0
-	 */
-	public function get_storage_info() {
-		return array(
-			'type' => 'db',
-			'info' => array(
-				'type'       => 'table',
-				'table_name' => buddypress()->messages->table_name_messages,
-			),
-		);
 	}
 
 	/**
