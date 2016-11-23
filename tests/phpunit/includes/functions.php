@@ -16,65 +16,46 @@
  */
 define( 'WORDPOINTS_BP_TESTS_DIR', dirname( dirname( __FILE__ ) ) );
 
-// Hook to load BuddyPress.
-tests_add_filter( 'muplugins_loaded', 'wordpoints_bp_tests_manually_load_buddypress' );
+if ( ! getenv( 'BP_TESTS_DIR' ) ) {
+	echo( 'BP_TESTS_DIR is not set.' . PHP_EOL );
+	exit( 1 );
+}
+
+define( 'BP_TESTS_DIR', getenv( 'BP_TESTS_DIR' ) );
+
+$loader = WordPoints_PHPUnit_Bootstrap_Loader::instance();
+$loader->add_plugin( 'buddypress/bp-loader.php' );
 
 /**
- * Manually load the BuddyPress plugin.
+ * Remotely install BuddyPress for the PHPUnit tests.
+ *
+ * We have to take this additional step beyond the usual activation provided via
+ * the loader above, because BuddyPress doesn't actually perform its install routine
+ * upon activation. Instead, it lets its update function, `bp_version_updater()`,
+ * perform installation as well. It is called `bp_setup_updater()` via the
+ * `bp_admin_init` action. Because of that, installation isn't performed when
+ * WordPress is loaded for the PHPUnit tests either, since they don't fire
+ * `admin_init`.
  *
  * @since 1.0.0
  */
-function wordpoints_bp_tests_manually_load_buddypress() {
+function wordpoints_bp_phpunit_tests_install_bp_remotely() {
 
-	if ( ! getenv( 'BP_TESTS_DIR' ) ) {
-		echo( 'BP_TESTS_DIR is not set.' . PHP_EOL );
-		exit( 1 );
-	}
+	$multisite = (int) ( defined( 'WP_TESTS_MULTISITE' ) && WP_TESTS_MULTISITE );
 
-	/*
-	// Remove all of BuddyPress's tables from the DB so we start with a clean slate.
-	global $wpdb;
+	$loader = WordPoints_PHPUnit_Bootstrap_Loader::instance();
 
-	$wpdb->query(
-		'
-			SELECT CONCAT("DROP TABLE ",GROUP_CONCAT(CONCAT(table_schema,".",table_name)),";")
-				INTO @dropcmd
-				FROM information_schema.tables
-				WHERE table_schema=database()
-					AND table_name like  "' . $wpdb->esc_like( $wpdb->base_prefix . 'bp_' ) . '%"
-		'
+	system(
+		WP_PHP_BINARY
+		. ' ' . escapeshellarg( BP_TESTS_DIR . '/includes/install.php' )
+		. ' ' . escapeshellarg( $loader->locate_wp_tests_config() )
+		. ' ' . escapeshellarg( $loader->get_wp_tests_dir() )
+		. ' ' . $multisite
 	);
-	$wpdb->query( 'PREPARE s1 FROM @dropcmd' );
-	$wpdb->query( 'EXECUTE s1' );
-	$wpdb->query( 'DEALLOCATE PREPARE s1' );
-	*/
-	require( getenv( 'BP_TESTS_DIR' ) . '/includes/loader.php' );
-
-	// Disable this until after WordPress is fully loaded.
-	foreach ( array( 'add_option', 'add_site_option', 'update_option', 'update_site_option' ) as $action ) {
-		remove_action( $action, 'bp_core_clear_root_options_cache' );
-	}
-
-	add_action( 'init', 'wordpoints_bp_tests_clear_root_options_cache' );
 }
-
-/**
- * Set up BuddyPress to properly clear the root options cache.
- *
- * We temporarily disable this while WordPoints is being installed, because that
- * happens before the pluggable functions are loaded, and
- * `bp_core_clear_root_options_cache()` calls `bp_get_default_options()` which calls
- * `wp_generate_password()`, which is pluggable.
- *
- * @since 1.0.0
- */
-function wordpoints_bp_tests_clear_root_options_cache() {
-
-	foreach ( array( 'add_option', 'add_site_option', 'update_option', 'update_site_option' ) as $action ) {
-		add_action( $action, 'bp_core_clear_root_options_cache' );
-	}
-
-	wp_cache_delete( 'root_blog_options', 'bp' );
-}
+tests_add_filter(
+	'muplugins_loaded'
+	, 'wordpoints_bp_phpunit_tests_install_bp_remotely'
+);
 
 // EOF
