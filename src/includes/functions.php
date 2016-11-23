@@ -7,6 +7,10 @@
  * @since 1.0.0
  */
 
+//
+// Messages Component.
+//
+
 /**
  * Register entities for the Messages component when the entities app is initialized.
  *
@@ -75,6 +79,91 @@ function wordpoints_bp_messages_hook_events_init( $events ) {
 			),
 			'args' => array(
 				'bp_message' => 'WordPoints_Hook_Arg',
+			),
+		)
+	);
+}
+
+//
+// Friends Component.
+//
+
+/**
+ * Register entities for the Friends component when the entities app is initialized.
+ *
+ * @since 1.0.0
+ *
+ * @WordPress\action wordpoints_init_app_registry-apps-entities
+ *
+ * @param WordPoints_App_Registry $entities The entities app.
+ */
+function wordpoints_bp_friends_entities_init( $entities ) {
+
+	$children = $entities->get_sub_app( 'children' );
+
+	$entities->register( 'bp_friendship', 'WordPoints_BP_Entity_Friendship' );
+	$children->register( 'bp_friendship', 'date_created', 'WordPoints_BP_Entity_Friendship_Date_Created' );
+	$children->register( 'bp_friendship', 'friend', 'WordPoints_BP_Entity_Friendship_Friend' );
+	$children->register( 'bp_friendship', 'initiator', 'WordPoints_BP_Entity_Friendship_Initiator');
+}
+
+/**
+ * Register hook actions for the Friends component when the registry is initialized.
+ *
+ * @since 1.0.0
+ *
+ * @WordPress\action wordpoints_init_app_registry-hooks-actions
+ *
+ * @param WordPoints_Hook_Actions $actions The action registry.
+ */
+function wordpoints_bp_friends_hook_actions_init( $actions ) {
+
+	$actions->register(
+		'bp_friendship_accept'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'friends_friendship_accepted',
+			'data'   => array(
+				// 0 is the ID, but 3 gives us the object itself.
+				'arg_index' => array( 'bp_friendship' => 3 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_friendship_delete'
+		, 'WordPoints_Hook_Action'
+		, array(
+			// Despite the name, it fires before delete.
+			'action' => 'friends_friendship_deleted',
+			'data'   => array(
+				'arg_index' => array( 'bp_friendship' => 0 ),
+			),
+		)
+	);
+}
+
+/**
+ * Register hook events for the Friends component when the registry is initialized.
+ *
+ * @since 1.0.0
+ *
+ * @WordPress\action wordpoints_init_app_registry-hooks-events
+ *
+ * @param WordPoints_Hook_Events $events The event registry.
+ */
+function wordpoints_bp_friends_hook_events_init( $events ) {
+
+	$events->register(
+		'bp_friendship_accept'
+		, 'WordPoints_BP_Hook_Event_Friendship_Accept'
+		, array(
+			'actions' => array(
+				'toggle_on'  => 'bp_friendship_accept',
+				'toggle_off' => 'bp_friendship_delete',
+			),
+			'args' => array(
+				'bp_friendship' => 'WordPoints_Hook_Arg',
 			),
 		)
 	);
