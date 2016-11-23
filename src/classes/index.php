@@ -21,6 +21,7 @@ return array(
 	'wordpoints_bp_entity_message_sender' => 'entity/message/sender.php',
 	'wordpoints_bp_entity_message_subject' => 'entity/message/subject.php',
 	'wordpoints_bp_hook_event_friendship_accept' => 'hook/event/friendship/accept.php',
+	'wordpoints_bp_hook_event_friendship_request' => 'hook/event/friendship/request.php',
 	'wordpoints_bp_hook_event_message_send' => 'hook/event/message/send.php',
 	// }
 );

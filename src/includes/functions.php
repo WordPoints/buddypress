@@ -119,6 +119,30 @@ function wordpoints_bp_friends_entities_init( $entities ) {
 function wordpoints_bp_friends_hook_actions_init( $actions ) {
 
 	$actions->register(
+		'bp_friendship_request'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'friends_friendship_requested',
+			'data'   => array(
+				// 0 is the ID, but 3 gives us the object itself.
+				'arg_index' => array( 'bp_friendship' => 3 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_friendship_withdraw'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'friends_friendship_withdrawn',
+			'data'   => array(
+				// 0 is the ID, but 1 gives us the object itself.
+				'arg_index' => array( 'bp_friendship' => 1 ),
+			),
+		)
+	);
+
+	$actions->register(
 		'bp_friendship_accept'
 		, 'WordPoints_Hook_Action'
 		, array(
@@ -153,6 +177,20 @@ function wordpoints_bp_friends_hook_actions_init( $actions ) {
  * @param WordPoints_Hook_Events $events The event registry.
  */
 function wordpoints_bp_friends_hook_events_init( $events ) {
+
+	$events->register(
+		'bp_friendship_request'
+		, 'WordPoints_BP_Hook_Event_Friendship_Request'
+		, array(
+			'actions' => array(
+				'toggle_on'  => 'bp_friendship_request',
+				'toggle_off' => 'bp_friendship_withdraw',
+			),
+			'args' => array(
+				'bp_friendship' => 'WordPoints_Hook_Arg',
+			),
+		)
+	);
 
 	$events->register(
 		'bp_friendship_accept'

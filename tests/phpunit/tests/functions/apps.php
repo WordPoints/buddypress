@@ -113,6 +113,8 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 
 		wordpoints_bp_friends_hook_actions_init( $actions );
 
+		$this->assertTrue( $actions->is_registered( 'bp_friendship_request' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_friendship_withdraw' ) );
 		$this->assertTrue( $actions->is_registered( 'bp_friendship_accept' ) );
 		$this->assertTrue( $actions->is_registered( 'bp_friendship_delete' ) );
 	}
@@ -132,6 +134,7 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 
 		wordpoints_bp_friends_hook_events_init( $events );
 
+		$this->assertEventRegistered( 'bp_friendship_request', 'bp_friendship' );
 		$this->assertEventRegistered( 'bp_friendship_accept', 'bp_friendship' );
 	}
 }
