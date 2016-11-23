@@ -8,7 +8,7 @@
  */
 
 /**
- * Register entities when the entities app is initialized.
+ * Register entities for the Messages component when the entities app is initialized.
  *
  * @since 1.0.0
  *
@@ -16,7 +16,7 @@
  *
  * @param WordPoints_App_Registry $entities The entities app.
  */
-function wordpoints_bp_entities_init( $entities ) {
+function wordpoints_bp_messages_entities_init( $entities ) {
 
 	$children = $entities->get_sub_app( 'children' );
 
@@ -29,7 +29,7 @@ function wordpoints_bp_entities_init( $entities ) {
 }
 
 /**
- * Register hook actions when the action registry is initialized.
+ * Register hook actions for the Messages component when the registry is initialized.
  *
  * @since 1.0.0
  *
@@ -37,7 +37,7 @@ function wordpoints_bp_entities_init( $entities ) {
  *
  * @param WordPoints_Hook_Actions $actions The action registry.
  */
-function wordpoints_bp_hook_actions_init( $actions ) {
+function wordpoints_bp_messages_hook_actions_init( $actions ) {
 
 	$actions->register(
 		'bp_message_send'
@@ -52,7 +52,7 @@ function wordpoints_bp_hook_actions_init( $actions ) {
 }
 
 /**
- * Register hook events when the event registry is initialized.
+ * Register hook events for the Messages component when the registry is initialized.
  *
  * @since 1.0.0
  *
@@ -60,7 +60,7 @@ function wordpoints_bp_hook_actions_init( $actions ) {
  *
  * @param WordPoints_Hook_Events $events The event registry.
  */
-function wordpoints_bp_hook_events_init( $events ) {
+function wordpoints_bp_messages_hook_events_init( $events ) {
 
 	$events->register(
 		'bp_message_send'
