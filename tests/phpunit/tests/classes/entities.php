@@ -32,14 +32,6 @@ class WordPoints_BP_Entity_Message_Test
 		$factory->wordpoints = WordPoints_PHPUnit_Factory::$factory;
 		$factory->bp = new BP_UnitTest_Factory();
 
-		$message_sender_id = $factory->user->create();
-		$message_recipient_id = $factory->user->create();
-
-		// bp_moderate gets translated to manage_options by BuddyPress.
-		$bp_moderator = $factory->user->create_and_get();
-		$bp_moderator->add_cap( 'bp_moderate' );
-		$bp_moderator->add_cap( 'manage_options' );
-
 		return array(
 			'bp_message' => array(
 				array(
@@ -58,16 +50,6 @@ class WordPoints_BP_Entity_Message_Test
 					'the_context'    => array(),
 					'create_func'    => array( $factory->bp->message, 'create_and_get' ),
 					'delete_func'    => array( $this, 'delete_message' ),
-					'can_view'       => array(
-						$message_sender_id => $factory->bp->message->create(
-							array( 'sender_id' => $message_sender_id )
-						),
-						$message_recipient_id => $factory->bp->message->create(
-							array( 'recipients' => $message_recipient_id )
-						),
-						$bp_moderator->ID => $factory->bp->message->create(),
-					),
-					'cant_view'      => $factory->bp->message->create(),
 					'children'       => array(
 						'content' => array(
 							'class'        => 'WordPoints_BP_Entity_Message_Content',

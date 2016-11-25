@@ -33,6 +33,28 @@ function wordpoints_bp_messages_entities_init( $entities ) {
 }
 
 /**
+ * Register entity "know" restrictions for the Messages component.
+ *
+ * These are entities that are totally restricted, so that when the restriction
+ * applies, the user is not even allowed to know that such an object exists.
+ *
+ * @since 1.0.0
+ *
+ * @WordPress\action wordpoints_init_app_registry-entities-restrictions-know
+ *
+ * @param WordPoints_Class_Registry_Deep_Multilevel $restrictions The restrictions
+ *                                                                registry.
+ */
+function wordpoints_bp_messages_entity_restrictions_know_init( $restrictions ) {
+
+	$restrictions->register(
+		'thread_accessible'
+		, array( 'bp_message' )
+		, 'WordPoints_BP_Entity_Restriction_Message_Thread_Accessible'
+	);
+}
+
+/**
  * Register hook actions for the Messages component when the registry is initialized.
  *
  * @since 1.0.0

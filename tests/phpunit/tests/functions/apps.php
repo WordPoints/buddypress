@@ -40,6 +40,22 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 	}
 
 	/**
+	 * Test the Messages component 'know' entity restriction registration function.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @covers ::wordpoints_bp_messages_entity_restrictions_know_init
+	 */
+	public function test_messages_know_restrictions() {
+
+		$restrictions = new WordPoints_Class_Registry_Deep_Multilevel();
+
+		wordpoints_bp_messages_entity_restrictions_know_init( $restrictions );
+
+		$this->assertTrue( $restrictions->is_registered( 'thread_accessible', array( 'bp_message' ) ) );
+	}
+
+	/**
 	 * Test the Messages component action registration function.
 	 *
 	 * @since 1.0.0
