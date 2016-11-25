@@ -5,6 +5,26 @@
             "hash": "9eb6a5875470184224ea945cf7317ecd",
             "errors": false
         },
+        "\/classes\/entity\/friendship\/date\/created.php": {
+            "size": 1055,
+            "hash": "1a565c3277241a53ca98c0f34fdf0619",
+            "errors": false
+        },
+        "\/classes\/entity\/friendship\/friend.php": {
+            "size": 711,
+            "hash": "cd69ac8a958a74ab656d5ef9c501888b",
+            "errors": false
+        },
+        "\/classes\/entity\/friendship\/initiator.php": {
+            "size": 726,
+            "hash": "c692406f3b20e6f86218b8e7d665638b",
+            "errors": false
+        },
+        "\/classes\/entity\/friendship.php": {
+            "size": 1237,
+            "hash": "2bf70fe46f364a7d60d5cbe4e444c168",
+            "errors": false
+        },
         "\/classes\/entity\/message\/content.php": {
             "size": 552,
             "hash": "2a75a7aa18a4a0ad24409a59c5d82714",
@@ -30,14 +50,29 @@
             "hash": "c4dad206437a6de9aed90dfcc03207fd",
             "errors": false
         },
-        "\/classes\/entity\/message\/thread.php": {
-            "size": 723,
-            "hash": "6c9924467ed3ce6051751ba902f95ae2",
+        "\/classes\/entity\/message.php": {
+            "size": 790,
+            "hash": "ce3d16cf83cad230323fe3481e384e00",
             "errors": false
         },
-        "\/classes\/entity\/message.php": {
-            "size": 1323,
-            "hash": "4e1e0ca8576f86d93bcc174f286b304d",
+        "\/classes\/entity\/restriction\/message\/thread\/accessible.php": {
+            "size": 1483,
+            "hash": "9c762867a989042b8cd6e90217625d04",
+            "errors": false
+        },
+        "\/classes\/entity.php": {
+            "size": 2205,
+            "hash": "fa311faa731867e60b98b3fe90ab34ad",
+            "errors": false
+        },
+        "\/classes\/hook\/event\/friendship\/accept.php": {
+            "size": 610,
+            "hash": "33c975890f706d3dd206f14b4334f31e",
+            "errors": false
+        },
+        "\/classes\/hook\/event\/friendship\/request.php": {
+            "size": 600,
+            "hash": "10d34a0cce9174f476aeb277a90fb54c",
             "errors": false
         },
         "\/classes\/hook\/event\/message\/send.php": {
@@ -46,13 +81,13 @@
             "errors": false
         },
         "\/classes\/index.php": {
-            "size": 762,
-            "hash": "badca9caa2db371f0e7756b7f770936e",
+            "size": 1333,
+            "hash": "17fc72748fde61abb55985a02cb2aff2",
             "errors": false
         },
         "\/includes\/actions.php": {
-            "size": 400,
-            "hash": "38cb680dd713b50e06f2fbe365158e2f",
+            "size": 1001,
+            "hash": "16a838d108fbf4dca3ede5f472da2fdb",
             "errors": false
         },
         "\/includes\/constants.php": {
@@ -61,10 +96,10 @@
             "errors": false
         },
         "\/includes\/functions.php": {
-            "size": 2317,
-            "hash": "88c24b04ad069436980fdcafcf4d73a4",
+            "size": 6157,
+            "hash": "5a6f6f3964db8254808a2011231355a5",
             "errors": false
         }
     },
-    "config_signature": "1aa3b14c2c456a8a30f226d26665e254"
+    "config_signature": "8efd165563a6e1c079bec176e2451a03"
 }

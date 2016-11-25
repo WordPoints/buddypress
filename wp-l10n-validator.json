@@ -4,5 +4,11 @@
 	"bootstrap": "dev-lib/l10n-validator/bootstrap.php",
 	"cache": "./.wp-l10n-validator-cache.json",
 	"ignores-cache": "./.wp-l10n-validator-ignores-cache.json",
-	"ignores-tolerance": 25
+	"ignores-tolerance": 25,
+	"ignored-properties": {
+		"WordPoints_BP_Entity::$bp_component": true,
+		"WordPoints_BP_Entity::$bp_component_table_name": true,
+		"WordPoints_BP_Entity::$human_id_field": true,
+		"WordPoints_BP_Entity::$id_field": true
+	}
 }

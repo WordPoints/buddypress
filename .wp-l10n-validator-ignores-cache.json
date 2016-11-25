@@ -1,0 +1,16 @@
+{
+    "\/classes\/entity.php": {
+        "network": {
+            "53": false
+        },
+        "BP_Multi_Network": {
+            "75": {
+                "name": "class_exists",
+                "type": "unknown",
+                "args_started": true,
+                "arg_count": 0,
+                "parentheses": 1
+            }
+        }
+    }
+}
