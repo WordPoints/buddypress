@@ -126,7 +126,7 @@ function wordpoints_bp_friends_entities_init( $entities ) {
 	$entities->register( 'bp_friendship', 'WordPoints_BP_Entity_Friendship' );
 	$children->register( 'bp_friendship', 'date_created', 'WordPoints_BP_Entity_Friendship_Date_Created' );
 	$children->register( 'bp_friendship', 'friend', 'WordPoints_BP_Entity_Friendship_Friend' );
-	$children->register( 'bp_friendship', 'initiator', 'WordPoints_BP_Entity_Friendship_Initiator');
+	$children->register( 'bp_friendship', 'initiator', 'WordPoints_BP_Entity_Friendship_Initiator' );
 }
 
 /**
