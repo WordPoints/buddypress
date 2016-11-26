@@ -12,5 +12,48 @@
                 "parentheses": 1
             }
         }
+    },
+    "\/components\/points\/includes\/members.php": {
+        "points": {
+            "24": {
+                "name": "array",
+                "type": "unknown",
+                "args_started": true,
+                "arg_count": 1,
+                "parentheses": 1
+            },
+            "41": {
+                "name": "array",
+                "type": "unknown",
+                "args_started": true,
+                "arg_count": 4,
+                "parentheses": 1
+            }
+        },
+        "members": {
+            "30": {
+                "name": "bp_core_new_nav_item",
+                "type": "unknown",
+                "args_started": true,
+                "arg_count": 1,
+                "parentheses": 1
+            },
+            "43": {
+                "name": "bp_core_new_subnav_item",
+                "type": "unknown",
+                "args_started": true,
+                "arg_count": 1,
+                "parentheses": 1
+            }
+        },
+        "members\/single\/plugins": {
+            "61": {
+                "name": "apply_filters",
+                "type": "unknown",
+                "args_started": true,
+                "arg_count": 1,
+                "parentheses": 1
+            }
+        }
     }
 }

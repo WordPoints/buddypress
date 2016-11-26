@@ -61,4 +61,22 @@ WordPoints_Class_Autoloader::register_dir( WORDPOINTS_BP_DIR . '/classes' );
  */
 require_once WORDPOINTS_BP_DIR . '/includes/actions.php';
 
+if ( wordpoints_component_is_active( 'points' ) ) {
+	/**
+	 * The module's integration with the points component.
+	 *
+	 * @since 1.0.0
+	 */
+	require_once WORDPOINTS_BP_DIR . '/components/points/points.php';
+}
+
+if ( wordpoints_component_is_active( 'ranks' ) ) {
+	/**
+	 * The module's integration with the ranks component.
+	 *
+	 * @since 1.0.0
+	 */
+	require_once WORDPOINTS_BP_DIR . '/components/ranks/ranks.php';
+}
+
 // EOF

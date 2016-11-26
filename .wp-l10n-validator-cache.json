@@ -1,8 +1,8 @@
 {
     "files": {
         "\/buddypress.php": {
-            "size": 1763,
-            "hash": "9eb6a5875470184224ea945cf7317ecd",
+            "size": 2177,
+            "hash": "0bfa4f65db2e6c44cfe196b33942c4e0",
             "errors": false
         },
         "\/classes\/entity\/friendship\/date\/created.php": {
@@ -98,6 +98,36 @@
         "\/includes\/functions.php": {
             "size": 6157,
             "hash": "5a6f6f3964db8254808a2011231355a5",
+            "errors": false
+        },
+        "\/components\/points\/includes\/actions.php": {
+            "size": 476,
+            "hash": "83b997547c499ce4f32ce61ca3ce6ca9",
+            "errors": false
+        },
+        "\/components\/points\/includes\/members.php": {
+            "size": 4527,
+            "hash": "f95d75b937ae0975a722cab5629609ae",
+            "errors": false
+        },
+        "\/components\/points\/points.php": {
+            "size": 534,
+            "hash": "355123089316004e0182e99990be9e40",
+            "errors": false
+        },
+        "\/components\/ranks\/includes\/integration\/points\/actions.php": {
+            "size": 276,
+            "hash": "aa28904e04d9b82bd846e88ab72eaded",
+            "errors": false
+        },
+        "\/components\/ranks\/includes\/integration\/points\/functions.php": {
+            "size": 732,
+            "hash": "3b13ad304166b4af0a47b63473836836",
+            "errors": false
+        },
+        "\/components\/ranks\/ranks.php": {
+            "size": 600,
+            "hash": "cb1931d2edeeb21cdb250f24524ebc79",
             "errors": false
         }
     },
