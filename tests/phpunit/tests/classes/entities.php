@@ -19,6 +19,17 @@
  * @covers WordPoints_BP_Entity_Message_Sender
  * @covers WordPoints_BP_Entity_Message_Subject
  * @covers WordPoints_BP_Entity_Friendship
+ * @covers WordPoints_BP_Entity_Friendship_Date_Created
+ * @covers WordPoints_BP_Entity_Friendship_Friend
+ * @covers WordPoints_BP_Entity_Friendship_Initiator
+ * @covers WordPoints_BP_Entity_Group
+ * @covers WordPoints_BP_Entity_Group_Creator
+ * @covers WordPoints_BP_Entity_Group_Date_Created
+ * @covers WordPoints_BP_Entity_Group_Description
+ * @covers WordPoints_BP_Entity_Group_Name
+ * @covers WordPoints_BP_Entity_Group_Parent
+ * @covers WordPoints_BP_Entity_Group_Slug
+ * @covers WordPoints_BP_Entity_Group_Status
  */
 class WordPoints_BP_Entity_Message_Test
 	extends WordPoints_PHPUnit_TestCase_Entities {
@@ -163,6 +174,106 @@ class WordPoints_BP_Entity_Message_Test
 								'info' => array(
 									'type'  => 'field',
 									'field' => 'initiator_user_id',
+								),
+							),
+						),
+					),
+				),
+			),
+			'bp_group' => array(
+				array(
+					'class'          => 'WordPoints_BP_Entity_Group',
+					'slug'           => 'bp_group',
+					'id_field'       => 'id',
+					'human_id_field' => 'name',
+					'context'        => '',
+					'storage_info'   => array(
+						'type' => 'db',
+						'info' => array(
+							'type'       => 'table',
+							'table_name' => buddypress()->groups->table_name,
+						),
+					),
+					'the_context'    => array(),
+					'create_func'    => array( $factory->bp->group, 'create_and_get' ),
+					'delete_func'    => 'groups_delete_group',
+					'children'       => array(
+						'creator' => array(
+							'class'        => 'WordPoints_BP_Entity_Group_Creator',
+							'primary'      => 'bp_group',
+							'related'      => 'user',
+							'storage_info' => array(
+								'type' => 'db',
+								'info' => array(
+									'type'  => 'field',
+									'field' => 'creator_id',
+								),
+							),
+						),
+						'date_created' => array(
+							'class'        => 'WordPoints_BP_Entity_Group_Date_Created',
+							'data_type'    => 'mysql_datetime',
+							'storage_info' => array(
+								'type' => 'db',
+								'info' => array(
+									'type'  => 'field',
+									'field' => 'date_created',
+								),
+							),
+						),
+						'description' => array(
+							'class'        => 'WordPoints_BP_Entity_Group_Description',
+							'data_type'    => 'text',
+							'storage_info' => array(
+								'type' => 'db',
+								'info' => array(
+									'type'  => 'field',
+									'field' => 'description',
+								),
+							),
+						),
+						'name' => array(
+							'class'        => 'WordPoints_BP_Entity_Group_Name',
+							'data_type'    => 'text',
+							'storage_info' => array(
+								'type' => 'db',
+								'info' => array(
+									'type'  => 'field',
+									'field' => 'name',
+								),
+							),
+						),
+						'parent' => array(
+							'class'        => 'WordPoints_BP_Entity_Group_Parent',
+							'primary'      => 'bp_group',
+							'related'      => 'bp_group',
+							'storage_info' => array(
+								'type' => 'db',
+								'info' => array(
+									'type'  => 'field',
+									'field' => 'parent_id',
+								),
+							),
+						),
+						'slug' => array(
+							'class'        => 'WordPoints_BP_Entity_Group_Slug',
+							'data_type'    => 'text',
+							'storage_info' => array(
+								'type' => 'db',
+								'info' => array(
+									'type'  => 'field',
+									'field' => 'slug',
+								),
+							),
+						),
+						'status' => array(
+							'class'        => 'WordPoints_BP_Entity_Group_Status',
+							'data_type'    => 'text',
+							'storage_info' => array(
+								'type' => 'db',
+								'info' => array(
+									'type'  => 'field',
+									'field' => 'status',
 								),
 							),
 						),

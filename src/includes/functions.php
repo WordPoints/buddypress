@@ -229,4 +229,92 @@ function wordpoints_bp_friends_hook_events_init( $events ) {
 	);
 }
 
+//
+// Groups Component.
+//
+
+/**
+ * Register entities for the Groups component when the entities app is initialized.
+ *
+ * @since 1.0.0
+ *
+ * @WordPress\action wordpoints_init_app_registry-apps-entities
+ *
+ * @param WordPoints_App_Registry $entities The entities app.
+ */
+function wordpoints_bp_groups_entities_init( $entities ) {
+
+	$children = $entities->get_sub_app( 'children' );
+
+	$entities->register( 'bp_group', 'WordPoints_BP_Entity_Group' );
+	$children->register( 'bp_group', 'creator', 'WordPoints_BP_Entity_Group_Creator' );
+	$children->register( 'bp_group', 'date_created', 'WordPoints_BP_Entity_Group_Date_Created' );
+	$children->register( 'bp_group', 'description', 'WordPoints_BP_Entity_Group_Description' );
+	$children->register( 'bp_group', 'name', 'WordPoints_BP_Entity_Group_Name' );
+	$children->register( 'bp_group', 'parent', 'WordPoints_BP_Entity_Group_Parent' );
+	$children->register( 'bp_group', 'slug', 'WordPoints_BP_Entity_Group_Slug' );
+	$children->register( 'bp_group', 'status', 'WordPoints_BP_Entity_Group_Status' );
+}
+
+/**
+ * Register hook actions for the Groups component when the registry is initialized.
+ *
+ * @since 1.0.0
+ *
+ * @WordPress\action wordpoints_init_app_registry-hooks-actions
+ *
+ * @param WordPoints_Hook_Actions $actions The action registry.
+ */
+function wordpoints_bp_groups_hook_actions_init( $actions ) {
+
+	$actions->register(
+		'bp_group_create'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'groups_create_group',
+			'data'   => array(
+				// 0 is the ID, but 2 gives us the object itself.
+				'arg_index' => array( 'bp_group' => 2 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_group_delete'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'groups_before_delete_group',
+			'data'   => array(
+				'arg_index' => array( 'bp_group' => 0 ),
+			),
+		)
+	);
+}
+
+/**
+ * Register hook events for the Groups component when the registry is initialized.
+ *
+ * @since 1.0.0
+ *
+ * @WordPress\action wordpoints_init_app_registry-hooks-events
+ *
+ * @param WordPoints_Hook_Events $events The event registry.
+ */
+function wordpoints_bp_groups_hook_events_init( $events ) {
+
+	$events->register(
+		'bp_group_create'
+		, 'WordPoints_BP_Hook_Event_Group_Create'
+		, array(
+			'actions' => array(
+				'toggle_on'  => 'bp_group_create',
+				'toggle_off' => 'bp_group_delete',
+			),
+			'args' => array(
+				'bp_group' => 'WordPoints_Hook_Arg',
+			),
+		)
+	);
+}
+
 // EOF

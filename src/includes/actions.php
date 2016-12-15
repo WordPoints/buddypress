@@ -23,6 +23,13 @@ if ( function_exists( 'bp_is_active' ) ) {
 		add_action( 'wordpoints_init_app_registry-hooks-actions', 'wordpoints_bp_friends_hook_actions_init' );
 		add_action( 'wordpoints_init_app_registry-hooks-events', 'wordpoints_bp_friends_hook_events_init' );
 	}
+
+	if ( bp_is_active( 'groups' ) ) {
+
+		add_action( 'wordpoints_init_app_registry-apps-entities', 'wordpoints_bp_groups_entities_init' );
+		add_action( 'wordpoints_init_app_registry-hooks-actions', 'wordpoints_bp_groups_hook_actions_init' );
+		add_action( 'wordpoints_init_app_registry-hooks-events', 'wordpoints_bp_groups_hook_events_init' );
+	}
 }
 
 // EOF

@@ -153,6 +153,70 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 		$this->assertEventRegistered( 'bp_friendship_request', 'bp_friendship' );
 		$this->assertEventRegistered( 'bp_friendship_accept', 'bp_friendship' );
 	}
+
+	/**
+	 * Test the Groups component entity registration function.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @covers ::wordpoints_bp_groups_entities_init
+	 */
+	public function test_groups_entities() {
+
+		$this->mock_apps();
+
+		$entities = wordpoints_entities();
+
+		wordpoints_bp_groups_entities_init( $entities );
+
+		$children = $entities->get_sub_app( 'children' );
+
+		$this->assertTrue( $entities->is_registered( 'bp_group' ) );
+		$this->assertTrue( $children->is_registered( 'bp_group', 'creator' ) );
+		$this->assertTrue( $children->is_registered( 'bp_group', 'date_created' ) );
+		$this->assertTrue( $children->is_registered( 'bp_group', 'description' ) );
+		$this->assertTrue( $children->is_registered( 'bp_group', 'name' ) );
+		$this->assertTrue( $children->is_registered( 'bp_group', 'parent' ) );
+		$this->assertTrue( $children->is_registered( 'bp_group', 'slug' ) );
+		$this->assertTrue( $children->is_registered( 'bp_group', 'status' ) );
+	}
+
+	/**
+	 * Test the Groups component action registration function.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @covers ::wordpoints_bp_groups_hook_actions_init
+	 */
+	public function test_groups_actions() {
+
+		$this->mock_apps();
+
+		$actions = wordpoints_hooks()->get_sub_app( 'actions' );
+
+		wordpoints_bp_groups_hook_actions_init( $actions );
+
+		$this->assertTrue( $actions->is_registered( 'bp_group_create' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_group_delete' ) );
+	}
+
+	/**
+	 * Test the Groups component events registration function.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @covers ::wordpoints_bp_groups_hook_events_init
+	 */
+	public function test_groups_events() {
+
+		$this->mock_apps();
+
+		$events = wordpoints_hooks()->get_sub_app( 'events' );
+
+		wordpoints_bp_groups_hook_events_init( $events );
+
+		$this->assertEventRegistered( 'bp_group_create', 'bp_group' );
+	}
 }
 
 // EOF
