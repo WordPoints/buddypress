@@ -30,7 +30,7 @@ WordPoints_Modules::register(
 	'
 		Module Name: BuddyPress
 		Author:      J.D. Grimes
-		Author URI:  http://codesymphony.co/
+		Author URI:  https://codesymphony.co/
 		Version:     1.0.0-alpha
 		License:     GPLv2+
 		Description: Integrates WordPoints with BuddyPress.
