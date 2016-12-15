@@ -257,6 +257,28 @@ function wordpoints_bp_groups_entities_init( $entities ) {
 }
 
 /**
+ * Register entity "know" restrictions for the Groups component.
+ *
+ * These are entities that are totally restricted, so that when the restriction
+ * applies, the user is not even allowed to know that such an object exists.
+ *
+ * @since 1.0.0
+ *
+ * @WordPress\action wordpoints_init_app_registry-entities-restrictions-know
+ *
+ * @param WordPoints_Class_Registry_Deep_Multilevel $restrictions The restrictions
+ *                                                                registry.
+ */
+function wordpoints_bp_groups_entity_restrictions_know_init( $restrictions ) {
+
+	$restrictions->register(
+		'status_nonpublic'
+		, array( 'bp_group' )
+		, 'WordPoints_BP_Entity_Restriction_Group_Status_Nonpublic'
+	);
+}
+
+/**
  * Register hook actions for the Groups component when the registry is initialized.
  *
  * @since 1.0.0
