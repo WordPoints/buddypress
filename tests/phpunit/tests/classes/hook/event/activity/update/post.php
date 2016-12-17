@@ -47,7 +47,9 @@ class WordPoints_BP_Hook_Event_Activity_Update_Post_Test
 			)
 		);
 
-		bp_activity_mark_as_ham( $by_ref = new BP_Activity_Activity( $activity_id ) );
+		$by_ref = new BP_Activity_Activity( $activity_id );
+
+		bp_activity_mark_as_ham( $by_ref );
 
 		return array(
 			bp_activity_post_update(
@@ -68,7 +70,8 @@ class WordPoints_BP_Hook_Event_Activity_Update_Post_Test
 		switch ( $index ) {
 
 			case 1:
-				bp_activity_mark_as_spam( new BP_Activity_Activity( $arg_id ) );
+				$by_ref = new BP_Activity_Activity( $arg_id );
+				bp_activity_mark_as_spam( $by_ref );
 			break;
 
 			default:
