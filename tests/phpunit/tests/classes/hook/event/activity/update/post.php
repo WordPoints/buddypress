@@ -47,7 +47,7 @@ class WordPoints_BP_Hook_Event_Activity_Update_Post_Test
 			)
 		);
 
-		bp_activity_mark_as_ham( new BP_Activity_Activity( $activity_id ) );
+		bp_activity_mark_as_ham( $by_ref = new BP_Activity_Activity( $activity_id ) );
 
 		return array(
 			bp_activity_post_update(
