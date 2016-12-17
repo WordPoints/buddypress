@@ -30,6 +30,10 @@
  * @covers WordPoints_BP_Entity_Group_Parent
  * @covers WordPoints_BP_Entity_Group_Slug
  * @covers WordPoints_BP_Entity_Group_Status
+ * @covers WordPoints_BP_Entity_Activity_Update
+ * @covers WordPoints_BP_Entity_Activity_Update_Author
+ * @covers WordPoints_BP_Entity_Activity_Update_Content
+ * @covers WordPoints_BP_Entity_Activity_Update_Date_Posted
  */
 class WordPoints_BP_Entity_Message_Test
 	extends WordPoints_PHPUnit_TestCase_Entities {
@@ -280,6 +284,61 @@ class WordPoints_BP_Entity_Message_Test
 					),
 				),
 			),
+			'bp_activity_update' => array(
+				array(
+					'class'          => 'WordPoints_BP_Entity_Activity_Update',
+					'slug'           => 'bp_activity_update',
+					'id_field'       => 'id',
+					'get_human_id'   => array( $this, 'get_activity_human_id' ),
+					'context'        => '',
+					'storage_info'   => array(
+						'type' => 'db',
+						'info' => array(
+							'type'       => 'table',
+							'table_name' => buddypress()->activity->table_name,
+						),
+					),
+					'the_context'    => array(),
+					'create_func'    => array( $factory->bp->activity, 'create_and_get' ),
+					'delete_func'    => 'bp_activity_delete_by_activity_id',
+					'children'       => array(
+						'creator' => array(
+							'class'        => 'WordPoints_BP_Entity_Activity_Update_Author',
+							'primary'      => 'bp_activity_update',
+							'related'      => 'user',
+							'storage_info' => array(
+								'type' => 'db',
+								'info' => array(
+									'type'  => 'field',
+									'field' => 'user_id',
+								),
+							),
+						),
+						'content' => array(
+							'class'        => 'WordPoints_BP_Entity_Activity_Update_Content',
+							'data_type'    => 'text',
+							'storage_info' => array(
+								'type' => 'db',
+								'info' => array(
+									'type'  => 'field',
+									'field' => 'content',
+								),
+							),
+						),
+						'date_posted' => array(
+							'class'        => 'WordPoints_BP_Entity_Activity_Update_Date_Posted',
+							'data_type'    => 'mysql_datetime',
+							'storage_info' => array(
+								'type' => 'db',
+								'info' => array(
+									'type'  => 'field',
+									'field' => 'date_recorded',
+								),
+							),
+						),
+					),
+				),
+			),
 		);
 	}
 
@@ -344,6 +403,27 @@ class WordPoints_BP_Entity_Message_Test
 	public function get_friendship_human_id( $friendship ) {
 		return bp_core_get_user_displayname( $friendship->initiator_user_id )
 			. ' + ' . bp_core_get_user_displayname( $friendship->friend_user_id );
+	}
+
+	/**
+	 * Get the human ID for an activity.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param BP_Activity_Activity $activity The activity object.
+	 *
+	 * @return string The human ID for the activity.
+	 */
+	public function get_activity_human_id( $activity ) {
+
+		return trim(
+			strip_tags(
+				bp_create_excerpt(
+					$activity->content
+					, bp_activity_get_excerpt_length()
+				)
+			)
+		);
 	}
 }
 

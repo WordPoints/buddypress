@@ -339,4 +339,171 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 	);
 }
 
+//
+// Activity Component.
+//
+
+/**
+ * Register entities for the Activity component when the entities app is initialized.
+ *
+ * @since 1.0.0
+ *
+ * @WordPress\action wordpoints_init_app_registry-apps-entities
+ *
+ * @param WordPoints_App_Registry $entities The entities app.
+ */
+function wordpoints_bp_activity_entities_init( $entities ) {
+
+	$children = $entities->get_sub_app( 'children' );
+
+	$entities->register( 'bp_activity_update', 'WordPoints_BP_Entity_Activity_Update' );
+	$children->register( 'bp_activity_update', 'author', 'WordPoints_BP_Entity_Activity_Update_Author' );
+	$children->register( 'bp_activity_update', 'content', 'WordPoints_BP_Entity_Activity_Update_Content' );
+	$children->register( 'bp_activity_update', 'date_posted', 'WordPoints_BP_Entity_Activity_Update_Date_Posted' );
+}
+
+/**
+ * Register entity "know" restrictions for the Activity component.
+ *
+ * These are entities that are totally restricted, so that when the restriction
+ * applies, the user is not even allowed to know that such an object exists.
+ *
+ * @since 1.0.0
+ *
+ * @WordPress\action wordpoints_init_app_registry-entities-restrictions-know
+ *
+ * @param WordPoints_Class_Registry_Deep_Multilevel $restrictions The restrictions
+ *                                                                registry.
+ */
+function wordpoints_bp_activity_entity_restrictions_know_init( $restrictions ) {
+
+	$restrictions->register(
+		'hidden'
+		, array( 'bp_activity_update' )
+		, 'WordPoints_BP_Entity_Restriction_Activity_Hidden'
+	);
+
+	$restrictions->register(
+		'spam'
+		, array( 'bp_activity_update' )
+		, 'WordPoints_BP_Entity_Restriction_Activity_Spam'
+	);
+}
+
+/**
+ * Register hook actions for the Activity component when the registry is initialized.
+ *
+ * @since 1.0.0
+ *
+ * @WordPress\action wordpoints_init_app_registry-hooks-actions
+ *
+ * @param WordPoints_Hook_Actions $actions The action registry.
+ */
+function wordpoints_bp_activity_hook_actions_init( $actions ) {
+
+	$actions->register(
+		'bp_activity_update_post'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'bp_activity_posted_update',
+			'data'   => array(
+				'arg_index' => array( 'bp_activity_update' => 2 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_activity_update_spam'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'bp_activity_mark_as_spam',
+			'data'   => array(
+				'arg_index' => array( 'bp_activity_update' => 0 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_activity_update_ham'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'bp_activity_mark_as_ham',
+			'data'   => array(
+				'arg_index' => array( 'bp_activity_update' => 2 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_activity_update_delete'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'wordpoints_bp_activity_before_delete_activity_update',
+			'data'   => array(
+				'arg_index' => array( 'bp_activity_update' => 0 ),
+			),
+		)
+	);
+}
+
+/**
+ * Register hook events for the Activity component when the registry is initialized.
+ *
+ * @since 1.0.0
+ *
+ * @WordPress\action wordpoints_init_app_registry-hooks-events
+ *
+ * @param WordPoints_Hook_Events $events The event registry.
+ */
+function wordpoints_bp_activity_hook_events_init( $events ) {
+
+	$events->register(
+		'bp_activity_update_post'
+		, 'WordPoints_BP_Hook_Event_Activity_Update_Post'
+		, array(
+			'actions' => array(
+				'toggle_on'  => array(
+					'bp_activity_update_post',
+					'bp_activity_update_ham',
+				),
+				'toggle_off' => array(
+					'bp_activity_update_delete',
+					'bp_activity_update_spam',
+				),
+			),
+			'args' => array(
+				'bp_activity_update' => 'WordPoints_Hook_Arg',
+			),
+		)
+	);
+}
+
+/**
+ * Splits the 'bp_activity_before_delete' action by for each activity individually.
+ *
+ * @since 1.0.0
+ *
+ * @WordPress\action bp_activity_before_delete
+ *
+ * @param object[] $activities The activities being deleted.
+ */
+function wordpoints_bp_activity_split_before_delete_action( $activities ) {
+
+	foreach ( $activities as $activity ) {
+
+		if ( 'activity_update' !== $activity->type ) {
+			continue;
+		}
+
+		/**
+		 * Fires for an activity update before it is deleted.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param object $activity The activity object.
+		 */
+		do_action( 'wordpoints_bp_activity_before_delete_activity_update', $activity );
+	}
+}
+
 // EOF

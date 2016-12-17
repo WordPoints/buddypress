@@ -233,6 +233,121 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 
 		$this->assertEventRegistered( 'bp_group_create', 'bp_group' );
 	}
+
+	/**
+	 * Test the Activity component entity registration function.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @covers ::wordpoints_bp_groups_entities_init
+	 */
+	public function test_activity_entities() {
+
+		$this->mock_apps();
+
+		$entities = wordpoints_entities();
+
+		wordpoints_bp_activity_entities_init( $entities );
+
+		$children = $entities->get_sub_app( 'children' );
+
+		$this->assertTrue( $entities->is_registered( 'bp_activity_update' ) );
+		$this->assertTrue( $children->is_registered( 'bp_activity_update', 'author' ) );
+		$this->assertTrue( $children->is_registered( 'bp_activity_update', 'content' ) );
+		$this->assertTrue( $children->is_registered( 'bp_activity_update', 'date_posted' ) );
+	}
+
+	/**
+	 * Test the Activity component 'know' entity restriction registration function.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @covers ::wordpoints_bp_groups_entity_restrictions_know_init
+	 */
+	public function test_activity_know_restrictions() {
+
+		$restrictions = new WordPoints_Class_Registry_Deep_Multilevel();
+
+		wordpoints_bp_activity_entity_restrictions_know_init( $restrictions );
+
+		$this->assertTrue( $restrictions->is_registered( 'hidden', array( 'bp_activity_update' ) ) );
+		$this->assertTrue( $restrictions->is_registered( 'spam', array( 'bp_activity_update' ) ) );
+	}
+
+	/**
+	 * Test the Activity component action registration function.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @covers ::wordpoints_bp_groups_hook_actions_init
+	 */
+	public function test_activity_actions() {
+
+		$this->mock_apps();
+
+		$actions = wordpoints_hooks()->get_sub_app( 'actions' );
+
+		wordpoints_bp_activity_hook_actions_init( $actions );
+
+		$this->assertTrue( $actions->is_registered( 'bp_activity_update_post' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_activity_update_ham' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_activity_update_spam' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_activity_update_delete' ) );
+	}
+
+	/**
+	 * Test the Activity component events registration function.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @covers ::wordpoints_bp_activity_hook_events_init
+	 */
+	public function test_activity_events() {
+
+		$this->mock_apps();
+
+		$events = wordpoints_hooks()->get_sub_app( 'events' );
+
+		wordpoints_bp_activity_hook_events_init( $events );
+
+		$this->assertEventRegistered( 'bp_activity_update_post', 'bp_activity_update' );
+	}
+
+	/**
+	 * Test the Activity component events registration function.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @covers ::wordpoints_bp_activity_split_before_delete_action
+	 */
+	public function test_activity_split_before_delete_action() {
+
+		$this->factory->bp = new BP_UnitTest_Factory();
+
+		$activity_test = $this->factory->bp->activity->create_and_get(
+			array( 'type' => 'test' )
+		);
+
+		$activity_update = $this->factory->bp->activity->create_and_get(
+			array( 'type' => 'activity_update' )
+		);
+
+		$activity_update_2 = $this->factory->bp->activity->create_and_get(
+			array( 'type' => 'activity_update' )
+		);
+
+		$mock = new WordPoints_PHPUnit_Mock_Filter();
+		$mock->add_action( 'wordpoints_bp_activity_before_delete_activity_update' );
+
+		wordpoints_bp_activity_split_before_delete_action(
+			array( $activity_test, $activity_update, $activity_update_2 )
+		);
+
+		$this->assertSame(
+			array( array( $activity_update ), array( $activity_update_2 ) )
+			, $mock->calls
+		);
+	}
 }
 
 // EOF

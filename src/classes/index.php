@@ -10,6 +10,10 @@
 return array(
 	// auto-generated {
 	'wordpoints_bp_entity' => 'entity.php',
+	'wordpoints_bp_entity_activity_update' => 'entity/activity/update.php',
+	'wordpoints_bp_entity_activity_update_author' => 'entity/activity/update/author.php',
+	'wordpoints_bp_entity_activity_update_content' => 'entity/activity/update/content.php',
+	'wordpoints_bp_entity_activity_update_date_posted' => 'entity/activity/update/date/posted.php',
 	'wordpoints_bp_entity_friendship' => 'entity/friendship.php',
 	'wordpoints_bp_entity_friendship_date_created' => 'entity/friendship/date/created.php',
 	'wordpoints_bp_entity_friendship_friend' => 'entity/friendship/friend.php',
@@ -28,8 +32,11 @@ return array(
 	'wordpoints_bp_entity_message_recipients' => 'entity/message/recipients.php',
 	'wordpoints_bp_entity_message_sender' => 'entity/message/sender.php',
 	'wordpoints_bp_entity_message_subject' => 'entity/message/subject.php',
+	'wordpoints_bp_entity_restriction_activity_hidden' => 'entity/restriction/activity/hidden.php',
+	'wordpoints_bp_entity_restriction_activity_spam' => 'entity/restriction/activity/spam.php',
 	'wordpoints_bp_entity_restriction_group_status_nonpublic' => 'entity/restriction/group/status/nonpublic.php',
 	'wordpoints_bp_entity_restriction_message_thread_accessible' => 'entity/restriction/message/thread/accessible.php',
+	'wordpoints_bp_hook_event_activity_update_post' => 'hook/event/activity/update/post.php',
 	'wordpoints_bp_hook_event_friendship_accept' => 'hook/event/friendship/accept.php',
 	'wordpoints_bp_hook_event_friendship_request' => 'hook/event/friendship/request.php',
 	'wordpoints_bp_hook_event_group_create' => 'hook/event/group/create.php',
