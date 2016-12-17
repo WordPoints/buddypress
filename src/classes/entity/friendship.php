@@ -31,10 +31,7 @@ class WordPoints_BP_Entity_Friendship extends WordPoints_BP_Entity {
 
 		$entity = new BP_Friends_Friendship( $id );
 
-		// The `id` field is automatically set to the passed in value, even if it is
-		// invalid. So we check the `date_created` field instead, since it is only
-		// set if the friendship is found in the database.
-		if ( ! $entity->date_created ) {
+		if ( ! $entity->id ) {
 			return false;
 		}
 
