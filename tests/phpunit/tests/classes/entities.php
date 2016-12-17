@@ -416,13 +416,23 @@ class WordPoints_BP_Entity_Message_Test
 	 */
 	public function get_activity_human_id( $activity ) {
 
+		// Back-compat for BuddyPress <2.8.
+		if ( function_exists( 'bp_activity_get_excerpt_length' ) ) {
+
+			$excerpt_length = bp_activity_get_excerpt_length();
+
+		} else {
+
+			/**
+			 * Filters the excerpt length for the activity excerpt.
+			 *
+			 * @param int $length Character length for activity excerpts.
+			 */
+			$excerpt_length = (int) apply_filters( 'bp_activity_excerpt_length', 358 );
+		}
+
 		return trim(
-			strip_tags(
-				bp_create_excerpt(
-					$activity->content
-					, bp_activity_get_excerpt_length()
-				)
-			)
+			strip_tags( bp_create_excerpt( $activity->content, $excerpt_length ) )
 		);
 	}
 }
