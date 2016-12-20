@@ -33,7 +33,7 @@ class WordPoints_BP_Entity_Message_Content extends WordPoints_Entity_Attr_Field 
 	 * @since 1.0.0
 	 */
 	public function get_title() {
-		return __( 'Contents', 'wordpoints-bp' );
+		return _x( 'Contents', 'message entity', 'wordpoints-bp' );
 	}
 }
 

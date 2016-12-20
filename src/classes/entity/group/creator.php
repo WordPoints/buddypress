@@ -39,7 +39,7 @@ class WordPoints_BP_Entity_Group_Creator
 	 * @since 1.0.0
 	 */
 	public function get_title() {
-		return __( 'Creator', 'wordpoints-bp' );
+		return _x( 'Creator', 'group entity', 'wordpoints-bp' );
 	}
 }
 

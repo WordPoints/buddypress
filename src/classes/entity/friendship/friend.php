@@ -39,7 +39,7 @@ class WordPoints_BP_Entity_Friendship_Friend
 	 * @since 1.0.0
 	 */
 	public function get_title() {
-		return __( 'Friend', 'wordpoints-bp' );
+		return _x( 'Friend', 'friendship entity', 'wordpoints-bp' );
 	}
 }
 

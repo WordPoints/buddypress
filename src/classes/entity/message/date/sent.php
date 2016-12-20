@@ -33,7 +33,7 @@ class WordPoints_BP_Entity_Message_Date_Sent extends WordPoints_Entity_Attr_Fiel
 	 * @since 1.0.0
 	 */
 	public function get_title() {
-		return __( 'Date Sent', 'wordpoints-bp' );
+		return _x( 'Date Sent', 'message entity', 'wordpoints-bp' );
 	}
 }
 

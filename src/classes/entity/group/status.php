@@ -33,7 +33,7 @@ class WordPoints_BP_Entity_Group_Status extends WordPoints_Entity_Attr_Field {
 	 * @since 1.0.0
 	 */
 	public function get_title() {
-		return __( 'Status', 'wordpoints-bp' );
+		return _x( 'Status', 'group entity', 'wordpoints-bp' );
 	}
 }
 

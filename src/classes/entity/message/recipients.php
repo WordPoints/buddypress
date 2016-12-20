@@ -30,7 +30,7 @@ class WordPoints_BP_Entity_Message_Recipients
 	 * @since 1.0.0
 	 */
 	public function get_title() {
-		return __( 'Recipients', 'wordpoints-bp' );
+		return _x( 'Recipients', 'message entity', 'wordpoints-bp' );
 	}
 
 	/**

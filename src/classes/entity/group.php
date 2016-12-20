@@ -47,7 +47,7 @@ class WordPoints_BP_Entity_Group extends WordPoints_BP_Entity {
 	 * @since 1.0.0
 	 */
 	public function get_title() {
-		return __( 'Group', 'wordpoints-bp' );
+		return _x( 'Group', 'group entity', 'wordpoints-bp' );
 	}
 }
 

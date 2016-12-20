@@ -55,7 +55,7 @@ class WordPoints_BP_Entity_Friendship extends WordPoints_BP_Entity {
 	 * @since 1.0.0
 	 */
 	public function get_title() {
-		return __( 'Friendship', 'wordpoints-bp' );
+		return _x( 'Friendship', 'friendship entity', 'wordpoints-bp' );
 	}
 }
 

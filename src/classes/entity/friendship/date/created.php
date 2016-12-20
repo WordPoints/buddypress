@@ -41,7 +41,7 @@ class WordPoints_BP_Entity_Friendship_Date_Created
 	 * @since 1.0.0
 	 */
 	public function get_title() {
-		return __( 'Date Created', 'wordpoints-bp' );
+		return _x( 'Date Created', 'friendship entity', 'wordpoints-bp' );
 	}
 }
 

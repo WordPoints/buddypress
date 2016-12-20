@@ -33,7 +33,7 @@ class WordPoints_BP_Entity_Group_Slug extends WordPoints_Entity_Attr_Field {
 	 * @since 1.0.0
 	 */
 	public function get_title() {
-		return __( 'Slug', 'wordpoints-bp' );
+		return _x( 'Slug', 'group entity', 'wordpoints-bp' );
 	}
 }
 
