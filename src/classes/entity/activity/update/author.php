@@ -13,27 +13,12 @@
  * @since 1.0.0
  */
 class WordPoints_BP_Entity_Activity_Update_Author
-	extends WordPoints_Entity_Relationship_Stored_Field {
-
-	/**
-	 * @since 1.0.0
-	 */
-	protected $storage_type = 'db';
+	extends WordPoints_BP_Entity_Activity_User {
 
 	/**
 	 * @since 1.0.0
 	 */
 	protected $primary_entity_slug = 'bp_activity_update';
-
-	/**
-	 * @since 1.0.0
-	 */
-	protected $related_entity_slug = 'user';
-
-	/**
-	 * @since 1.0.0
-	 */
-	protected $related_ids_field = 'user_id';
 
 	/**
 	 * @since 1.0.0

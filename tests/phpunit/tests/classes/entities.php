@@ -30,13 +30,17 @@
  * @covers WordPoints_BP_Entity_Group_Parent
  * @covers WordPoints_BP_Entity_Group_Slug
  * @covers WordPoints_BP_Entity_Group_Status
+ * @covers WordPoints_BP_Entity_Activity
+ * @covers WordPoints_BP_Entity_Activity_Date
+ * @covers WordPoints_BP_Entity_Activity_User
  * @covers WordPoints_BP_Entity_Activity_Update
  * @covers WordPoints_BP_Entity_Activity_Update_Author
  * @covers WordPoints_BP_Entity_Activity_Update_Content
  * @covers WordPoints_BP_Entity_Activity_Update_Date_Posted
- * @covers WordPoints_BP_Entity_Activity_Update_Comment
- * @covers WordPoints_BP_Entity_Activity_Update_Comment_Activity
- * @covers WordPoints_BP_Entity_Activity_Update_Comment_Parent
+ * @covers WordPoints_BP_Entity_Activity_Comment
+ * @covers WordPoints_BP_Entity_Activity_Comment_Activity
+ * @covers WordPoints_BP_Entity_Activity_Comment_Author
+ * @covers WordPoints_BP_Entity_Activity_Comment_Parent
  */
 class WordPoints_BP_Entity_Message_Test
 	extends WordPoints_PHPUnit_TestCase_Entities {
@@ -287,6 +291,50 @@ class WordPoints_BP_Entity_Message_Test
 					),
 				),
 			),
+			'bp_activity' => array(
+				array(
+					'class'          => 'WordPoints_BP_Entity_Activity',
+					'slug'           => 'bp_activity',
+					'id_field'       => 'id',
+					'get_human_id'   => array( $this, 'get_activity_human_id' ),
+					'context'        => '',
+					'storage_info'   => array(
+						'type' => 'db',
+						'info' => array(
+							'type'       => 'table',
+							'table_name' => buddypress()->activity->table_name,
+						),
+					),
+					'the_context'    => array(),
+					'create_func'    => array( $factory->bp->activity, 'create_and_get' ),
+					'delete_func'    => 'bp_activity_delete_by_activity_id',
+					'children'       => array(
+						'date' => array(
+							'class'        => 'WordPoints_BP_Entity_Activity_Date',
+							'data_type'    => 'mysql_datetime',
+							'storage_info' => array(
+								'type' => 'db',
+								'info' => array(
+									'type'  => 'field',
+									'field' => 'date_recorded',
+								),
+							),
+						),
+						'user' => array(
+							'class'        => 'WordPoints_BP_Entity_Activity_User',
+							'primary'      => 'bp_activity',
+							'related'      => 'user',
+							'storage_info' => array(
+								'type' => 'db',
+								'info' => array(
+									'type'  => 'field',
+									'field' => 'user_id',
+								),
+							),
+						),
+					),
+				),
+			),
 			'bp_activity_update' => array(
 				array(
 					'class'          => 'WordPoints_BP_Entity_Activity_Update',
@@ -342,9 +390,9 @@ class WordPoints_BP_Entity_Message_Test
 					),
 				),
 			),
-			'bp_activity_update_comment' => array(
+			'bp_activity_comment' => array(
 				array(
-					'class'          => 'WordPoints_BP_Entity_Activity_Update_Comment',
+					'class'          => 'WordPoints_BP_Entity_Activity_Comment',
 					'slug'           => 'bp_activity_update_update',
 					'id_field'       => 'id',
 					'get_human_id'   => array( $this, 'get_activity_human_id' ),
@@ -361,9 +409,9 @@ class WordPoints_BP_Entity_Message_Test
 					'delete_func'    => 'bp_activity_delete_by_activity_id',
 					'children'       => array(
 						'activity' => array(
-							'class'        => 'WordPoints_BP_Entity_Activity_Update_Comment_Activity',
-							'primary'      => 'bp_activity_update_comment',
-							'related'      => 'bp_activity_update',
+							'class'        => 'WordPoints_BP_Entity_Activity_Comment_Activity',
+							'primary'      => 'bp_activity_comment',
+							'related'      => 'bp_activity',
 							'storage_info' => array(
 								'type' => 'db',
 								'info' => array(
@@ -373,8 +421,8 @@ class WordPoints_BP_Entity_Message_Test
 							),
 						),
 						'author' => array(
-							'class'        => 'WordPoints_BP_Entity_Activity_Update_Author',
-							'primary'      => 'bp_activity_update',
+							'class'        => 'WordPoints_BP_Entity_Activity_Comment_Author',
+							'primary'      => 'bp_activity_comment',
 							'related'      => 'user',
 							'storage_info' => array(
 								'type' => 'db',
@@ -407,9 +455,9 @@ class WordPoints_BP_Entity_Message_Test
 							),
 						),
 						'parent' => array(
-							'class'        => 'WordPoints_BP_Entity_Activity_Update_Comment_Parent',
-							'primary'      => 'bp_activity_update_comment',
-							'related'      => 'bp_activity_update_comment',
+							'class'        => 'WordPoints_BP_Entity_Activity_Comment_Parent',
+							'primary'      => 'bp_activity_comment',
+							'related'      => 'bp_activity_comment',
 							'storage_info' => array(
 								'type' => 'db',
 								'info' => array(

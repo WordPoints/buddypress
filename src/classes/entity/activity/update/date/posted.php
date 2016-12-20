@@ -13,22 +13,7 @@
  * @since 1.0.0
  */
 class WordPoints_BP_Entity_Activity_Update_Date_Posted
-	extends WordPoints_Entity_Attr_Field {
-
-	/**
-	 * @since 1.0.0
-	 */
-	protected $storage_type = 'db';
-
-	/**
-	 * @since 1.0.0
-	 */
-	protected $data_type = 'mysql_datetime';
-
-	/**
-	 * @since 1.0.0
-	 */
-	protected $field = 'date_recorded';
+	extends WordPoints_BP_Entity_Activity_Date {
 
 	/**
 	 * @since 1.0.0

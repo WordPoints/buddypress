@@ -1,39 +1,39 @@
 <?php
 
 /**
- * Test case for the WordPoints_BP_Hook_Event_Activity_Update_Comment_Post class.
+ * Test case for the WordPoints_BP_Hook_Event_Activity_Comment_Post class.
  *
  * @package WordPoints_BuddyPress
  * @since 1.0.0
  */
 
 /**
- * Tests the WordPoints_BP_Hook_Event_Activity_Update_Comment_Post class.
+ * Tests the WordPoints_BP_Hook_Event_Activity_Comment_Post class.
  *
  * @since 1.0.0
  *
- * @covers WordPoints_BP_Hook_Event_Activity_Update_Comment_Post
+ * @covers WordPoints_BP_Hook_Event_Activity_Comment_Post
  */
-class WordPoints_BP_Hook_Event_Activity_Update_Comment_Post_Test
+class WordPoints_BP_Hook_Event_Activity_Comment_Post_Test
 	extends WordPoints_PHPUnit_TestCase_Hook_Event {
 
 	/**
 	 * @since 1.0.0
 	 */
-	protected $event_slug = 'bp_activity_update_comment_post';
+	protected $event_slug = 'bp_activity_comment_post';
 
 	/**
 	 * @since 1.0.0
 	 */
-	protected $event_class = 'WordPoints_BP_Hook_Event_Activity_Update_Comment_Post';
+	protected $event_class = 'WordPoints_BP_Hook_Event_Activity_Comment_Post';
 
 	/**
 	 * @since 1.0.0
 	 */
 	protected $expected_targets = array(
-		array( 'bp_activity_update_comment', 'author', 'user' ),
-		array( 'bp_activity_update_comment', 'activity', 'bp_activity_update', 'author', 'user' ),
-		array( 'bp_activity_update_comment', 'parent', 'bp_activity_update_comment', 'author', 'user' ),
+		array( 'bp_activity_comment', 'author', 'user' ),
+		array( 'bp_activity_comment', 'activity', 'bp_activity', 'user', 'user' ),
+		array( 'bp_activity_comment', 'parent', 'bp_activity_comment', 'author', 'user' ),
 	);
 
 	/**

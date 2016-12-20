@@ -251,17 +251,21 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 
 		$children = $entities->get_sub_app( 'children' );
 
+		$this->assertTrue( $entities->is_registered( 'bp_activity' ) );
+		$this->assertTrue( $children->is_registered( 'bp_activity', 'date' ) );
+		$this->assertTrue( $children->is_registered( 'bp_activity', 'user' ) );
+
 		$this->assertTrue( $entities->is_registered( 'bp_activity_update' ) );
 		$this->assertTrue( $children->is_registered( 'bp_activity_update', 'author' ) );
 		$this->assertTrue( $children->is_registered( 'bp_activity_update', 'content' ) );
 		$this->assertTrue( $children->is_registered( 'bp_activity_update', 'date_posted' ) );
 
-		$this->assertTrue( $entities->is_registered( 'bp_activity_update_comment' ) );
-		$this->assertTrue( $children->is_registered( 'bp_activity_update_comment', 'activity' ) );
-		$this->assertTrue( $children->is_registered( 'bp_activity_update_comment', 'author' ) );
-		$this->assertTrue( $children->is_registered( 'bp_activity_update_comment', 'content' ) );
-		$this->assertTrue( $children->is_registered( 'bp_activity_update_comment', 'date_posted' ) );
-		$this->assertTrue( $children->is_registered( 'bp_activity_update_comment', 'parent' ) );
+		$this->assertTrue( $entities->is_registered( 'bp_activity_comment' ) );
+		$this->assertTrue( $children->is_registered( 'bp_activity_comment', 'activity' ) );
+		$this->assertTrue( $children->is_registered( 'bp_activity_comment', 'author' ) );
+		$this->assertTrue( $children->is_registered( 'bp_activity_comment', 'content' ) );
+		$this->assertTrue( $children->is_registered( 'bp_activity_comment', 'date_posted' ) );
+		$this->assertTrue( $children->is_registered( 'bp_activity_comment', 'parent' ) );
 	}
 
 	/**
@@ -277,11 +281,14 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 
 		wordpoints_bp_activity_entity_restrictions_know_init( $restrictions );
 
+		$this->assertTrue( $restrictions->is_registered( 'hidden', array( 'bp_activity' ) ) );
+		$this->assertTrue( $restrictions->is_registered( 'spam', array( 'bp_activity' ) ) );
+
 		$this->assertTrue( $restrictions->is_registered( 'hidden', array( 'bp_activity_update' ) ) );
 		$this->assertTrue( $restrictions->is_registered( 'spam', array( 'bp_activity_update' ) ) );
 
-		$this->assertTrue( $restrictions->is_registered( 'hidden', array( 'bp_activity_update_comment' ) ) );
-		$this->assertTrue( $restrictions->is_registered( 'spam', array( 'bp_activity_update_comment' ) ) );
+		$this->assertTrue( $restrictions->is_registered( 'hidden', array( 'bp_activity_comment' ) ) );
+		$this->assertTrue( $restrictions->is_registered( 'spam', array( 'bp_activity_comment' ) ) );
 	}
 
 	/**
@@ -304,10 +311,10 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 		$this->assertTrue( $actions->is_registered( 'bp_activity_update_spam' ) );
 		$this->assertTrue( $actions->is_registered( 'bp_activity_update_delete' ) );
 
-		$this->assertTrue( $actions->is_registered( 'bp_activity_update_comment_post' ) );
-		$this->assertTrue( $actions->is_registered( 'bp_activity_update_comment_ham' ) );
-		$this->assertTrue( $actions->is_registered( 'bp_activity_update_comment_spam' ) );
-		$this->assertTrue( $actions->is_registered( 'bp_activity_update_comment_delete' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_activity_comment_post' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_activity_comment_ham' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_activity_comment_spam' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_activity_comment_delete' ) );
 	}
 
 	/**
@@ -326,7 +333,7 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 		wordpoints_bp_activity_hook_events_init( $events );
 
 		$this->assertEventRegistered( 'bp_activity_update_post', 'bp_activity_update' );
-		$this->assertEventRegistered( 'bp_activity_update_comment_post', 'bp_activity_update_comment' );
+		$this->assertEventRegistered( 'bp_activity_comment_post', 'bp_activity_comment' );
 	}
 
 	/**

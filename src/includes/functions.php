@@ -356,17 +356,21 @@ function wordpoints_bp_activity_entities_init( $entities ) {
 
 	$children = $entities->get_sub_app( 'children' );
 
+	$entities->register( 'bp_activity', 'WordPoints_BP_Entity_Activity' );
+	$children->register( 'bp_activity', 'date', 'WordPoints_BP_Entity_Activity_Date' );
+	$children->register( 'bp_activity', 'user', 'WordPoints_BP_Entity_Activity_User' );
+
 	$entities->register( 'bp_activity_update', 'WordPoints_BP_Entity_Activity_Update' );
 	$children->register( 'bp_activity_update', 'author', 'WordPoints_BP_Entity_Activity_Update_Author' );
 	$children->register( 'bp_activity_update', 'content', 'WordPoints_BP_Entity_Activity_Update_Content' );
 	$children->register( 'bp_activity_update', 'date_posted', 'WordPoints_BP_Entity_Activity_Update_Date_Posted' );
 
-	$entities->register( 'bp_activity_update_comment', 'WordPoints_BP_Entity_Activity_Update_Comment' );
-	$children->register( 'bp_activity_update_comment', 'activity', 'WordPoints_BP_Entity_Activity_Update_Comment_Activity' );
-	$children->register( 'bp_activity_update_comment', 'author', 'WordPoints_BP_Entity_Activity_Update_Author' );
-	$children->register( 'bp_activity_update_comment', 'content', 'WordPoints_BP_Entity_Activity_Update_Content' );
-	$children->register( 'bp_activity_update_comment', 'date_posted', 'WordPoints_BP_Entity_Activity_Update_Date_Posted' );
-	$children->register( 'bp_activity_update_comment', 'parent', 'WordPoints_BP_Entity_Activity_Update_Comment_Parent' );
+	$entities->register( 'bp_activity_comment', 'WordPoints_BP_Entity_Activity_Comment' );
+	$children->register( 'bp_activity_comment', 'activity', 'WordPoints_BP_Entity_Activity_Comment_Activity' );
+	$children->register( 'bp_activity_comment', 'author', 'WordPoints_BP_Entity_Activity_Comment_Author' );
+	$children->register( 'bp_activity_comment', 'content', 'WordPoints_BP_Entity_Activity_Update_Content' );
+	$children->register( 'bp_activity_comment', 'date_posted', 'WordPoints_BP_Entity_Activity_Update_Date_Posted' );
+	$children->register( 'bp_activity_comment', 'parent', 'WordPoints_BP_Entity_Activity_Comment_Parent' );
 }
 
 /**
@@ -386,6 +390,18 @@ function wordpoints_bp_activity_entity_restrictions_know_init( $restrictions ) {
 
 	$restrictions->register(
 		'hidden'
+		, array( 'bp_activity' )
+		, 'WordPoints_BP_Entity_Restriction_Activity_Hidden'
+	);
+
+	$restrictions->register(
+		'spam'
+		, array( 'bp_activity' )
+		, 'WordPoints_BP_Entity_Restriction_Activity_Spam'
+	);
+
+	$restrictions->register(
+		'hidden'
 		, array( 'bp_activity_update' )
 		, 'WordPoints_BP_Entity_Restriction_Activity_Hidden'
 	);
@@ -398,13 +414,13 @@ function wordpoints_bp_activity_entity_restrictions_know_init( $restrictions ) {
 
 	$restrictions->register(
 		'hidden'
-		, array( 'bp_activity_update_comment' )
+		, array( 'bp_activity_comment' )
 		, 'WordPoints_BP_Entity_Restriction_Activity_Hidden'
 	);
 
 	$restrictions->register(
 		'spam'
-		, array( 'bp_activity_update_comment' )
+		, array( 'bp_activity_comment' )
 		, 'WordPoints_BP_Entity_Restriction_Activity_Spam'
 	);
 }
@@ -467,56 +483,56 @@ function wordpoints_bp_activity_hook_actions_init( $actions ) {
 
 	// Activity update comment.
 	$actions->register(
-		'bp_activity_update_comment_post'
-		, 'WordPoints_BP_Hook_Action_Activity_Update_Comment'
+		'bp_activity_comment_post'
+		, 'WordPoints_Hook_Action'
 		, array(
 			'action' => 'bp_activity_comment_posted',
 			'data'   => array(
-				'arg_index' => array( 'bp_activity_update_comment' => 0 ),
+				'arg_index' => array( 'bp_activity_comment' => 0 ),
 			),
 		)
 	);
 
 	// See https://github.com/WordPoints/wordpoints/issues/592.
 	wordpoints_hooks()->get_sub_app( 'router' )->add_action(
-		'bp_activity_update_comment_post'
+		'bp_activity_comment_post'
 		, array(
 			'action' => 'bp_activity_comment_posted_notification_skipped',
 			'data'   => array(
-				'arg_index' => array( 'bp_activity_update_comment' => 0 ),
+				'arg_index' => array( 'bp_activity_comment' => 0 ),
 			),
 		)
 	);
 
 	$actions->register(
-		'bp_activity_update_comment_spam'
-		, 'WordPoints_BP_Hook_Action_Activity_Update_Comment'
+		'bp_activity_comment_spam'
+		, 'WordPoints_Hook_Action'
 		, array(
 			'action' => 'bp_activity_mark_as_spam',
 			'data'   => array(
-				'arg_index' => array( 'bp_activity_update_comment' => 0 ),
+				'arg_index' => array( 'bp_activity_comment' => 0 ),
 			),
 		)
 	);
 
 	$actions->register(
-		'bp_activity_update_comment_ham'
-		, 'WordPoints_BP_Hook_Action_Activity_Update_Comment'
+		'bp_activity_comment_ham'
+		, 'WordPoints_Hook_Action'
 		, array(
 			'action' => 'bp_activity_mark_as_ham',
 			'data'   => array(
-				'arg_index' => array( 'bp_activity_update_comment' => 2 ),
+				'arg_index' => array( 'bp_activity_comment' => 2 ),
 			),
 		)
 	);
 
 	$actions->register(
-		'bp_activity_update_comment_delete'
-		, 'WordPoints_BP_Hook_Action_Activity_Update_Comment'
+		'bp_activity_comment_delete'
+		, 'WordPoints_Hook_Action'
 		, array(
 			'action' => 'wordpoints_bp_activity_before_delete_activity_comment',
 			'data'   => array(
-				'arg_index' => array( 'bp_activity_update_comment' => 0 ),
+				'arg_index' => array( 'bp_activity_comment' => 0 ),
 			),
 		)
 	);
@@ -554,21 +570,21 @@ function wordpoints_bp_activity_hook_events_init( $events ) {
 	);
 
 	$events->register(
-		'bp_activity_update_comment_post'
-		, 'WordPoints_BP_Hook_Event_Activity_Update_Comment_Post'
+		'bp_activity_comment_post'
+		, 'WordPoints_BP_Hook_Event_Activity_Comment_Post'
 		, array(
 			'actions' => array(
 				'toggle_on'  => array(
-					'bp_activity_update_comment_post',
-					'bp_activity_update_comment_ham',
+					'bp_activity_comment_post',
+					'bp_activity_comment_ham',
 				),
 				'toggle_off' => array(
-					'bp_activity_update_comment_delete',
-					'bp_activity_update_comment_spam',
+					'bp_activity_comment_delete',
+					'bp_activity_comment_spam',
 				),
 			),
 			'args' => array(
-				'bp_activity_update_comment' => 'WordPoints_Hook_Arg',
+				'bp_activity_comment' => 'WordPoints_Hook_Arg',
 			),
 		)
 	);
