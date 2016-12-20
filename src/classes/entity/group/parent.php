@@ -39,7 +39,7 @@ class WordPoints_BP_Entity_Group_Parent
 	 * @since 1.0.0
 	 */
 	public function get_title() {
-		return __( 'Parent', 'wordpoints-bp' );
+		return __( 'Parent Group', 'wordpoints-bp' );
 	}
 }
 
