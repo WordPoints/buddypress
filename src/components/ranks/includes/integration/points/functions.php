@@ -21,7 +21,7 @@ function wordpoints_bp_ranks_points_members_profile_screen_content_stats( $point
 	<div class="wordpoints-bp-member-profile-stat">
 		<?php
 
-		echo esc_html(
+		echo wp_kses_post(
 			sprintf(
 				__( 'Rank: %s', 'wordpoints-bp' )
 				, wordpoints_get_formatted_user_rank(
