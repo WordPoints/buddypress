@@ -360,6 +360,13 @@ function wordpoints_bp_activity_entities_init( $entities ) {
 	$children->register( 'bp_activity_update', 'author', 'WordPoints_BP_Entity_Activity_Update_Author' );
 	$children->register( 'bp_activity_update', 'content', 'WordPoints_BP_Entity_Activity_Update_Content' );
 	$children->register( 'bp_activity_update', 'date_posted', 'WordPoints_BP_Entity_Activity_Update_Date_Posted' );
+
+	$entities->register( 'bp_activity_update_comment', 'WordPoints_BP_Entity_Activity_Update_Comment' );
+	$children->register( 'bp_activity_update_comment', 'activity', 'WordPoints_BP_Entity_Activity_Update_Comment_Activity' );
+	$children->register( 'bp_activity_update_comment', 'author', 'WordPoints_BP_Entity_Activity_Update_Author' );
+	$children->register( 'bp_activity_update_comment', 'content', 'WordPoints_BP_Entity_Activity_Update_Content' );
+	$children->register( 'bp_activity_update_comment', 'date_posted', 'WordPoints_BP_Entity_Activity_Update_Date_Posted' );
+	$children->register( 'bp_activity_update_comment', 'parent', 'WordPoints_BP_Entity_Activity_Update_Comment_Parent' );
 }
 
 /**
@@ -388,6 +395,18 @@ function wordpoints_bp_activity_entity_restrictions_know_init( $restrictions ) {
 		, array( 'bp_activity_update' )
 		, 'WordPoints_BP_Entity_Restriction_Activity_Spam'
 	);
+
+	$restrictions->register(
+		'hidden'
+		, array( 'bp_activity_update_comment' )
+		, 'WordPoints_BP_Entity_Restriction_Activity_Hidden'
+	);
+
+	$restrictions->register(
+		'spam'
+		, array( 'bp_activity_update_comment' )
+		, 'WordPoints_BP_Entity_Restriction_Activity_Spam'
+	);
 }
 
 /**
@@ -401,6 +420,7 @@ function wordpoints_bp_activity_entity_restrictions_know_init( $restrictions ) {
  */
 function wordpoints_bp_activity_hook_actions_init( $actions ) {
 
+	// Activity update.
 	$actions->register(
 		'bp_activity_update_post'
 		, 'WordPoints_Hook_Action'
@@ -444,6 +464,62 @@ function wordpoints_bp_activity_hook_actions_init( $actions ) {
 			),
 		)
 	);
+
+	// Activity update comment.
+	$actions->register(
+		'bp_activity_update_comment_post'
+		, 'WordPoints_BP_Hook_Action_Activity_Update_Comment'
+		, array(
+			'action' => 'bp_activity_comment_posted',
+			'data'   => array(
+				'arg_index' => array( 'bp_activity_update_comment' => 0 ),
+			),
+		)
+	);
+
+	// See https://github.com/WordPoints/wordpoints/issues/592.
+	wordpoints_hooks()->get_sub_app( 'router' )->add_action(
+		'bp_activity_update_comment_post'
+		, array(
+			'action' => 'bp_activity_comment_posted_notification_skipped',
+			'data'   => array(
+				'arg_index' => array( 'bp_activity_update_comment' => 0 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_activity_update_comment_spam'
+		, 'WordPoints_BP_Hook_Action_Activity_Update_Comment'
+		, array(
+			'action' => 'bp_activity_mark_as_spam',
+			'data'   => array(
+				'arg_index' => array( 'bp_activity_update_comment' => 0 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_activity_update_comment_ham'
+		, 'WordPoints_BP_Hook_Action_Activity_Update_Comment'
+		, array(
+			'action' => 'bp_activity_mark_as_ham',
+			'data'   => array(
+				'arg_index' => array( 'bp_activity_update_comment' => 2 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_activity_update_comment_delete'
+		, 'WordPoints_BP_Hook_Action_Activity_Update_Comment'
+		, array(
+			'action' => 'wordpoints_bp_activity_before_delete_activity_comment',
+			'data'   => array(
+				'arg_index' => array( 'bp_activity_update_comment' => 0 ),
+			),
+		)
+	);
 }
 
 /**
@@ -476,6 +552,26 @@ function wordpoints_bp_activity_hook_events_init( $events ) {
 			),
 		)
 	);
+
+	$events->register(
+		'bp_activity_update_comment_post'
+		, 'WordPoints_BP_Hook_Event_Activity_Update_Comment_Post'
+		, array(
+			'actions' => array(
+				'toggle_on'  => array(
+					'bp_activity_update_comment_post',
+					'bp_activity_update_comment_ham',
+				),
+				'toggle_off' => array(
+					'bp_activity_update_comment_delete',
+					'bp_activity_update_comment_spam',
+				),
+			),
+			'args' => array(
+				'bp_activity_update_comment' => 'WordPoints_Hook_Arg',
+			),
+		)
+	);
 }
 
 /**
@@ -491,18 +587,34 @@ function wordpoints_bp_activity_split_before_delete_action( $activities ) {
 
 	foreach ( $activities as $activity ) {
 
-		if ( 'activity_update' !== $activity->type ) {
-			continue;
-		}
+		if ( 'activity_update' === $activity->type ) {
 
-		/**
-		 * Fires for an activity update before it is deleted.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @param object $activity The activity object.
-		 */
-		do_action( 'wordpoints_bp_activity_before_delete_activity_update', $activity );
+			/**
+			 * Fires for an activity update before it is deleted.
+			 *
+			 * @since 1.0.0
+			 *
+			 * @param object $activity The activity object.
+			 */
+			do_action(
+				'wordpoints_bp_activity_before_delete_activity_update'
+				, $activity
+			);
+
+		} elseif ( 'activity_comment' === $activity->type ) {
+
+			/**
+			 * Fires for an activity comment before it is deleted.
+			 *
+			 * @since 1.0.0
+			 *
+			 * @param object $activity The activity object.
+			 */
+			do_action(
+				'wordpoints_bp_activity_before_delete_activity_comment'
+				, $activity
+			);
+		}
 	}
 }
 

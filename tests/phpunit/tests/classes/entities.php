@@ -34,6 +34,9 @@
  * @covers WordPoints_BP_Entity_Activity_Update_Author
  * @covers WordPoints_BP_Entity_Activity_Update_Content
  * @covers WordPoints_BP_Entity_Activity_Update_Date_Posted
+ * @covers WordPoints_BP_Entity_Activity_Update_Comment
+ * @covers WordPoints_BP_Entity_Activity_Update_Comment_Activity
+ * @covers WordPoints_BP_Entity_Activity_Update_Comment_Parent
  */
 class WordPoints_BP_Entity_Message_Test
 	extends WordPoints_PHPUnit_TestCase_Entities {
@@ -302,7 +305,7 @@ class WordPoints_BP_Entity_Message_Test
 					'create_func'    => array( $factory->bp->activity, 'create_and_get' ),
 					'delete_func'    => 'bp_activity_delete_by_activity_id',
 					'children'       => array(
-						'creator' => array(
+						'author' => array(
 							'class'        => 'WordPoints_BP_Entity_Activity_Update_Author',
 							'primary'      => 'bp_activity_update',
 							'related'      => 'user',
@@ -333,6 +336,85 @@ class WordPoints_BP_Entity_Message_Test
 								'info' => array(
 									'type'  => 'field',
 									'field' => 'date_recorded',
+								),
+							),
+						),
+					),
+				),
+			),
+			'bp_activity_update_comment' => array(
+				array(
+					'class'          => 'WordPoints_BP_Entity_Activity_Update_Comment',
+					'slug'           => 'bp_activity_update_update',
+					'id_field'       => 'id',
+					'get_human_id'   => array( $this, 'get_activity_human_id' ),
+					'context'        => '',
+					'storage_info'   => array(
+						'type' => 'db',
+						'info' => array(
+							'type'       => 'table',
+							'table_name' => buddypress()->activity->table_name,
+						),
+					),
+					'the_context'    => array(),
+					'create_func'    => array( $factory->bp->activity, 'create_and_get' ),
+					'delete_func'    => 'bp_activity_delete_by_activity_id',
+					'children'       => array(
+						'activity' => array(
+							'class'        => 'WordPoints_BP_Entity_Activity_Update_Comment_Activity',
+							'primary'      => 'bp_activity_update_comment',
+							'related'      => 'bp_activity_update',
+							'storage_info' => array(
+								'type' => 'db',
+								'info' => array(
+									'type'  => 'field',
+									'field' => 'item_id',
+								),
+							),
+						),
+						'author' => array(
+							'class'        => 'WordPoints_BP_Entity_Activity_Update_Author',
+							'primary'      => 'bp_activity_update',
+							'related'      => 'user',
+							'storage_info' => array(
+								'type' => 'db',
+								'info' => array(
+									'type'  => 'field',
+									'field' => 'user_id',
+								),
+							),
+						),
+						'content' => array(
+							'class'        => 'WordPoints_BP_Entity_Activity_Update_Content',
+							'data_type'    => 'text',
+							'storage_info' => array(
+								'type' => 'db',
+								'info' => array(
+									'type'  => 'field',
+									'field' => 'content',
+								),
+							),
+						),
+						'date_posted' => array(
+							'class'        => 'WordPoints_BP_Entity_Activity_Update_Date_Posted',
+							'data_type'    => 'mysql_datetime',
+							'storage_info' => array(
+								'type' => 'db',
+								'info' => array(
+									'type'  => 'field',
+									'field' => 'date_recorded',
+								),
+							),
+						),
+						'parent' => array(
+							'class'        => 'WordPoints_BP_Entity_Activity_Update_Comment_Parent',
+							'primary'      => 'bp_activity_update_comment',
+							'related'      => 'bp_activity_update_comment',
+							'storage_info' => array(
+								'type' => 'db',
+								'info' => array(
+									'type'  => 'field',
+									'field' => 'secondary_item_id',
 								),
 							),
 						),
