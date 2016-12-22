@@ -536,6 +536,29 @@ function wordpoints_bp_activity_hook_actions_init( $actions ) {
 			),
 		)
 	);
+
+	// Favorite activity.
+	$actions->register(
+		'bp_activity_favorite'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'bp_activity_add_user_favorite',
+			'data'   => array(
+				'arg_index' => array( 'bp_activity' => 0, 'user' => 1 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_activity_defavorite'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'bp_activity_remove_user_favorite',
+			'data'   => array(
+				'arg_index' => array( 'bp_activity' => 0, 'user' => 1 ),
+			),
+		)
+	);
 }
 
 /**
@@ -588,6 +611,26 @@ function wordpoints_bp_activity_hook_events_init( $events ) {
 			),
 		)
 	);
+
+	// Support for multiple signature args was added in WordPoints 2.3.0-alpha-2.
+	// See https://github.com/WordPoints/wordpoints/issues/594.
+	if ( version_compare( WORDPOINTS_VERSION, '2.3.0-alpha-1', '>' ) ) {
+
+		$events->register(
+			'bp_activity_favorite'
+			, 'WordPoints_BP_Hook_Event_Activity_Favorite'
+			, array(
+				'actions' => array(
+					'toggle_on'  => 'bp_activity_favorite',
+					'toggle_off' => 'bp_activity_defavorite',
+				),
+				'args'    => array(
+					'bp_activity' => 'WordPoints_Hook_Arg',
+					'user'        => 'WordPoints_Hook_Arg',
+				),
+			)
+		);
+	}
 }
 
 /**

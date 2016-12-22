@@ -315,6 +315,9 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 		$this->assertTrue( $actions->is_registered( 'bp_activity_comment_ham' ) );
 		$this->assertTrue( $actions->is_registered( 'bp_activity_comment_spam' ) );
 		$this->assertTrue( $actions->is_registered( 'bp_activity_comment_delete' ) );
+
+		$this->assertTrue( $actions->is_registered( 'bp_activity_favorite' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_activity_defavorite' ) );
 	}
 
 	/**
@@ -334,6 +337,12 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 
 		$this->assertEventRegistered( 'bp_activity_update_post', 'bp_activity_update' );
 		$this->assertEventRegistered( 'bp_activity_comment_post', 'bp_activity_comment' );
+
+		if ( version_compare( WORDPOINTS_VERSION, '2.3.0-alpha-1', '>' ) ) {
+			$this->assertEventRegistered( 'bp_activity_favorite', array( 'bp_activity', 'user' ) );
+		} else {
+			$this->assertEventNotRegistered( 'bp_activity_favorite', array( 'bp_activity', 'user' ) );
+		}
 	}
 
 	/**

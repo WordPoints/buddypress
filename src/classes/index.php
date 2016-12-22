@@ -44,6 +44,7 @@ return array(
 	'wordpoints_bp_entity_restriction_group_status_nonpublic' => 'entity/restriction/group/status/nonpublic.php',
 	'wordpoints_bp_entity_restriction_message_thread_accessible' => 'entity/restriction/message/thread/accessible.php',
 	'wordpoints_bp_hook_event_activity_comment_post' => 'hook/event/activity/comment/post.php',
+	'wordpoints_bp_hook_event_activity_favorite' => 'hook/event/activity/favorite.php',
 	'wordpoints_bp_hook_event_activity_update_post' => 'hook/event/activity/update/post.php',
 	'wordpoints_bp_hook_event_friendship_accept' => 'hook/event/friendship/accept.php',
 	'wordpoints_bp_hook_event_friendship_request' => 'hook/event/friendship/request.php',
