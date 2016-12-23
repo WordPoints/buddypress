@@ -377,6 +377,41 @@ function wordpoints_bp_groups_hook_actions_init( $actions ) {
 			),
 		)
 	);
+
+	$actions->register(
+		'bp_group_member_promote_to_mod'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'groups_promote_member',
+			'data'   => array(
+				'arg_index' => array( 'bp_group' => 0, 'user' => 1 ),
+				'requirements' => array( 2 => 'mod' ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_group_member_promote_to_admin'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'groups_promote_member',
+			'data'   => array(
+				'arg_index' => array( 'bp_group' => 0, 'user' => 1 ),
+				'requirements' => array( 2 => 'admin' ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_group_member_demote'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'groups_demote_member',
+			'data'   => array(
+				'arg_index' => array( 'bp_group' => 0, 'user' => 1 ),
+			),
+		)
+	);
 }
 
 /**
@@ -430,7 +465,54 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 				),
 			)
 		);
-	}
+
+		$events->register(
+			'bp_group_member_promote_to_admin'
+			, 'WordPoints_BP_Hook_Event_Group_Member_Promote_To_Admin'
+			, array(
+				'actions' => array(
+					'toggle_on'  => array(
+						'bp_group_member_promote_to_admin',
+					),
+					'toggle_off' => array(
+						'bp_group_member_demote',
+						'bp_group_leave',
+						'bp_group_member_ban',
+						'bp_group_member_remove',
+						'bp_group_delete_member_remove',
+					),
+				),
+				'args'    => array(
+					'bp_group' => 'WordPoints_Hook_Arg',
+					'user'     => 'WordPoints_Hook_Arg',
+				),
+			)
+		);
+
+		$events->register(
+			'bp_group_member_promote_to_mod'
+			, 'WordPoints_BP_Hook_Event_Group_Member_Promote_To_Mod'
+			, array(
+				'actions' => array(
+					'toggle_on'  => array(
+						'bp_group_member_promote_to_mod',
+					),
+					'toggle_off' => array(
+						'bp_group_member_demote',
+						'bp_group_leave',
+						'bp_group_member_ban',
+						'bp_group_member_remove',
+						'bp_group_delete_member_remove',
+					),
+				),
+				'args'    => array(
+					'bp_group' => 'WordPoints_Hook_Arg',
+					'user'     => 'WordPoints_Hook_Arg',
+				),
+			)
+		);
+
+	} // End if ( WordPoints 2.3.0-alpha-2+ ).
 }
 
 /**

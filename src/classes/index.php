@@ -50,6 +50,8 @@ return array(
 	'wordpoints_bp_hook_event_friendship_request' => 'hook/event/friendship/request.php',
 	'wordpoints_bp_hook_event_group_create' => 'hook/event/group/create.php',
 	'wordpoints_bp_hook_event_group_join' => 'hook/event/group/join.php',
+	'wordpoints_bp_hook_event_group_member_promote_to_admin' => 'hook/event/group/member/promote/to/admin.php',
+	'wordpoints_bp_hook_event_group_member_promote_to_mod' => 'hook/event/group/member/promote/to/mod.php',
 	'wordpoints_bp_hook_event_message_send' => 'hook/event/message/send.php',
 	// }
 );

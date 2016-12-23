@@ -221,6 +221,10 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 		$this->assertTrue( $actions->is_registered( 'bp_group_member_unban' ) );
 		$this->assertTrue( $actions->is_registered( 'bp_group_member_remove' ) );
 		$this->assertTrue( $actions->is_registered( 'bp_group_delete_member_remove' ) );
+
+		$this->assertTrue( $actions->is_registered( 'bp_group_member_promote_to_mod' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_group_member_promote_to_admin' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_group_member_demote' ) );
 	}
 
 	/**
@@ -242,8 +246,12 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 
 		if ( version_compare( WORDPOINTS_VERSION, '2.3.0-alpha-1', '>' ) ) {
 			$this->assertEventRegistered( 'bp_group_join', array( 'bp_group', 'user' ) );
+			$this->assertEventRegistered( 'bp_group_member_promote_to_admin', array( 'bp_group', 'user' ) );
+			$this->assertEventRegistered( 'bp_group_member_promote_to_mod', array( 'bp_group', 'user' ) );
 		} else {
 			$this->assertEventNotRegistered( 'bp_group_join', array( 'bp_group', 'user' ) );
+			$this->assertEventNotRegistered( 'bp_group_member_promote_to_admin', array( 'bp_group', 'user' ) );
+			$this->assertEventNotRegistered( 'bp_group_member_promote_to_mod', array( 'bp_group', 'user' ) );
 		}
 	}
 
