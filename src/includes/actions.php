@@ -30,6 +30,8 @@ if ( function_exists( 'bp_is_active' ) ) {
 		add_action( 'wordpoints_init_app_registry-entities-restrictions-know', 'wordpoints_bp_groups_entity_restrictions_know_init' );
 		add_action( 'wordpoints_init_app_registry-hooks-actions', 'wordpoints_bp_groups_hook_actions_init' );
 		add_action( 'wordpoints_init_app_registry-hooks-events', 'wordpoints_bp_groups_hook_events_init' );
+
+		add_action( 'bp_groups_delete_group', 'wordpoints_bp_groups_split_delete_group_action', 10, 2 );
 	}
 
 	if ( bp_is_active( 'activity' ) ) {
@@ -41,6 +43,7 @@ if ( function_exists( 'bp_is_active' ) ) {
 
 		add_action( 'bp_activity_before_delete', 'wordpoints_bp_activity_split_before_delete_action' );
 	}
-}
+
+} // End if ( BuddyPress installed ).
 
 // EOF

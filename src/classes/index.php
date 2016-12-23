@@ -49,6 +49,7 @@ return array(
 	'wordpoints_bp_hook_event_friendship_accept' => 'hook/event/friendship/accept.php',
 	'wordpoints_bp_hook_event_friendship_request' => 'hook/event/friendship/request.php',
 	'wordpoints_bp_hook_event_group_create' => 'hook/event/group/create.php',
+	'wordpoints_bp_hook_event_group_join' => 'hook/event/group/join.php',
 	'wordpoints_bp_hook_event_message_send' => 'hook/event/message/send.php',
 	// }
 );

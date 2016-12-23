@@ -311,6 +311,72 @@ function wordpoints_bp_groups_hook_actions_init( $actions ) {
 			),
 		)
 	);
+
+	$actions->register(
+		'bp_group_join'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'groups_join_group',
+			'data'   => array(
+				'arg_index' => array( 'bp_group' => 0, 'user' => 1 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_group_leave'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'groups_leave_group',
+			'data'   => array(
+				'arg_index' => array( 'bp_group' => 0, 'user' => 1 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_group_member_ban'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'groups_ban_member',
+			'data'   => array(
+				'arg_index' => array( 'bp_group' => 0, 'user' => 1 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_group_member_unban'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'groups_unban_member',
+			'data'   => array(
+				'arg_index' => array( 'bp_group' => 0, 'user' => 1 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_group_member_remove'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'groups_remove_member',
+			'data'   => array(
+				'arg_index' => array( 'bp_group' => 0, 'user' => 1 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_group_delete_member_remove'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'wordpoints_bp_groups_delete_group_remove_member',
+			'data'   => array(
+				'arg_index' => array( 'bp_group' => 0, 'user' => 1 ),
+			),
+		)
+	);
 }
 
 /**
@@ -337,6 +403,58 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 			),
 		)
 	);
+
+	// Support for multiple signature args was added in WordPoints 2.3.0-alpha-2.
+	// See https://github.com/WordPoints/wordpoints/issues/594.
+	if ( version_compare( WORDPOINTS_VERSION, '2.3.0-alpha-1', '>' ) ) {
+
+		$events->register(
+			'bp_group_join'
+			, 'WordPoints_BP_Hook_Event_Group_Join'
+			, array(
+				'actions' => array(
+					'toggle_on'  => array(
+						'bp_group_join',
+						'bp_group_member_unban',
+					),
+					'toggle_off' => array(
+						'bp_group_leave',
+						'bp_group_member_ban',
+						'bp_group_member_remove',
+						'bp_group_delete_member_remove',
+					),
+				),
+				'args'    => array(
+					'bp_group' => 'WordPoints_Hook_Arg',
+					'user'     => 'WordPoints_Hook_Arg',
+				),
+			)
+		);
+	}
+}
+
+/**
+ * Splits the delete group action to fire for each user that was a member.
+ *
+ * @since 1.0.0
+ *
+ * @param BP_Groups_Group $group    The group object.
+ * @param int[]           $user_ids The IDs of the users.
+ */
+function wordpoints_bp_groups_split_delete_group_action( $group, $user_ids ) {
+
+	foreach ( $user_ids as $user_id ) {
+
+		/**
+		 * Fires for each user that is a member of a group that is being deleted.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param BP_Groups_Group $group    The group object.
+		 * @param int[]           $user_ids The IDs of the users.
+		 */
+		do_action( 'wordpoints_bp_groups_delete_group_remove_member', $group, $user_id );
+	}
 }
 
 //

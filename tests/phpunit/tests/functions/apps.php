@@ -214,6 +214,13 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 
 		$this->assertTrue( $actions->is_registered( 'bp_group_create' ) );
 		$this->assertTrue( $actions->is_registered( 'bp_group_delete' ) );
+
+		$this->assertTrue( $actions->is_registered( 'bp_group_join' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_group_leave' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_group_member_ban' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_group_member_unban' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_group_member_remove' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_group_delete_member_remove' ) );
 	}
 
 	/**
@@ -232,6 +239,37 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 		wordpoints_bp_groups_hook_events_init( $events );
 
 		$this->assertEventRegistered( 'bp_group_create', 'bp_group' );
+
+		if ( version_compare( WORDPOINTS_VERSION, '2.3.0-alpha-1', '>' ) ) {
+			$this->assertEventRegistered( 'bp_group_join', array( 'bp_group', 'user' ) );
+		} else {
+			$this->assertEventNotRegistered( 'bp_group_join', array( 'bp_group', 'user' ) );
+		}
+	}
+
+	/**
+	 * Test the Groups component's delete group action splitting function.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @covers ::wordpoints_bp_groups_split_delete_group_action
+	 */
+	public function test_groups_split_delete_group_action() {
+
+		$this->factory->bp = new BP_UnitTest_Factory();
+
+		$group = $this->factory->bp->group->create_and_get();
+		$user_ids = $this->factory->user->create_many( 2 );
+
+		$mock = new WordPoints_PHPUnit_Mock_Filter();
+		$mock->add_action( 'wordpoints_bp_groups_delete_group_remove_member', 10, 2 );
+
+		wordpoints_bp_groups_split_delete_group_action( $group, $user_ids );
+
+		$this->assertSame(
+			array( array( $group, $user_ids[0] ), array( $group, $user_ids[1] ) )
+			, $mock->calls
+		);
 	}
 
 	/**
@@ -346,7 +384,7 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 	}
 
 	/**
-	 * Test the Activity component events registration function.
+	 * Test the Activity component's before delete action splitting function.
 	 *
 	 * @since 1.0.0
 	 *
