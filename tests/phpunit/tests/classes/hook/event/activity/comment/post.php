@@ -50,18 +50,21 @@ class WordPoints_BP_Hook_Event_Activity_Comment_Post_Test
 		$with_parent = ( 'parent' === $this->target[1] );
 		$share_activity = $with_parent && 'activity' !== $this->target[3];
 
-		$comment_id = bp_activity_new_comment(
+		$user_id    = $this->factory->user->create();
+		$comment_id = $this->factory->bp->activity->create(
 			array(
-				'content'     => 'Testing',
-				'user_id'     => $this->factory->user->create(),
-				'activity_id'       => $the_activity_id = (
+				'spam'    => 1,
+				'type'    => 'activity_comment',
+				'content' => 'Testing',
+				'user_id' => $user_id,
+				'item_id' => $the_activity_id = (
 					$share_activity
 						? $activity_id
 						: $this->factory->bp->activity->create(
 							array( 'user_id' => $this->factory->user->create() )
 						)
 				),
-				'parent_id'   => ! $with_parent
+				'secondary_item_id' => ! $with_parent
 					? false
 					: bp_activity_new_comment(
 						array(
@@ -70,11 +73,24 @@ class WordPoints_BP_Hook_Event_Activity_Comment_Post_Test
 							'activity_id' => $the_activity_id,
 						)
 					),
-				'spam'        => 1,
 			)
 		);
 
 		$by_ref = new BP_Activity_Activity( $comment_id );
+
+		bp_activity_mark_as_ham( $by_ref );
+
+		// Ham an activity of another type to show that it doesn't trigger the event.
+		$other_id = $this->factory->bp->activity->create(
+			array(
+				'spam'    => 1,
+				'type'    => 'other',
+				'content' => 'Testing',
+				'user_id' => $user_id,
+			)
+		);
+
+		$by_ref = new BP_Activity_Activity( $other_id );
 
 		bp_activity_mark_as_ham( $by_ref );
 

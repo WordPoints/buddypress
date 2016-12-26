@@ -39,15 +39,32 @@ class WordPoints_BP_Hook_Event_Activity_Update_Post_Test
 	 */
 	protected function fire_event( $arg, $reactor_slug ) {
 
-		$activity_id = bp_activity_post_update(
+		$this->factory->bp = new BP_UnitTest_Factory();
+
+		$user_id     = $this->factory->user->create();
+		$activity_id = $this->factory->bp->activity->create(
 			array(
-				'content' => 'Testing',
-				'user_id' => $this->factory->user->create(),
 				'spam'    => 1,
+				'content' => 'Testing',
+				'user_id' => $user_id,
 			)
 		);
 
 		$by_ref = new BP_Activity_Activity( $activity_id );
+
+		bp_activity_mark_as_ham( $by_ref );
+
+		// A non-update activity, to demonstrate that the event doesn't fire for it.
+		$non_group_activity_id = $this->factory->bp->activity->create(
+			array(
+				'spam'    => 1,
+				'type'    => 'other',
+				'content' => 'Testing',
+				'user_id' => $user_id,
+			)
+		);
+
+		$by_ref = new BP_Activity_Activity( $non_group_activity_id );
 
 		bp_activity_mark_as_ham( $by_ref );
 

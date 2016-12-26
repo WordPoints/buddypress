@@ -729,7 +729,7 @@ function wordpoints_bp_activity_hook_actions_init( $actions ) {
 
 	$actions->register(
 		'bp_activity_update_spam'
-		, 'WordPoints_Hook_Action'
+		, 'WordPoints_BP_Hook_Action_Activity_Type'
 		, array(
 			'action' => 'bp_activity_mark_as_spam',
 			'data'   => array(
@@ -740,11 +740,11 @@ function wordpoints_bp_activity_hook_actions_init( $actions ) {
 
 	$actions->register(
 		'bp_activity_update_ham'
-		, 'WordPoints_Hook_Action'
+		, 'WordPoints_BP_Hook_Action_Activity_Type'
 		, array(
 			'action' => 'bp_activity_mark_as_ham',
 			'data'   => array(
-				'arg_index' => array( 'bp_activity_update' => 2 ),
+				'arg_index' => array( 'bp_activity_update' => 0 ),
 			),
 		)
 	);
@@ -785,22 +785,24 @@ function wordpoints_bp_activity_hook_actions_init( $actions ) {
 
 	$actions->register(
 		'bp_activity_comment_spam'
-		, 'WordPoints_Hook_Action'
+		, 'WordPoints_BP_Hook_Action_Activity_Type'
 		, array(
 			'action' => 'bp_activity_mark_as_spam',
 			'data'   => array(
-				'arg_index' => array( 'bp_activity_comment' => 0 ),
+				'arg_index'     => array( 'bp_activity_comment' => 0 ),
+				'activity_type' => 'activity_comment',
 			),
 		)
 	);
 
 	$actions->register(
 		'bp_activity_comment_ham'
-		, 'WordPoints_Hook_Action'
+		, 'WordPoints_BP_Hook_Action_Activity_Type'
 		, array(
 			'action' => 'bp_activity_mark_as_ham',
 			'data'   => array(
-				'arg_index' => array( 'bp_activity_comment' => 2 ),
+				'arg_index'     => array( 'bp_activity_comment' => 0 ),
+				'activity_type' => 'activity_comment',
 			),
 		)
 	);

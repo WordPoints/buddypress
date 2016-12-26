@@ -9,8 +9,7 @@
 module.exports = function( grunt ) {
 
 	var SOURCE_DIR = 'src/',
-		DEV_LIB_DIR = 'dev-lib/',
-		WORDPOINTS_DIR = process.env.WORDPOINTS_DIR;
+		DEV_LIB_DIR = 'dev-lib/';
 
 	// Load tasks.
 	require( 'matchdep' ).filterDev( 'grunt-*' ).forEach( grunt.loadNpmTasks );
@@ -21,8 +20,21 @@ module.exports = function( grunt ) {
 		autoloader: {
 			all: {
 				src_dir: SOURCE_DIR,
-				dependencies: [ WORDPOINTS_DIR + 'src/classes/' ],
-				prefix: 'wordpoints_bp_'
+				prefix: 'wordpoints_bp_',
+				filter:  function ( class_files ) {
+
+					// This class needs to come before other event classes.
+					class_files.splice(
+						class_files.indexOf( 'entity.php' ) + 1
+						, 0
+						, class_files.splice(
+							class_files.indexOf( 'entity/activity/user.php' )
+							, 1
+						)[0]
+					);
+
+					return class_files;
+				}
 			}
 		},
 		watch: {
