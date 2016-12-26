@@ -13,6 +13,9 @@
  * @since 1.0.0
  *
  * @covers WordPoints_BP_Hook_Event_Group_Member_Promote_To_Mod
+ *
+ * @requires WordPoints version
+ * @WordPoints-version 2.3.0-alpha-2
  */
 class WordPoints_BP_Hook_Event_Group_Member_Promote_To_Mod_Test
 	extends WordPoints_PHPUnit_TestCase_Hook_Event {
@@ -35,36 +38,6 @@ class WordPoints_BP_Hook_Event_Group_Member_Promote_To_Mod_Test
 		array( 'bp_group', 'parent', 'bp_group', 'creator', 'user' ),
 		array( 'user' ),
 	);
-
-	/**
-	 * @since 1.0.0
-	 *
-	 * @dataProvider data_provider_targets
-	 */
-	public function test_fires( $target, $reactor_slug ) {
-
-		// Support for multiple signature args was added in WordPoints 2.3.0-alpha-2.
-		// See https://github.com/WordPoints/wordpoints/issues/594.
-		if ( ! version_compare( WORDPOINTS_VERSION, '2.3.0-alpha-1', '>' ) ) {
-			$this->markTestSkipped( 'WordPoints version 2.3.0-alpha-2 or greater must be installed.' );
-		}
-
-		parent::test_fires( $target, $reactor_slug );
-	}
-
-	/**
-	 * @since 1.0.0
-	 */
-	public function test_checked_expected_targets() {
-
-		// Support for multiple signature args was added in WordPoints 2.3.0-alpha-2.
-		// See https://github.com/WordPoints/wordpoints/issues/594.
-		if ( ! version_compare( WORDPOINTS_VERSION, '2.3.0-alpha-1', '>' ) ) {
-			$this->markTestSkipped( 'WordPoints version 2.3.0-alpha-2 or greater must be installed.' );
-		}
-
-		parent::test_checked_expected_targets();
-	}
 
 	/**
 	 * @since 1.0.0
