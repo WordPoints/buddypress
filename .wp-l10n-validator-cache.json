@@ -1,58 +1,173 @@
 {
     "files": {
         "\/buddypress.php": {
-            "size": 2177,
-            "hash": "0bfa4f65db2e6c44cfe196b33942c4e0",
+            "size": 2178,
+            "hash": "0daff151383740e9abb6d00007eb9a24",
+            "errors": false
+        },
+        "\/classes\/entity\/activity\/comment\/activity.php": {
+            "size": 775,
+            "hash": "5ab2b351e73391bd2bf61e2bf8fe552e",
+            "errors": false
+        },
+        "\/classes\/entity\/activity\/comment\/author.php": {
+            "size": 557,
+            "hash": "6ae256fdc0600f5a20b5bc7569d4d3c7",
+            "errors": false
+        },
+        "\/classes\/entity\/activity\/comment\/parent.php": {
+            "size": 797,
+            "hash": "41f918b1c403e07cf93a8e4dac7780cb",
+            "errors": false
+        },
+        "\/classes\/entity\/activity\/comment.php": {
+            "size": 389,
+            "hash": "9f8345faed1f245ba05bb50a5e70fa14",
+            "errors": false
+        },
+        "\/classes\/entity\/activity\/date.php": {
+            "size": 572,
+            "hash": "613dcebe33c22a4c9a1a3db9665ff835",
+            "errors": false
+        },
+        "\/classes\/entity\/activity\/update\/author.php": {
+            "size": 545,
+            "hash": "9df673ec7e6af810861ee6cc2df521c1",
+            "errors": false
+        },
+        "\/classes\/entity\/activity\/update\/content.php": {
+            "size": 596,
+            "hash": "55b190f5547e81e9f780056f1259124f",
+            "errors": false
+        },
+        "\/classes\/entity\/activity\/update\/date\/posted.php": {
+            "size": 413,
+            "hash": "b2ff97e1ab0895a057c52785af97c772",
+            "errors": false
+        },
+        "\/classes\/entity\/activity\/update.php": {
+            "size": 379,
+            "hash": "01f033e7185d91a7c60046c50f63a91f",
+            "errors": false
+        },
+        "\/classes\/entity\/activity\/user.php": {
+            "size": 727,
+            "hash": "c6bd07a1719304af46d1e2c67c631720",
+            "errors": false
+        },
+        "\/classes\/entity\/activity.php": {
+            "size": 1708,
+            "hash": "31ae195fe5572c50fb5a5cb8bb939dd0",
             "errors": false
         },
         "\/classes\/entity\/friendship\/date\/created.php": {
-            "size": 1055,
-            "hash": "1a565c3277241a53ca98c0f34fdf0619",
+            "size": 1076,
+            "hash": "c91f3d6975d190bf4621afdcad2abf11",
             "errors": false
         },
         "\/classes\/entity\/friendship\/friend.php": {
-            "size": 711,
-            "hash": "cd69ac8a958a74ab656d5ef9c501888b",
+            "size": 732,
+            "hash": "796c7351a7e067278056c31c04ba16ec",
             "errors": false
         },
         "\/classes\/entity\/friendship\/initiator.php": {
-            "size": 726,
-            "hash": "c692406f3b20e6f86218b8e7d665638b",
+            "size": 747,
+            "hash": "114c1aa5da5ff04a15a5edf19f990c96",
             "errors": false
         },
         "\/classes\/entity\/friendship.php": {
-            "size": 1237,
-            "hash": "2bf70fe46f364a7d60d5cbe4e444c168",
+            "size": 1039,
+            "hash": "b5078bea304ca909812a182d97f2972b",
+            "errors": false
+        },
+        "\/classes\/entity\/group\/activity\/update\/group.php": {
+            "size": 785,
+            "hash": "d58080226664af9b3cdf2a64dd22905f",
+            "errors": false
+        },
+        "\/classes\/entity\/group\/creator.php": {
+            "size": 719,
+            "hash": "7c9d1d3fd65144a76c350d4bcec2fb46",
+            "errors": false
+        },
+        "\/classes\/entity\/group\/date\/created.php": {
+            "size": 592,
+            "hash": "d54a061fa2fad697ae6b661af8f5cb0c",
+            "errors": false
+        },
+        "\/classes\/entity\/group\/description.php": {
+            "size": 579,
+            "hash": "96555ba1ec9e17f0e99c76286c396dff",
+            "errors": false
+        },
+        "\/classes\/entity\/group\/name.php": {
+            "size": 544,
+            "hash": "be26763a2c3735bd9526923e66ad8bf5",
+            "errors": false
+        },
+        "\/classes\/entity\/group\/parent.php": {
+            "size": 718,
+            "hash": "e95c1612ae797134831fef3973bee972",
+            "errors": false
+        },
+        "\/classes\/entity\/group\/slug.php": {
+            "size": 544,
+            "hash": "5a78c49962ca8e6556928d17b22c6429",
+            "errors": false
+        },
+        "\/classes\/entity\/group\/status.php": {
+            "size": 556,
+            "hash": "37c5c2d186a59038c9f8b0cde48ed74b",
+            "errors": false
+        },
+        "\/classes\/entity\/group.php": {
+            "size": 708,
+            "hash": "253ef9267eed1c884c7176594756d9d4",
             "errors": false
         },
         "\/classes\/entity\/message\/content.php": {
-            "size": 552,
-            "hash": "2a75a7aa18a4a0ad24409a59c5d82714",
+            "size": 570,
+            "hash": "0236b527a095be722c86ba38941cae7b",
             "errors": false
         },
         "\/classes\/entity\/message\/date\/sent.php": {
-            "size": 565,
-            "hash": "ef1f5ce9a89269990da84382f2cf835e",
+            "size": 583,
+            "hash": "a5cf848d11ca29d6dfa7de0c277c9dd4",
             "errors": false
         },
         "\/classes\/entity\/message\/recipients.php": {
-            "size": 1181,
-            "hash": "64f0b9f6b82c7e47432cedc7470f8d31",
+            "size": 1199,
+            "hash": "120fbfa9454346ea6c3475becefcf0ee",
             "errors": false
         },
         "\/classes\/entity\/message\/sender.php": {
-            "size": 694,
-            "hash": "7eec2fff9f79b58cb74c2a4af1c191e2",
+            "size": 712,
+            "hash": "a88d1521543241329d88feb52ce798c1",
             "errors": false
         },
         "\/classes\/entity\/message\/subject.php": {
-            "size": 549,
-            "hash": "c4dad206437a6de9aed90dfcc03207fd",
+            "size": 567,
+            "hash": "1a10f1a0ba62079290171599c2c7d457",
             "errors": false
         },
         "\/classes\/entity\/message.php": {
-            "size": 790,
-            "hash": "ce3d16cf83cad230323fe3481e384e00",
+            "size": 808,
+            "hash": "a2f97c0ed250f8c95dea5e0ddb07b251",
+            "errors": false
+        },
+        "\/classes\/entity\/restriction\/activity\/hidden.php": {
+            "size": 1970,
+            "hash": "caa977b8238f72bae52e1c199f446fed",
+            "errors": false
+        },
+        "\/classes\/entity\/restriction\/activity\/spam.php": {
+            "size": 1233,
+            "hash": "ab84b125ec0f66c3e6bd6b5b572d17e4",
+            "errors": false
+        },
+        "\/classes\/entity\/restriction\/group\/status\/nonpublic.php": {
+            "size": 2325,
+            "hash": "9d4b52368ea992de679c7e8a6f15d13f",
             "errors": false
         },
         "\/classes\/entity\/restriction\/message\/thread\/accessible.php": {
@@ -65,14 +180,64 @@
             "hash": "fa311faa731867e60b98b3fe90ab34ad",
             "errors": false
         },
+        "\/classes\/hook\/action\/activity\/type.php": {
+            "size": 1088,
+            "hash": "26d649489efc7fe33efa75e80716a9c0",
+            "errors": false
+        },
+        "\/classes\/hook\/action\/group\/activity\/update.php": {
+            "size": 751,
+            "hash": "f17e2189df0aa289540b2c09a887fca8",
+            "errors": false
+        },
+        "\/classes\/hook\/event\/activity\/comment\/post.php": {
+            "size": 775,
+            "hash": "a6a57da222209c7709a8552ce4118155",
+            "errors": false
+        },
+        "\/classes\/hook\/event\/activity\/favorite.php": {
+            "size": 777,
+            "hash": "9492747072e1eba3f2f28cf6d31fedf1",
+            "errors": false
+        },
+        "\/classes\/hook\/event\/activity\/update\/post.php": {
+            "size": 748,
+            "hash": "28bca18285e45f4ac99571783390bab4",
+            "errors": false
+        },
         "\/classes\/hook\/event\/friendship\/accept.php": {
-            "size": 610,
-            "hash": "33c975890f706d3dd206f14b4334f31e",
+            "size": 781,
+            "hash": "99e9110e5dc80b48055cb3022aa6aea7",
             "errors": false
         },
         "\/classes\/hook\/event\/friendship\/request.php": {
-            "size": 600,
-            "hash": "10d34a0cce9174f476aeb277a90fb54c",
+            "size": 770,
+            "hash": "37092223871575f11a07b1c0eeff24a3",
+            "errors": false
+        },
+        "\/classes\/hook\/event\/group\/activity\/update\/post.php": {
+            "size": 790,
+            "hash": "4bb2d8e48622bba3f10f1ddbf0c14db9",
+            "errors": false
+        },
+        "\/classes\/hook\/event\/group\/create.php": {
+            "size": 698,
+            "hash": "fd767d0dc2f670b3ca8ed711ab0e34fe",
+            "errors": false
+        },
+        "\/classes\/hook\/event\/group\/join.php": {
+            "size": 703,
+            "hash": "f4b5670dc67bc4a0bd66af4b5126c3a4",
+            "errors": false
+        },
+        "\/classes\/hook\/event\/group\/member\/promote\/to\/admin.php": {
+            "size": 809,
+            "hash": "d464109435e5f0d195d6632e0f1a0db1",
+            "errors": false
+        },
+        "\/classes\/hook\/event\/group\/member\/promote\/to\/mod.php": {
+            "size": 819,
+            "hash": "9c54e1397a39d6d2a61c4114e2f577f0",
             "errors": false
         },
         "\/classes\/hook\/event\/message\/send.php": {
@@ -81,23 +246,8 @@
             "errors": false
         },
         "\/classes\/index.php": {
-            "size": 1333,
-            "hash": "17fc72748fde61abb55985a02cb2aff2",
-            "errors": false
-        },
-        "\/includes\/actions.php": {
-            "size": 1001,
-            "hash": "16a838d108fbf4dca3ede5f472da2fdb",
-            "errors": false
-        },
-        "\/includes\/constants.php": {
-            "size": 250,
-            "hash": "9b4887af258704013f2159ea1e5bd46d",
-            "errors": false
-        },
-        "\/includes\/functions.php": {
-            "size": 6157,
-            "hash": "5a6f6f3964db8254808a2011231355a5",
+            "size": 4064,
+            "hash": "981002d8ad45c950ed359e299ca2597e",
             "errors": false
         },
         "\/components\/points\/includes\/actions.php": {
@@ -121,15 +271,30 @@
             "errors": false
         },
         "\/components\/ranks\/includes\/integration\/points\/functions.php": {
-            "size": 732,
-            "hash": "3b13ad304166b4af0a47b63473836836",
+            "size": 736,
+            "hash": "a6b6a436c59cf79e8bd4eb6669fb652f",
             "errors": false
         },
         "\/components\/ranks\/ranks.php": {
             "size": 600,
             "hash": "cb1931d2edeeb21cdb250f24524ebc79",
             "errors": false
+        },
+        "\/includes\/actions.php": {
+            "size": 2197,
+            "hash": "80ecc6bbcc86deb0d11d46ac26c32f5e",
+            "errors": false
+        },
+        "\/includes\/constants.php": {
+            "size": 250,
+            "hash": "9b4887af258704013f2159ea1e5bd46d",
+            "errors": false
+        },
+        "\/includes\/functions.php": {
+            "size": 25116,
+            "hash": "0e988420bff09d4137113596b3b39f02",
+            "errors": false
         }
     },
-    "config_signature": "8efd165563a6e1c079bec176e2451a03"
+    "config_signature": "9f884eb090a44efb08c4bf4e9faaf905"
 }
