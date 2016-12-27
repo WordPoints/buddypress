@@ -240,6 +240,9 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 		$this->assertTrue( $actions->is_registered( 'bp_group_member_promote_to_admin' ) );
 		$this->assertTrue( $actions->is_registered( 'bp_group_member_demote' ) );
 
+		$this->assertTrue( $actions->is_registered( 'bp_group_avatar_upload' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_group_avatar_delete' ) );
+
 		if ( bp_is_active( 'activity' ) ) {
 			$this->assertTrue( $actions->is_registered( 'bp_group_activity_update_post' ) );
 			$this->assertTrue( $actions->is_registered( 'bp_group_activity_update_ham' ) );
@@ -280,10 +283,40 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 			$this->assertEventNotRegistered( 'bp_group_member_promote_to_mod', array( 'bp_group', 'user' ) );
 		}
 
+		if ( version_compare( buddypress()->version, '2.8.0-alpha', '>=' ) ) {
+			$this->assertEventRegistered( 'bp_group_avatar_upload', array( 'bp_group', 'current:user' ) );
+		} else {
+			$this->assertEventNotRegistered( 'bp_group_avatar_upload', array( 'bp_group', 'current:user' ) );
+		}
+
 		if ( bp_is_active( 'activity' ) ) {
 			$this->assertEventRegistered( 'bp_group_activity_update_post', 'bp_group_activity_update' );
 		} else {
 			$this->assertEventNotRegistered( 'bp_group_activity_update_post', 'bp_group_activity_update' );
+		}
+	}
+
+	/**
+	 * Test Groups events registration when group avatar uploads are disabled.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @covers ::wordpoints_bp_groups_hook_events_init
+	 */
+	public function test_groups_events_group_avatar_uploads_disabled() {
+
+		add_filter( 'bp_disable_group_avatar_uploads', '__return_true' );
+
+		$this->mock_apps();
+
+		$events = wordpoints_hooks()->get_sub_app( 'events' );
+
+		wordpoints_bp_groups_hook_events_init( $events );
+
+		if ( version_compare( buddypress()->version, '2.8.0-alpha', '>=' ) ) {
+			$this->assertEventNotRegistered( 'bp_group_avatar_upload', array( 'bp_group', 'current:user' ) );
+		} else {
+			$this->assertEventNotRegistered( 'bp_group_avatar_upload', array( 'bp_group', 'current:user' ) );
 		}
 	}
 

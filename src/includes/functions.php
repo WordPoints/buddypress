@@ -421,6 +421,28 @@ function wordpoints_bp_groups_hook_actions_init( $actions ) {
 		)
 	);
 
+	$actions->register(
+		'bp_group_avatar_upload'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'groups_avatar_uploaded',
+			'data'   => array(
+				'arg_index' => array( 'bp_group' => 0 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_group_avatar_delete'
+		, 'WordPoints_BP_Hook_Action_Avatar_Delete'
+		, array(
+			'action' => 'bp_core_delete_existing_avatar',
+			'data'   => array(
+				'bp_avatar_object_type' => 'group',
+			),
+		)
+	);
+
 	if ( bp_is_active( 'activity' ) ) {
 
 		$actions->register(
@@ -569,6 +591,27 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 		);
 
 	} // End if ( WordPoints 2.3.0-alpha-2+ ).
+
+	// Group avatar uploads can be disabled.
+	// The group avatar upload action was added to BuddyPress in 2.8.0.
+	// See https://buddypress.trac.wordpress.org/changeset/11314.
+	if ( ! bp_disable_group_avatar_uploads() && version_compare( buddypress()->version, '2.8.0-alpha', '>=' ) ) {
+
+		$events->register(
+			'bp_group_avatar_upload'
+			, 'WordPoints_BP_Hook_Event_Group_Avatar_Upload'
+			, array(
+				'actions' => array(
+					'toggle_on'  => 'bp_group_avatar_upload',
+					'toggle_off' => 'bp_group_avatar_delete',
+				),
+				'args' => array(
+					'bp_group' => 'WordPoints_Hook_Arg',
+					'current:user' => 'WordPoints_Hook_Arg_Current_User',
+				),
+			)
+		);
+	}
 
 	if ( bp_is_active( 'activity' ) ) {
 
