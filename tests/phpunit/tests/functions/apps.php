@@ -179,6 +179,20 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 		$this->assertTrue( $children->is_registered( 'bp_group', 'parent' ) );
 		$this->assertTrue( $children->is_registered( 'bp_group', 'slug' ) );
 		$this->assertTrue( $children->is_registered( 'bp_group', 'status' ) );
+
+		if ( bp_is_active( 'activity' ) ) {
+			$this->assertTrue( $entities->is_registered( 'bp_group_activity_update' ) );
+			$this->assertTrue( $children->is_registered( 'bp_group_activity_update', 'author' ) );
+			$this->assertTrue( $children->is_registered( 'bp_group_activity_update', 'content' ) );
+			$this->assertTrue( $children->is_registered( 'bp_group_activity_update', 'date_posted' ) );
+			$this->assertTrue( $children->is_registered( 'bp_group_activity_update', 'group' ) );
+		} else {
+			$this->assertFalse( $entities->is_registered( 'bp_group_activity_update' ) );
+			$this->assertFalse( $children->is_registered( 'bp_group_activity_update', 'author' ) );
+			$this->assertFalse( $children->is_registered( 'bp_group_activity_update', 'content' ) );
+			$this->assertFalse( $children->is_registered( 'bp_group_activity_update', 'date_posted' ) );
+			$this->assertFalse( $children->is_registered( 'bp_group_activity_update', 'group' ) );
+		}
 	}
 
 	/**
@@ -225,6 +239,18 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 		$this->assertTrue( $actions->is_registered( 'bp_group_member_promote_to_mod' ) );
 		$this->assertTrue( $actions->is_registered( 'bp_group_member_promote_to_admin' ) );
 		$this->assertTrue( $actions->is_registered( 'bp_group_member_demote' ) );
+
+		if ( bp_is_active( 'activity' ) ) {
+			$this->assertTrue( $actions->is_registered( 'bp_group_activity_update_post' ) );
+			$this->assertTrue( $actions->is_registered( 'bp_group_activity_update_ham' ) );
+			$this->assertTrue( $actions->is_registered( 'bp_group_activity_update_spam' ) );
+			$this->assertTrue( $actions->is_registered( 'bp_group_activity_update_delete' ) );
+		} else {
+			$this->assertFalse( $actions->is_registered( 'bp_group_activity_update_post' ) );
+			$this->assertFalse( $actions->is_registered( 'bp_group_activity_update_ham' ) );
+			$this->assertFalse( $actions->is_registered( 'bp_group_activity_update_spam' ) );
+			$this->assertFalse( $actions->is_registered( 'bp_group_activity_update_delete' ) );
+		}
 	}
 
 	/**
@@ -252,6 +278,12 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 			$this->assertEventNotRegistered( 'bp_group_join', array( 'bp_group', 'user' ) );
 			$this->assertEventNotRegistered( 'bp_group_member_promote_to_admin', array( 'bp_group', 'user' ) );
 			$this->assertEventNotRegistered( 'bp_group_member_promote_to_mod', array( 'bp_group', 'user' ) );
+		}
+
+		if ( bp_is_active( 'activity' ) ) {
+			$this->assertEventRegistered( 'bp_group_activity_update_post', 'bp_group_activity_update' );
+		} else {
+			$this->assertEventNotRegistered( 'bp_group_activity_update_post', 'bp_group_activity_update' );
 		}
 	}
 
