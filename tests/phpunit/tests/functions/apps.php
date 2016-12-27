@@ -209,6 +209,27 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 		wordpoints_bp_groups_entity_restrictions_know_init( $restrictions );
 
 		$this->assertTrue( $restrictions->is_registered( 'status_nonpublic', array( 'bp_group' ) ) );
+
+		if ( bp_is_active( 'activity' ) ) {
+
+			$this->assertTrue(
+				$restrictions->is_registered( 'hidden', array( 'bp_group_activity_update' ) )
+			);
+
+			$this->assertTrue(
+				$restrictions->is_registered( 'spam', array( 'bp_group_activity_update' ) )
+			);
+
+		} else {
+
+			$this->assertFalse(
+				$restrictions->is_registered( 'hidden', array( 'bp_group_activity_update' ) )
+			);
+
+			$this->assertFalse(
+				$restrictions->is_registered( 'spam', array( 'bp_group_activity_update' ) )
+			);
+		}
 	}
 
 	/**

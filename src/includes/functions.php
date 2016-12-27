@@ -284,6 +284,20 @@ function wordpoints_bp_groups_entity_restrictions_know_init( $restrictions ) {
 		, array( 'bp_group' )
 		, 'WordPoints_BP_Entity_Restriction_Group_Status_Nonpublic'
 	);
+
+	if ( bp_is_active( 'activity' ) ) {
+		$restrictions->register(
+			'hidden'
+			, array( 'bp_group_activity_update' )
+			, 'WordPoints_BP_Entity_Restriction_Activity_Hidden'
+		);
+
+		$restrictions->register(
+			'spam'
+			, array( 'bp_group_activity_update' )
+			, 'WordPoints_BP_Entity_Restriction_Activity_Spam'
+		);
+	}
 }
 
 /**
