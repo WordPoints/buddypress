@@ -1048,6 +1048,28 @@ function wordpoints_bp_xprofile_hook_actions_init( $actions ) {
 			'action' => 'bp_core_delete_existing_avatar',
 		)
 	);
+
+	$actions->register(
+		'bp_xprofile_cover_image_upload'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'xprofile_cover_image_uploaded',
+			'data'   => array(
+				'arg_index' => array( 'user' => 0 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_xprofile_cover_image_delete'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'xprofile_cover_image_deleted',
+			'data'   => array(
+				'arg_index' => array( 'user' => 0 ),
+			),
+		)
+	);
 }
 
 /**
@@ -1071,6 +1093,26 @@ function wordpoints_bp_xprofile_hook_events_init( $events ) {
 				'actions' => array(
 					'toggle_on'  => 'bp_xprofile_avatar_upload',
 					'toggle_off' => 'bp_xprofile_avatar_delete',
+				),
+				'args' => array(
+					'user' => 'WordPoints_Hook_Arg',
+				),
+			)
+		);
+	}
+
+	// Cover image uploads can be disabled.
+	// The cover image delete action was only added in BuddyPress 2.8.0.
+	// See https://buddypress.trac.wordpress.org/ticket/7409.
+	if ( ! bp_disable_cover_image_uploads() && version_compare( buddypress()->version, '2.8.0-alpha', '>=' ) ) {
+
+		$events->register(
+			'bp_xprofile_cover_image_upload'
+			, 'WordPoints_BP_Hook_Event_XProfile_Cover_Image_Upload'
+			, array(
+				'actions' => array(
+					'toggle_on'  => 'bp_xprofile_cover_image_upload',
+					'toggle_off' => 'bp_xprofile_cover_image_delete',
 				),
 				'args' => array(
 					'user' => 'WordPoints_Hook_Arg',

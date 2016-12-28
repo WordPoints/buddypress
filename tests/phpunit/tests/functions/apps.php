@@ -539,6 +539,9 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 
 		$this->assertTrue( $actions->is_registered( 'bp_xprofile_avatar_upload' ) );
 		$this->assertTrue( $actions->is_registered( 'bp_xprofile_avatar_delete' ) );
+
+		$this->assertTrue( $actions->is_registered( 'bp_xprofile_cover_image_upload' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_xprofile_cover_image_delete' ) );
 	}
 
 	/**
@@ -557,6 +560,12 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 		wordpoints_bp_xprofile_hook_events_init( $events );
 
 		$this->assertEventRegistered( 'bp_xprofile_avatar_upload', 'user' );
+
+		if ( version_compare( buddypress()->version, '2.8.0-alpha', '>=' ) ) {
+			$this->assertEventRegistered( 'bp_xprofile_cover_image_upload', 'user' );
+		} else {
+			$this->assertEventNotRegistered( 'bp_xprofile_cover_image_upload', 'user' );
+		}
 	}
 
 	/**
@@ -579,6 +588,25 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 		$this->assertEventNotRegistered( 'bp_xprofile_avatar_upload', 'user' );
 	}
 
+	/**
+	 * Test xProfile events registration when cover image uploads are disabled.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @covers ::wordpoints_bp_groups_hook_events_init
+	 */
+	public function test_xprofile_events_cover_image_uploads_disabled() {
+
+		add_filter( 'bp_disable_cover_image_uploads', '__return_true' );
+
+		$this->mock_apps();
+
+		$events = wordpoints_hooks()->get_sub_app( 'events' );
+
+		wordpoints_bp_groups_hook_events_init( $events );
+
+		$this->assertEventNotRegistered( 'bp_xprofile_cover_image_upload', 'user' );
+	}
 }
 
 // EOF

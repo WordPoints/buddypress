@@ -60,6 +60,7 @@ return array(
 	'wordpoints_bp_hook_event_group_member_promote_to_mod' => 'hook/event/group/member/promote/to/mod.php',
 	'wordpoints_bp_hook_event_message_send' => 'hook/event/message/send.php',
 	'wordpoints_bp_hook_event_xprofile_avatar_upload' => 'hook/event/xprofile/avatar/upload.php',
+	'wordpoints_bp_hook_event_xprofile_cover_image_upload' => 'hook/event/xprofile/cover/image/upload.php',
 	// }
 );
 
