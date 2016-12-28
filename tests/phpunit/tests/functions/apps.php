@@ -264,6 +264,9 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 		$this->assertTrue( $actions->is_registered( 'bp_group_avatar_upload' ) );
 		$this->assertTrue( $actions->is_registered( 'bp_group_avatar_delete' ) );
 
+		$this->assertTrue( $actions->is_registered( 'bp_group_cover_image_upload' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_group_cover_image_delete' ) );
+
 		if ( bp_is_active( 'activity' ) ) {
 			$this->assertTrue( $actions->is_registered( 'bp_group_activity_update_post' ) );
 			$this->assertTrue( $actions->is_registered( 'bp_group_activity_update_ham' ) );
@@ -310,6 +313,12 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 			$this->assertEventNotRegistered( 'bp_group_avatar_upload', array( 'bp_group', 'current:user' ) );
 		}
 
+		if ( version_compare( buddypress()->version, '2.8.0-alpha', '>=' ) ) {
+			$this->assertEventRegistered( 'bp_group_cover_image_upload', array( 'bp_group', 'current:user' ) );
+		} else {
+			$this->assertEventNotRegistered( 'bp_group_cover_image_upload', array( 'bp_group', 'current:user' ) );
+		}
+
 		if ( bp_is_active( 'activity' ) ) {
 			$this->assertEventRegistered( 'bp_group_activity_update_post', 'bp_group_activity_update' );
 		} else {
@@ -334,11 +343,27 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 
 		wordpoints_bp_groups_hook_events_init( $events );
 
-		if ( version_compare( buddypress()->version, '2.8.0-alpha', '>=' ) ) {
-			$this->assertEventNotRegistered( 'bp_group_avatar_upload', array( 'bp_group', 'current:user' ) );
-		} else {
-			$this->assertEventNotRegistered( 'bp_group_avatar_upload', array( 'bp_group', 'current:user' ) );
-		}
+		$this->assertEventNotRegistered( 'bp_group_avatar_upload', array( 'bp_group', 'current:user' ) );
+	}
+
+	/**
+	 * Test Groups events registration when group cover image uploads are disabled.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @covers ::wordpoints_bp_groups_hook_events_init
+	 */
+	public function test_groups_events_group_cover_image_uploads_disabled() {
+
+		add_filter( 'bp_disable_group_cover_image_uploads', '__return_true' );
+
+		$this->mock_apps();
+
+		$events = wordpoints_hooks()->get_sub_app( 'events' );
+
+		wordpoints_bp_groups_hook_events_init( $events );
+
+		$this->assertEventNotRegistered( 'bp_group_cover_image_upload', array( 'bp_group', 'current:user' ) );
 	}
 
 	/**

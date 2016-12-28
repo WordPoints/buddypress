@@ -54,6 +54,7 @@ return array(
 	'wordpoints_bp_hook_event_friendship_request' => 'hook/event/friendship/request.php',
 	'wordpoints_bp_hook_event_group_activity_update_post' => 'hook/event/group/activity/update/post.php',
 	'wordpoints_bp_hook_event_group_avatar_upload' => 'hook/event/group/avatar/upload.php',
+	'wordpoints_bp_hook_event_group_cover_image_upload' => 'hook/event/group/cover/image/upload.php',
 	'wordpoints_bp_hook_event_group_create' => 'hook/event/group/create.php',
 	'wordpoints_bp_hook_event_group_join' => 'hook/event/group/join.php',
 	'wordpoints_bp_hook_event_group_member_promote_to_admin' => 'hook/event/group/member/promote/to/admin.php',

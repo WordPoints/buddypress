@@ -457,6 +457,28 @@ function wordpoints_bp_groups_hook_actions_init( $actions ) {
 		)
 	);
 
+	$actions->register(
+		'bp_group_cover_image_upload'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'groups_cover_image_uploaded',
+			'data'   => array(
+				'arg_index' => array( 'bp_group' => 0 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_group_cover_image_delete'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'groups_cover_image_deleted',
+			'data'   => array(
+				'arg_index' => array( 'bp_group' => 0 ),
+			),
+		)
+	);
+
 	if ( bp_is_active( 'activity' ) ) {
 
 		$actions->register(
@@ -618,6 +640,27 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 				'actions' => array(
 					'toggle_on'  => 'bp_group_avatar_upload',
 					'toggle_off' => 'bp_group_avatar_delete',
+				),
+				'args' => array(
+					'bp_group' => 'WordPoints_Hook_Arg',
+					'current:user' => 'WordPoints_Hook_Arg_Current_User',
+				),
+			)
+		);
+	}
+
+	// Cover image uploads can be disabled.
+	// The cover image delete action was only added in BuddyPress 2.8.0.
+	// See https://buddypress.trac.wordpress.org/ticket/7409.
+	if ( ! bp_disable_group_cover_image_uploads() && version_compare( buddypress()->version, '2.8.0-alpha', '>=' ) ) {
+
+		$events->register(
+			'bp_group_cover_image_upload'
+			, 'WordPoints_BP_Hook_Event_Group_Cover_Image_Upload'
+			, array(
+				'actions' => array(
+					'toggle_on'  => 'bp_group_cover_image_upload',
+					'toggle_off' => 'bp_group_cover_image_delete',
 				),
 				'args' => array(
 					'bp_group' => 'WordPoints_Hook_Arg',
