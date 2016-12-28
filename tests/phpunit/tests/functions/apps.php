@@ -521,6 +521,64 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 
 		$this->assertSame( array( array( $activity_comment ) ), $mock_2->calls );
 	}
+
+	/**
+	 * Test the xProfile component action registration function.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @covers ::wordpoints_bp_xprofile_hook_actions_init
+	 */
+	public function test_xprofile_actions() {
+
+		$this->mock_apps();
+
+		$actions = wordpoints_hooks()->get_sub_app( 'actions' );
+
+		wordpoints_bp_xprofile_hook_actions_init( $actions );
+
+		$this->assertTrue( $actions->is_registered( 'bp_xprofile_avatar_upload' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_xprofile_avatar_delete' ) );
+	}
+
+	/**
+	 * Test the xProfile component events registration function.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @covers ::wordpoints_bp_xprofile_hook_events_init
+	 */
+	public function test_xprofile_events() {
+
+		$this->mock_apps();
+
+		$events = wordpoints_hooks()->get_sub_app( 'events' );
+
+		wordpoints_bp_xprofile_hook_events_init( $events );
+
+		$this->assertEventRegistered( 'bp_xprofile_avatar_upload', 'user' );
+	}
+
+	/**
+	 * Test xProfile events registration when avatar uploads are disabled.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @covers ::wordpoints_bp_groups_hook_events_init
+	 */
+	public function test_xprofile_events_avatar_uploads_disabled() {
+
+		add_filter( 'bp_disable_avatar_uploads', '__return_true' );
+
+		$this->mock_apps();
+
+		$events = wordpoints_hooks()->get_sub_app( 'events' );
+
+		wordpoints_bp_groups_hook_events_init( $events );
+
+		$this->assertEventNotRegistered( 'bp_xprofile_avatar_upload', 'user' );
+	}
+
 }
 
 // EOF

@@ -44,6 +44,12 @@ if ( function_exists( 'bp_is_active' ) ) {
 		add_action( 'bp_activity_before_delete', 'wordpoints_bp_activity_split_before_delete_action' );
 	}
 
+	if ( bp_is_active( 'xprofile' ) ) {
+
+		add_action( 'wordpoints_init_app_registry-hooks-actions', 'wordpoints_bp_xprofile_hook_actions_init' );
+		add_action( 'wordpoints_init_app_registry-hooks-events', 'wordpoints_bp_xprofile_hook_events_init' );
+	}
+
 } // End if ( BuddyPress installed ).
 
 // EOF

@@ -20,4 +20,10 @@ WordPoints_PHPUnit_Class_Autoloader::register_dir(
 	, 'WordPoints_BP_PHPUnit_'
 );
 
+// Autoload the test files.
+WordPoints_PHPUnit_Class_Autoloader::register_dir(
+	dirname( dirname( __FILE__ ) ) . '/tests/classes/'
+	, 'WordPoints_BP_'
+);
+
 // EOF

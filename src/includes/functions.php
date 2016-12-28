@@ -1015,4 +1015,69 @@ function wordpoints_bp_activity_split_before_delete_action( $activities ) {
 	}
 }
 
+//
+// xProfile Component
+//
+
+/**
+ * Register hook actions for the xProfile component when the registry is initialized.
+ *
+ * @since 1.0.0
+ *
+ * @WordPress\action wordpoints_init_app_registry-hooks-actions
+ *
+ * @param WordPoints_Hook_Actions $actions The action registry.
+ */
+function wordpoints_bp_xprofile_hook_actions_init( $actions ) {
+
+	$actions->register(
+		'bp_xprofile_avatar_upload'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'xprofile_avatar_uploaded',
+			'data'   => array(
+				'arg_index' => array( 'user' => 0 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_xprofile_avatar_delete'
+		, 'WordPoints_BP_Hook_Action_Avatar_Delete'
+		, array(
+			'action' => 'bp_core_delete_existing_avatar',
+		)
+	);
+}
+
+/**
+ * Register hook events for the xProfile component when the registry is initialized.
+ *
+ * @since 1.0.0
+ *
+ * @WordPress\action wordpoints_init_app_registry-hooks-events
+ *
+ * @param WordPoints_Hook_Events $events The event registry.
+ */
+function wordpoints_bp_xprofile_hook_events_init( $events ) {
+
+	// xProfile avatar uploads can be disabled.
+	if ( ! bp_disable_avatar_uploads() ) {
+
+		$events->register(
+			'bp_xprofile_avatar_upload'
+			, 'WordPoints_BP_Hook_Event_XProfile_Avatar_Upload'
+			, array(
+				'actions' => array(
+					'toggle_on'  => 'bp_xprofile_avatar_upload',
+					'toggle_off' => 'bp_xprofile_avatar_delete',
+				),
+				'args' => array(
+					'user' => 'WordPoints_Hook_Arg',
+				),
+			)
+		);
+	}
+}
+
 // EOF
