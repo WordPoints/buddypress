@@ -16,7 +16,7 @@
  *
  * @covers WordPoints_BP_Hook_Event_Group_Avatar_Upload
  *
- * @requires function bp_activity_get_excerpt_length
+ * @WordPoints-requires is_buddypress_2_8_0
  */
 class WordPoints_BP_Hook_Event_Group_Avatar_Upload_Test
 	extends WordPoints_PHPUnit_TestCase_Hook_Event {
@@ -39,6 +39,17 @@ class WordPoints_BP_Hook_Event_Group_Avatar_Upload_Test
 		array( 'bp_group', 'parent', 'bp_group', 'creator', 'user' ),
 		array( 'current:user' ),
 	);
+
+	/**
+	 * Check if BuddyPress version 2.8.0 or later is installed.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return bool Whether the current BuddyPress version is 2.8.0 or greater.
+	 */
+	public function is_buddypress_2_8_0() {
+		return version_compare( buddypress()->version, '2.8.0-alpha', '>=' );
+	}
 
 	/**
 	 * @since 1.0.0
