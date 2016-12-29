@@ -488,6 +488,17 @@ function wordpoints_bp_groups_hook_actions_init( $actions ) {
 	);
 
 	$actions->register(
+		'bp_group_membership_request_accept'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'groups_membership_accepted',
+			'data'   => array(
+				'arg_index' => array( 'user' => 0, 'bp_group' => 1 ),
+			),
+		)
+	);
+
+	$actions->register(
 		'bp_group_avatar_upload'
 		, 'WordPoints_Hook_Action'
 		, array(
@@ -732,6 +743,25 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 				'args'    => array(
 					'bp_group' => 'WordPoints_Hook_Arg',
 					'user'     => 'WordPoints_Hook_Arg',
+				),
+			)
+		);
+
+		$events->register(
+			'bp_group_membership_request_accept'
+			, 'WordPoints_BP_Hook_Event_Group_Membership_Request_Accept'
+			, array(
+				'actions' => array(
+					'toggle_on'  => 'bp_group_membership_request_accept',
+					'toggle_off' => array(
+						'bp_group_leave',
+						'bp_group_member_remove',
+					),
+				),
+				'args'    => array(
+					'bp_group'     => 'WordPoints_Hook_Arg',
+					'user'         => 'WordPoints_Hook_Arg',
+					'current:user' => 'WordPoints_Hook_Arg_Current_User',
 				),
 			)
 		);

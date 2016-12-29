@@ -63,6 +63,7 @@ return array(
 	'wordpoints_bp_hook_event_group_join' => 'hook/event/group/join.php',
 	'wordpoints_bp_hook_event_group_member_promote_to_admin' => 'hook/event/group/member/promote/to/admin.php',
 	'wordpoints_bp_hook_event_group_member_promote_to_mod' => 'hook/event/group/member/promote/to/mod.php',
+	'wordpoints_bp_hook_event_group_membership_request_accept' => 'hook/event/group/membership/request/accept.php',
 	'wordpoints_bp_hook_event_group_membership_request_send' => 'hook/event/group/membership/request/send.php',
 	'wordpoints_bp_hook_event_message_send' => 'hook/event/message/send.php',
 	'wordpoints_bp_hook_event_xprofile_avatar_upload' => 'hook/event/xprofile/avatar/upload.php',
