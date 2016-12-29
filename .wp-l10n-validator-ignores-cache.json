@@ -58,7 +58,7 @@
     },
     "\/includes\/functions.php": {
         "mod": {
-            "396": {
+            "410": {
                 "name": "array",
                 "type": "unknown",
                 "args_started": true,
@@ -67,13 +67,39 @@
             }
         },
         "admin": {
-            "408": {
+            "422": {
                 "name": "array",
                 "type": "unknown",
                 "args_started": true,
                 "arg_count": 0,
                 "parentheses": 1
             }
+        },
+        "group": {
+            "455": {
+                "name": "array",
+                "type": "unknown",
+                "args_started": true,
+                "arg_count": 0,
+                "parentheses": 1
+            }
+        },
+        "WordPoints_Hook_Arg_Current_User": {
+            "624": {
+                "name": "array",
+                "type": "unknown",
+                "args_started": true,
+                "arg_count": 1,
+                "parentheses": 1
+            }
+        }
+    },
+    "\/classes\/hook\/action\/avatar\/delete.php": {
+        "user": {
+            "24": false
+        },
+        "site": {
+            "58": false
         }
     }
 }

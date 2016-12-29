@@ -246,8 +246,8 @@
             "errors": false
         },
         "\/classes\/index.php": {
-            "size": 4064,
-            "hash": "981002d8ad45c950ed359e299ca2597e",
+            "size": 4232,
+            "hash": "f95b9eb8da2165e0ff0bb652f6f9b2ce",
             "errors": false
         },
         "\/components\/points\/includes\/actions.php": {
@@ -291,8 +291,18 @@
             "errors": false
         },
         "\/includes\/functions.php": {
-            "size": 25116,
-            "hash": "0e988420bff09d4137113596b3b39f02",
+            "size": 26545,
+            "hash": "314ffa4d821f605138296bb7b4c6050a",
+            "errors": false
+        },
+        "\/classes\/hook\/action\/avatar\/delete.php": {
+            "size": 1350,
+            "hash": "ddeb0f7d63bf2b704da6b12cc5929351",
+            "errors": false
+        },
+        "\/classes\/hook\/event\/group\/avatar\/upload.php": {
+            "size": 761,
+            "hash": "31f0484981486164717dc724dc49fcff",
             "errors": false
         }
     },
