@@ -436,6 +436,58 @@ function wordpoints_bp_groups_hook_actions_init( $actions ) {
 	);
 
 	$actions->register(
+		'bp_group_invite_user'
+		, 'WordPoints_BP_Hook_Action_Group_Invite_User'
+		, array(
+			'action' => 'groups_invite_user',
+		)
+	);
+
+	$actions->register(
+		'bp_group_uninvite_user'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'groups_uninvite_user',
+			'data'   => array(
+				'arg_index' => array( 'bp_group' => 0, 'user' => 1 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_group_invite_accept'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'groups_accept_invite',
+			'data'   => array(
+				'arg_index' => array( 'user' => 0, 'bp_group' => 1 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_group_invite_reject'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'groups_reject_invite',
+			'data'   => array(
+				'arg_index' => array( 'user' => 0, 'bp_group' => 1 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_group_invite_delete'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'groups_delete_invite',
+			'data'   => array(
+				'arg_index' => array( 'user' => 0, 'bp_group' => 1 ),
+			),
+		)
+	);
+
+	$actions->register(
 		'bp_group_avatar_upload'
 		, 'WordPoints_Hook_Action'
 		, array(
@@ -622,6 +674,27 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 				'args'    => array(
 					'bp_group' => 'WordPoints_Hook_Arg',
 					'user'     => 'WordPoints_Hook_Arg',
+				),
+			)
+		);
+
+		$events->register(
+			'bp_group_invite_user'
+			, 'WordPoints_BP_Hook_Event_Group_Invite_User'
+			, array(
+				'actions' => array(
+					'toggle_on'  => array(
+						'bp_group_invite_user',
+					),
+					'toggle_off' => array(
+						'bp_group_uninvite_user',
+						'bp_group_invite_delete',
+					),
+				),
+				'args'    => array(
+					'bp_group'     => 'WordPoints_Hook_Arg',
+					'user'         => 'WordPoints_Hook_Arg',
+					'inviter:user' => 'WordPoints_BP_Hook_Arg_User_Inviter',
 				),
 			)
 		);
