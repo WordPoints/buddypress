@@ -460,18 +460,7 @@ function wordpoints_bp_groups_hook_actions_init( $actions ) {
 		, array(
 			'action' => 'groups_accept_invite',
 			'data'   => array(
-				'arg_index' => array( 'user' => 0, 'bp_group' => 1 ),
-			),
-		)
-	);
-
-	$actions->register(
-		'bp_group_invite_reject'
-		, 'WordPoints_Hook_Action'
-		, array(
-			'action' => 'groups_reject_invite',
-			'data'   => array(
-				'arg_index' => array( 'user' => 0, 'bp_group' => 1 ),
+				'arg_index' => array( 'user' => 0, 'bp_group' => 1, 'inviter:user' => 2 ),
 			),
 		)
 	);
@@ -689,6 +678,27 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 					'toggle_off' => array(
 						'bp_group_uninvite_user',
 						'bp_group_invite_delete',
+					),
+				),
+				'args'    => array(
+					'bp_group'     => 'WordPoints_Hook_Arg',
+					'user'         => 'WordPoints_Hook_Arg',
+					'inviter:user' => 'WordPoints_BP_Hook_Arg_User_Inviter',
+				),
+			)
+		);
+
+		$events->register(
+			'bp_group_invite_accept'
+			, 'WordPoints_BP_Hook_Event_Group_Invite_Accept'
+			, array(
+				'actions' => array(
+					'toggle_on'  => array(
+						'bp_group_invite_accept',
+					),
+					'toggle_off' => array(
+						'bp_group_leave',
+						'bp_group_member_remove',
 					),
 				),
 				'args'    => array(
