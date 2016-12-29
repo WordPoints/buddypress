@@ -477,6 +477,17 @@ function wordpoints_bp_groups_hook_actions_init( $actions ) {
 	);
 
 	$actions->register(
+		'bp_group_membership_request_send'
+		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'groups_membership_requested',
+			'data'   => array(
+				'arg_index' => array( 'user' => 0, 'bp_group' => 2 ),
+			),
+		)
+	);
+
+	$actions->register(
 		'bp_group_avatar_upload'
 		, 'WordPoints_Hook_Action'
 		, array(
@@ -705,6 +716,22 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 					'bp_group'     => 'WordPoints_Hook_Arg',
 					'user'         => 'WordPoints_Hook_Arg',
 					'inviter:user' => 'WordPoints_BP_Hook_Arg_User_Inviter',
+				),
+			)
+		);
+
+		$events->register(
+			'bp_group_membership_request_send'
+			, 'WordPoints_BP_Hook_Event_Group_Membership_Request_Send'
+			, array(
+				'actions' => array(
+					// Currently there is no way to withdraw a request, so there is
+					// no toggle_off action.
+					'toggle_on'  => 'bp_group_membership_request_send',
+				),
+				'args'    => array(
+					'bp_group' => 'WordPoints_Hook_Arg',
+					'user'     => 'WordPoints_Hook_Arg',
 				),
 			)
 		);
