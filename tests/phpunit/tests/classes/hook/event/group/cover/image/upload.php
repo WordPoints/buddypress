@@ -56,13 +56,16 @@ class WordPoints_BP_Hook_Event_Group_Cover_Image_Upload_Test
 		// Needs to be set for the correct upload path to be used.
 		buddypress()->current_component = 'groups';
 
+		// Reset this in case it has already been set in an earlier test.
+		buddypress()->groups->current_group = null;
+
 		$this->upload_cover_image(
 			$user_id
 			, array( 'item_id' => $group_id, 'object' => 'group' )
 		);
 
 		return array(
-			$group_id,
+			array( 'bp_group' => $group_id, 'current:user' => $user_id ),
 		);
 	}
 
@@ -73,7 +76,7 @@ class WordPoints_BP_Hook_Event_Group_Cover_Image_Upload_Test
 
 		$this->delete_cover_image(
 			get_current_user_id()
-			, array( 'item_id' => $arg_id, 'object' => 'group' )
+			, array( 'item_id' => $arg_id['bp_group'], 'object' => 'group' )
 		);
 	}
 }

@@ -85,7 +85,7 @@ class WordPoints_BP_Hook_Event_Group_Avatar_Upload_Test
 		);
 
 		return array(
-			$group_id,
+			array( 'bp_group' => $group_id, 'current:user' => $user_id ),
 		);
 	}
 
@@ -95,7 +95,7 @@ class WordPoints_BP_Hook_Event_Group_Avatar_Upload_Test
 	protected function reverse_event( $arg_id, $index ) {
 
 		bp_core_delete_existing_avatar(
-			array( 'object' => 'group', 'item_id' => $arg_id )
+			array( 'object' => 'group', 'item_id' => $arg_id['bp_group'] )
 		);
 	}
 }
