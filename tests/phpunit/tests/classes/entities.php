@@ -481,25 +481,15 @@ class WordPoints_BP_Entity_Message_Test
 	 */
 	public function delete_message( $message_id ) {
 
-		$bp = buddypress();
-
 		$message = new BP_Messages_Message( $message_id );
-
-		$bp_loggedin_user_id = $bp->loggedin_user->id;
 
 		$thread_id = messages_get_message_thread_id( $message_id );
 
 		// BuddyPress only fully deletes the message once all recipients have marked
-		// it as deleted. See https://buddypress.trac.wordpress.org/ticket/7235
-		foreach ( $message->get_recipients() as $user_id ) {
-
-			// The messages are only deleted for the current user.
-			$bp->loggedin_user->id = $user_id->user_id;
-
-			messages_delete_thread( $thread_id );
+		// it as deleted.
+		foreach ( $message->get_recipients() as $recipient ) {
+			messages_delete_thread( $thread_id, $recipient->user_id );
 		}
-
-		$bp->loggedin_user->id = $bp_loggedin_user_id;
 	}
 
 	/**
