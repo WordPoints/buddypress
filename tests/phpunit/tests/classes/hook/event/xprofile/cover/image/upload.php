@@ -131,6 +131,9 @@ class WordPoints_BP_Hook_Event_XProfile_Cover_Image_Upload_Test
 		add_filter( 'wp_doing_ajax', '__return_true' );
 		add_action( 'wp_die_ajax_handler', array( $this, 'throw_exception' ) );
 
+		// Back-compat for WordPress <4.7, before the 'wp_doing_ajax' filter.
+		add_action( 'wp_die_handler', array( $this, 'throw_exception' ) );
+
 		ob_start();
 
 		try {
