@@ -246,8 +246,8 @@
             "errors": false
         },
         "\/classes\/index.php": {
-            "size": 4232,
-            "hash": "f95b9eb8da2165e0ff0bb652f6f9b2ce",
+            "size": 5085,
+            "hash": "0c8860fa49ad1462c02db43238d0d980",
             "errors": false
         },
         "\/components\/points\/includes\/actions.php": {
@@ -281,8 +281,8 @@
             "errors": false
         },
         "\/includes\/actions.php": {
-            "size": 2197,
-            "hash": "80ecc6bbcc86deb0d11d46ac26c32f5e",
+            "size": 2449,
+            "hash": "c068b0f74038ff141be509ac57766c8b",
             "errors": false
         },
         "\/includes\/constants.php": {
@@ -291,8 +291,8 @@
             "errors": false
         },
         "\/includes\/functions.php": {
-            "size": 26545,
-            "hash": "314ffa4d821f605138296bb7b4c6050a",
+            "size": 33471,
+            "hash": "d6a836e6dcef064de370972bdf1c41f7",
             "errors": false
         },
         "\/classes\/hook\/action\/avatar\/delete.php": {
@@ -303,6 +303,51 @@
         "\/classes\/hook\/event\/group\/avatar\/upload.php": {
             "size": 761,
             "hash": "31f0484981486164717dc724dc49fcff",
+            "errors": false
+        },
+        "\/classes\/hook\/action\/group\/invite\/user.php": {
+            "size": 610,
+            "hash": "e7caef027cd042e822725c989de9cc42",
+            "errors": false
+        },
+        "\/classes\/hook\/arg\/user\/inviter.php": {
+            "size": 416,
+            "hash": "fabed076d5275278c3e0a10608954ee9",
+            "errors": false
+        },
+        "\/classes\/hook\/event\/group\/cover\/image\/upload.php": {
+            "size": 772,
+            "hash": "ec73cd832dd21e93c98391009be9a5d2",
+            "errors": false
+        },
+        "\/classes\/hook\/event\/group\/invite\/accept.php": {
+            "size": 778,
+            "hash": "2a1d5faa843bc41d79b2cfea51252332",
+            "errors": false
+        },
+        "\/classes\/hook\/event\/group\/invite\/user.php": {
+            "size": 737,
+            "hash": "0f27ee9abaeb4c3801f67f5b9efe21ed",
+            "errors": false
+        },
+        "\/classes\/hook\/event\/group\/membership\/request\/accept.php": {
+            "size": 847,
+            "hash": "8f5bf7a2c62a2c3aa0b19c9f28efe477",
+            "errors": false
+        },
+        "\/classes\/hook\/event\/group\/membership\/request\/send.php": {
+            "size": 798,
+            "hash": "076ed2172578966b12bad503ecdeb6bd",
+            "errors": false
+        },
+        "\/classes\/hook\/event\/xprofile\/avatar\/upload.php": {
+            "size": 738,
+            "hash": "b1eab38030f845e51b30fb39cc249594",
+            "errors": false
+        },
+        "\/classes\/hook\/event\/xprofile\/cover\/image\/upload.php": {
+            "size": 773,
+            "hash": "eb66fe2d34741f4461d576ae9caf7945",
             "errors": false
         }
     },

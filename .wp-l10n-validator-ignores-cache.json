@@ -76,7 +76,7 @@
             }
         },
         "group": {
-            "455": {
+            "518": {
                 "name": "array",
                 "type": "unknown",
                 "args_started": true,
@@ -84,8 +84,38 @@
                 "parentheses": 1
             }
         },
+        "WordPoints_BP_Hook_Arg_User_Inviter": {
+            "708": {
+                "name": "array",
+                "type": "unknown",
+                "args_started": true,
+                "arg_count": 2,
+                "parentheses": 1
+            },
+            "729": {
+                "name": "array",
+                "type": "unknown",
+                "args_started": true,
+                "arg_count": 2,
+                "parentheses": 1
+            }
+        },
         "WordPoints_Hook_Arg_Current_User": {
-            "624": {
+            "764": {
+                "name": "array",
+                "type": "unknown",
+                "args_started": true,
+                "arg_count": 2,
+                "parentheses": 1
+            },
+            "786": {
+                "name": "array",
+                "type": "unknown",
+                "args_started": true,
+                "arg_count": 1,
+                "parentheses": 1
+            },
+            "807": {
                 "name": "array",
                 "type": "unknown",
                 "args_started": true,

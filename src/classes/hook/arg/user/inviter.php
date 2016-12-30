@@ -23,7 +23,7 @@ class WordPoints_BP_Hook_Arg_User_Inviter extends WordPoints_Hook_Arg {
 	 * @since 1.0.0
 	 */
 	public function get_title() {
-		return __( 'Inviter', 'wordpoints' );
+		return __( 'Inviter', 'wordpoints-bp' );
 	}
 }
 
