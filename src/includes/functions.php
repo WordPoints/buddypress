@@ -723,10 +723,18 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 						'bp_group_member_remove',
 					),
 				),
-				'args'    => array(
-					'bp_group'     => 'WordPoints_Hook_Arg',
-					'user'         => 'WordPoints_Hook_Arg',
-					'inviter:user' => 'WordPoints_BP_Hook_Arg_User_Inviter',
+				// The inviter arg wasn't added until BuddyPress 2.8.0.
+				// See https://buddypress.trac.wordpress.org/ticket/7410.
+				'args'    => ( version_compare( buddypress()->version, '2.8.0-alpha', '>=' )
+					? array(
+						'bp_group'     => 'WordPoints_Hook_Arg',
+						'user'         => 'WordPoints_Hook_Arg',
+						'inviter:user' => 'WordPoints_BP_Hook_Arg_User_Inviter',
+					)
+					: array(
+						'bp_group'     => 'WordPoints_Hook_Arg',
+						'user'         => 'WordPoints_Hook_Arg',
+					)
 				),
 			)
 		);

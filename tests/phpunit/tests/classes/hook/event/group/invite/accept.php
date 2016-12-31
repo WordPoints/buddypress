@@ -43,6 +43,20 @@ class WordPoints_BP_Hook_Event_Group_Invite_Accept_Test
 	/**
 	 * @since 1.0.0
 	 */
+	public function setUp() {
+
+		// The inviter arg wasn't added until BuddyPress 2.8.0.
+		// See https://buddypress.trac.wordpress.org/ticket/7410.
+		if ( version_compare( buddypress()->version, '2.8.0-alpha', '<' ) ) {
+			unset( $this->expected_targets[3] );
+		}
+
+		parent::setUp();
+	}
+
+	/**
+	 * @since 1.0.0
+	 */
 	public function data_provider_targets() {
 
 		// Support for multiple signature args was added in WordPoints 2.3.0-alpha-2.
