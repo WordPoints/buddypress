@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# We don't currently have any Codeception tests, so disable them.
-DO_WP_CEPT=0;
-
 # BuddyPress configuration.
 export BP_DEVELOP_DIR=/tmp/buddypress
 export BP_TESTS_DIR=/tmp/buddypress/tests/phpunit
