@@ -8,15 +8,16 @@ export BP_TESTS_DIR=/tmp/buddypress/tests/phpunit
 install-buddypress() {
 
 	mkdir -p "$BP_DEVELOP_DIR"
-	curl -s "https://downloads.wordpress.org/plugin/buddypress.$BP_VERSION.zip" > /tmp/buddypress.zip
-	unzip /tmp/buddypress.zip -d "$BP_DEVELOP_DIR"
+	curl -L "https://github.com/buddypress/BuddyPress/archive/$BP_VERSION.tar.gz" \
+		| tar xvz --strip-components=1 -C "$BP_DEVELOP_DIR"
+	ln -s "$BP_DEVELOP_DIR"/src "$WP_CORE_DIR"/wp-content/plugins/buddypress
 }
 
 # Override commands.
 wordpoints-dev-lib-config() {
 
 	# Install BuddyPress for the PHPUnit pass.
-	alias setup-phpunit='install-buddypress; setup-phpunit; ln -s "$BP_DEVELOP_DIR"/src "$WP_CORE_DIR"/wp-content/plugins/buddypress';
+	alias setup-phpunit='setup-phpunit; install-buddypress';
 }
 
 # EOF
