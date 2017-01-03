@@ -31,9 +31,15 @@ WordPoints_Modules::register(
 		Module Name: BuddyPress
 		Author:      J.D. Grimes
 		Author URI:  https://codesymphony.co/
+		Module URI:  https://wordpoints.org/modules/buddypress/
 		Version:     1.0.0-alpha
 		License:     GPLv2+
 		Description: Integrates WordPoints with BuddyPress.
+		Text Domain: wordpoints-bp
+		Domain Path: /languages
+		Channel:     wordpoints.org
+		ID:          944
+		Namespace:   BP
 	'
 	, __FILE__
 );
