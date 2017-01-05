@@ -690,8 +690,8 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 		);
 
 		$events->register(
-			'bp_group_invite_user'
-			, 'WordPoints_BP_Hook_Event_Group_Invite_User'
+			'bp_group_invite_send'
+			, 'WordPoints_BP_Hook_Event_Group_Invite_Send'
 			, array(
 				'actions' => array(
 					'toggle_on'  => array(

@@ -322,7 +322,7 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 			$this->assertEventRegistered( 'bp_group_join', array( 'bp_group', 'user' ) );
 			$this->assertEventRegistered( 'bp_group_member_promote_to_admin', array( 'bp_group', 'user' ) );
 			$this->assertEventRegistered( 'bp_group_member_promote_to_mod', array( 'bp_group', 'user' ) );
-			$this->assertEventRegistered( 'bp_group_invite_user', array( 'bp_group', 'user', 'inviter:user' ) );
+			$this->assertEventRegistered( 'bp_group_invite_send', array( 'bp_group', 'user', 'inviter:user' ) );
 
 			if ( version_compare( buddypress()->version, '2.8.0-alpha', '>=' ) ) {
 				$this->assertEventRegistered( 'bp_group_invite_accept', array( 'bp_group', 'user', 'inviter:user' ) );
@@ -338,7 +338,7 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 			$this->assertEventNotRegistered( 'bp_group_join', array( 'bp_group', 'user' ) );
 			$this->assertEventNotRegistered( 'bp_group_member_promote_to_admin', array( 'bp_group', 'user' ) );
 			$this->assertEventNotRegistered( 'bp_group_member_promote_to_mod', array( 'bp_group', 'user' ) );
-			$this->assertEventNotRegistered( 'bp_group_invite_user', array( 'bp_group', 'user', 'inviter:user' ) );
+			$this->assertEventNotRegistered( 'bp_group_invite_send', array( 'bp_group', 'user', 'inviter:user' ) );
 			$this->assertEventNotRegistered( 'bp_group_invite_accept', array( 'bp_group', 'user', 'inviter:user' ) );
 			$this->assertEventNotRegistered( 'bp_group_membership_request_send', array( 'bp_group', 'user' ) );
 			$this->assertEventNotRegistered( 'bp_group_membership_request_accept', array( 'bp_group', 'user', 'current:user' ) );

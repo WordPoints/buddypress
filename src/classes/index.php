@@ -59,7 +59,7 @@ return array(
 	'wordpoints_bp_hook_event_group_cover_image_upload' => 'hook/event/group/cover/image/upload.php',
 	'wordpoints_bp_hook_event_group_create' => 'hook/event/group/create.php',
 	'wordpoints_bp_hook_event_group_invite_accept' => 'hook/event/group/invite/accept.php',
-	'wordpoints_bp_hook_event_group_invite_user' => 'hook/event/group/invite/user.php',
+	'wordpoints_bp_hook_event_group_invite_send' => 'hook/event/group/invite/send.php',
 	'wordpoints_bp_hook_event_group_join' => 'hook/event/group/join.php',
 	'wordpoints_bp_hook_event_group_member_promote_to_admin' => 'hook/event/group/member/promote/to/admin.php',
 	'wordpoints_bp_hook_event_group_member_promote_to_mod' => 'hook/event/group/member/promote/to/mod.php',

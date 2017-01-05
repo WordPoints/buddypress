@@ -20,7 +20,7 @@ class WordPoints_BP_Hook_Event_Group_Invite_Accept
 	 * @since 1.0.0
 	 */
 	public function get_title() {
-		return __( 'Accept Invitation to Group', 'wordpoints-bp' );
+		return __( 'Accept Group Invitation', 'wordpoints-bp' );
 	}
 
 	/**

@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Test case for the WordPoints_BP_Hook_Event_Group_Invite_User class.
+ * Test case for the WordPoints_BP_Hook_Event_Group_Invite_Send class.
  *
  * @package WordPoints_BuddyPress
  * @since 1.0.0
  */
 
 /**
- * Tests the WordPoints_BP_Hook_Event_Group_Invite_User class.
+ * Tests the WordPoints_BP_Hook_Event_Group_Invite_Send class.
  *
  * @since 1.0.0
  *
- * @covers WordPoints_BP_Hook_Event_Group_Invite_User
+ * @covers WordPoints_BP_Hook_Event_Group_Invite_Send
  *
  * @requires WordPoints version
  * @WordPoints-version 2.3.0-alpha-2
@@ -23,12 +23,12 @@ class WordPoints_BP_Hook_Event_Group_Invite_User_Test
 	/**
 	 * @since 1.0.0
 	 */
-	protected $event_slug = 'bp_group_invite_user';
+	protected $event_slug = 'bp_group_invite_send';
 
 	/**
 	 * @since 1.0.0
 	 */
-	protected $event_class = 'WordPoints_BP_Hook_Event_Group_Invite_User';
+	protected $event_class = 'WordPoints_BP_Hook_Event_Group_Invite_Send';
 
 	/**
 	 * @since 1.0.0
