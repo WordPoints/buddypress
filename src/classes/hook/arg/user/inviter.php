@@ -3,7 +3,7 @@
 /**
  * Inviter user hook arg class.
  *
- * @package WordPoints\Hooks
+ * @package WordPoints_BuddyPress\Hooks
  * @since 1.0.0
  */
 

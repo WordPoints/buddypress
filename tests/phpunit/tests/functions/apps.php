@@ -14,6 +14,10 @@
  */
 class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hooks {
 
+	//
+	// Messages Component.
+	//
+
 	/**
 	 * Test the Messages component entity registration function.
 	 *
@@ -91,6 +95,10 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 		$this->assertEventRegistered( 'bp_message_send', 'bp_message' );
 	}
 
+	//
+	// Friends Component.
+	//
+
 	/**
 	 * Test the Friends component entity registration function.
 	 *
@@ -153,6 +161,10 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 		$this->assertEventRegistered( 'bp_friendship_request', 'bp_friendship' );
 		$this->assertEventRegistered( 'bp_friendship_accept', 'bp_friendship' );
 	}
+
+	//
+	// Groups Component.
+	//
 
 	/**
 	 * Test the Groups component entity registration function.
@@ -416,6 +428,10 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 		);
 	}
 
+	//
+	// Activity Component.
+	//
+
 	/**
 	 * Test the Activity component entity registration function.
 	 *
@@ -571,6 +587,10 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 
 		$this->assertSame( array( array( $activity_comment ) ), $mock_2->calls );
 	}
+
+	//
+	// xProfile Component.
+	//
 
 	/**
 	 * Test the xProfile component action registration function.
