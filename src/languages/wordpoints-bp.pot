@@ -1,0 +1,409 @@
+# Copyright (C) 2017 J.D. Grimes
+# This file is distributed under the same license as the WordPoints BuddyPress package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPoints BuddyPress 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-06 15:05:47+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: classes/entity/activity/comment/activity.php:42
+msgctxt "activity comment entity"
+msgid "Activity"
+msgstr ""
+
+#: classes/entity/activity/comment/author.php:27
+msgctxt "activity comment entity"
+msgid "Author"
+msgstr ""
+
+#: classes/entity/activity/comment/parent.php:42
+msgctxt "activity comment entity"
+msgid "Parent Comment"
+msgstr ""
+
+#: classes/entity/activity/comment.php:22
+msgid "Activity Comment"
+msgstr ""
+
+#: classes/entity/activity/date.php:36
+msgctxt "activity entity"
+msgid "Date"
+msgstr ""
+
+#: classes/entity/activity/update/author.php:27
+msgctxt "activity update"
+msgid "Author"
+msgstr ""
+
+#: classes/entity/activity/update/content.php:37
+msgctxt "activity update"
+msgid "Content"
+msgstr ""
+
+#: classes/entity/activity/update/date/posted.php:22
+msgid "Date Posted"
+msgstr ""
+
+#: classes/entity/activity/update.php:21
+msgid "Activity Update"
+msgstr ""
+
+#: classes/entity/activity/user.php:42
+msgctxt "activity entity"
+msgid "User"
+msgstr ""
+
+#: classes/entity/activity.php:47
+msgid "Activity"
+msgstr ""
+
+#: classes/entity/friendship/date/created.php:44
+msgctxt "friendship entity"
+msgid "Date Created"
+msgstr ""
+
+#: classes/entity/friendship/friend.php:42
+msgctxt "friendship entity"
+msgid "Friend"
+msgstr ""
+
+#: classes/entity/friendship/initiator.php:42
+msgctxt "friendship entity"
+msgid "Initiator"
+msgstr ""
+
+#. translators: 1: initiator's display name, 2: friend's display name.
+#: classes/entity/friendship.php:48
+msgctxt "friendship"
+msgid "%1$s + %2$s"
+msgstr ""
+
+#: classes/entity/friendship.php:58
+msgctxt "friendship entity"
+msgid "Friendship"
+msgstr ""
+
+#: classes/entity/group/activity/update/group.php:42
+msgctxt "group activity update entity"
+msgid "Group"
+msgstr ""
+
+#: classes/entity/group/creator.php:42
+msgctxt "group entity"
+msgid "Creator"
+msgstr ""
+
+#: classes/entity/group/date/created.php:37
+msgctxt "group entity"
+msgid "Date Created"
+msgstr ""
+
+#: classes/entity/group/description.php:36
+msgctxt "group entity"
+msgid "Description"
+msgstr ""
+
+#: classes/entity/group/name.php:36
+msgctxt "group entity"
+msgid "Name"
+msgstr ""
+
+#: classes/entity/group/parent.php:42
+msgctxt "group entity"
+msgid "Parent Group"
+msgstr ""
+
+#: classes/entity/group/slug.php:36
+msgctxt "group entity"
+msgid "Slug"
+msgstr ""
+
+#: classes/entity/group/status.php:36
+msgctxt "group entity"
+msgid "Status"
+msgstr ""
+
+#: classes/entity/group.php:50
+msgctxt "group entity"
+msgid "Group"
+msgstr ""
+
+#: classes/entity/message/content.php:36
+msgctxt "message entity"
+msgid "Contents"
+msgstr ""
+
+#: classes/entity/message/date/sent.php:36
+msgctxt "message entity"
+msgid "Date Sent"
+msgstr ""
+
+#: classes/entity/message/recipients.php:33
+msgctxt "message entity"
+msgid "Recipients"
+msgstr ""
+
+#: classes/entity/message/sender.php:42
+msgctxt "message entity"
+msgid "Sender"
+msgstr ""
+
+#: classes/entity/message/subject.php:36
+msgctxt "message entity"
+msgid "Subject"
+msgstr ""
+
+#: classes/entity/message.php:55
+msgctxt "message entity"
+msgid "Message"
+msgstr ""
+
+#: classes/hook/arg/user/inviter.php:26
+msgid "Inviter"
+msgstr ""
+
+#: classes/hook/event/activity/comment/post.php:23
+msgid "Post Activity Comment"
+msgstr ""
+
+#: classes/hook/event/activity/comment/post.php:30
+msgid ""
+"Commenting on an item in the activity stream on the BuddyPress social "
+"network."
+msgstr ""
+
+#: classes/hook/event/activity/comment/post.php:37
+msgid "Comment removed."
+msgstr ""
+
+#: classes/hook/event/activity/favorite.php:23
+msgid "Favorite Activity"
+msgstr ""
+
+#: classes/hook/event/activity/favorite.php:30
+msgid ""
+"Marking an item as a favorite in the activity stream on the BuddyPress "
+"social network."
+msgstr ""
+
+#: classes/hook/event/activity/favorite.php:37
+msgid "Activity unfavorited."
+msgstr ""
+
+#: classes/hook/event/activity/update/post.php:23
+msgid "Post Activity Update"
+msgstr ""
+
+#: classes/hook/event/activity/update/post.php:30
+msgid "Posting a status update on the BuddyPress social network."
+msgstr ""
+
+#: classes/hook/event/activity/update/post.php:37
+#: classes/hook/event/group/activity/update/post.php:37
+msgid "Activity update removed."
+msgstr ""
+
+#: classes/hook/event/friendship/accept.php:23
+msgid "Accept Friendship"
+msgstr ""
+
+#: classes/hook/event/friendship/accept.php:30
+msgid ""
+"Accepting a friendship request from another user on the BuddyPress social "
+"network."
+msgstr ""
+
+#: classes/hook/event/friendship/accept.php:37
+msgid "Friendship deleted."
+msgstr ""
+
+#: classes/hook/event/friendship/request.php:23
+msgid "Request Friendship"
+msgstr ""
+
+#: classes/hook/event/friendship/request.php:30
+msgid ""
+"Sending a friendship request to another user on the BuddyPress social "
+"network."
+msgstr ""
+
+#: classes/hook/event/friendship/request.php:37
+msgid "Request withdrawn."
+msgstr ""
+
+#: classes/hook/event/group/activity/update/post.php:23
+msgid "Post Group Activity Update"
+msgstr ""
+
+#: classes/hook/event/group/activity/update/post.php:30
+msgid "Posting a status update from a group on the BuddyPress social network."
+msgstr ""
+
+#: classes/hook/event/group/avatar/upload.php:23
+msgid "Upload Group Profile Photo"
+msgstr ""
+
+#: classes/hook/event/group/avatar/upload.php:30
+msgid "Uploading a profile photo for a group on the BuddyPress social network."
+msgstr ""
+
+#: classes/hook/event/group/avatar/upload.php:37
+#: classes/hook/event/group/cover/image/upload.php:37
+#: classes/hook/event/xprofile/avatar/upload.php:37
+#: classes/hook/event/xprofile/cover/image/upload.php:37
+msgid "Image deleted."
+msgstr ""
+
+#: classes/hook/event/group/cover/image/upload.php:23
+msgid "Set Group Cover Image"
+msgstr ""
+
+#: classes/hook/event/group/cover/image/upload.php:30
+msgid "Setting the cover image for a group on the BuddyPress social network."
+msgstr ""
+
+#: classes/hook/event/group/create.php:23
+msgid "Create Group"
+msgstr ""
+
+#: classes/hook/event/group/create.php:30
+msgid "Creating a new group on the BuddyPress social network."
+msgstr ""
+
+#: classes/hook/event/group/create.php:37
+msgid "Group deleted."
+msgstr ""
+
+#: classes/hook/event/group/invite/accept.php:23
+msgid "Accept Group Invitation"
+msgstr ""
+
+#: classes/hook/event/group/invite/accept.php:30
+msgid ""
+"Accepting an invitation to join a group on the BuddyPress social network."
+msgstr ""
+
+#: classes/hook/event/group/invite/accept.php:37
+#: classes/hook/event/group/membership/request/accept.php:37
+msgid "Member removed from group."
+msgstr ""
+
+#: classes/hook/event/group/invite/send.php:23
+msgid "Send Group Invitation"
+msgstr ""
+
+#: classes/hook/event/group/invite/send.php:30
+msgid "Inviting a user to join a group on the BuddyPress social network."
+msgstr ""
+
+#: classes/hook/event/group/invite/send.php:37
+msgid "Invitation deleted."
+msgstr ""
+
+#: classes/hook/event/group/join.php:23
+msgid "Join Group"
+msgstr ""
+
+#: classes/hook/event/group/join.php:30
+msgid "Joining a group on the BuddyPress social network."
+msgstr ""
+
+#: classes/hook/event/group/join.php:37
+msgid "Group membership terminated."
+msgstr ""
+
+#: classes/hook/event/group/member/promote/to/admin.php:23
+msgid "Promote Group Member to Admin"
+msgstr ""
+
+#: classes/hook/event/group/member/promote/to/admin.php:30
+msgid ""
+"Promoting a group member to be an admin of a group on the BuddyPress social "
+"network."
+msgstr ""
+
+#: classes/hook/event/group/member/promote/to/admin.php:37
+msgid "Admin status terminated."
+msgstr ""
+
+#: classes/hook/event/group/member/promote/to/mod.php:23
+msgid "Promote Group Member to Moderator"
+msgstr ""
+
+#: classes/hook/event/group/member/promote/to/mod.php:30
+msgid ""
+"Promoting a group member to be a moderator of a group on the BuddyPress "
+"social network."
+msgstr ""
+
+#: classes/hook/event/group/member/promote/to/mod.php:37
+msgid "Moderator status terminated."
+msgstr ""
+
+#: classes/hook/event/group/membership/request/accept.php:23
+msgid "Accept Group Membership Request"
+msgstr ""
+
+#: classes/hook/event/group/membership/request/accept.php:30
+msgid ""
+"Accepting a user&#8217;s request to become a member of a group on the "
+"BuddyPress social network."
+msgstr ""
+
+#: classes/hook/event/group/membership/request/send.php:23
+msgid "Send Group Membership Request"
+msgstr ""
+
+#: classes/hook/event/group/membership/request/send.php:30
+msgid ""
+"Requesting to become a member of a group on the BuddyPress social network."
+msgstr ""
+
+#: classes/hook/event/group/membership/request/send.php:37
+msgid "Request deleted."
+msgstr ""
+
+#: classes/hook/event/message/send.php:21
+msgid "Send Message"
+msgstr ""
+
+#: classes/hook/event/message/send.php:28
+msgid "Sending a message to another user on the BuddyPress social network."
+msgstr ""
+
+#: classes/hook/event/xprofile/avatar/upload.php:23
+msgid "Set Profile Photo"
+msgstr ""
+
+#: classes/hook/event/xprofile/avatar/upload.php:30
+msgid "Setting your profile photo on the BuddyPress social network."
+msgstr ""
+
+#: classes/hook/event/xprofile/cover/image/upload.php:23
+msgid "Set Profile Cover Image"
+msgstr ""
+
+#: classes/hook/event/xprofile/cover/image/upload.php:30
+msgid "Setting your profile cover image on the BuddyPress social network."
+msgstr ""
+
+#: components/points/includes/members.php:23
+msgctxt "BuddyPress member profile nav item"
+msgid "Points"
+msgstr ""
+
+#. translators: 1: Points type name; 2: Formatted points amount.
+#: components/points/includes/members.php:112
+msgid "%1$s: %2$s"
+msgstr ""
+
+#. translators: Rank name.
+#: components/ranks/includes/integration/points/functions.php:27
+msgid "Rank: %s"
+msgstr ""

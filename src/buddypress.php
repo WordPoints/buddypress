@@ -4,7 +4,7 @@
  * Main file of the module.
  *
  * ---------------------------------------------------------------------------------|
- * Copyright 2015-16  J.D. Grimes  (email : jdg@codesymphony.co)
+ * Copyright 2015-17  J.D. Grimes  (email : jdg@codesymphony.co)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License, version 1.0.0-alpha or later, as
@@ -21,7 +21,7 @@
  * ---------------------------------------------------------------------------------|
  *
  * @package WordPoints_BuddyPress
- * @version 1.0.0-alpha
+ * @version 1.0.0
  * @author  J.D. Grimes <jdg@codesymphony.co>
  * @license GPLv2+
  */
@@ -32,7 +32,7 @@ WordPoints_Modules::register(
 		Author:      J.D. Grimes
 		Author URI:  https://codesymphony.co/
 		Module URI:  https://wordpoints.org/modules/buddypress/
-		Version:     1.0.0-alpha
+		Version:     1.0.0
 		License:     GPLv2+
 		Description: Integrates WordPoints with BuddyPress.
 		Text Domain: wordpoints-bp

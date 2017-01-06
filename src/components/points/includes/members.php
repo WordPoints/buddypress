@@ -108,6 +108,7 @@ function wordpoints_bp_points_members_profile_screen_content_stats( $points_type
 
 			echo esc_html(
 				sprintf(
+					// translators: 1: Points type name; 2: Formatted points amount.
 					__( '%1$s: %2$s', 'wordpoints-bp' )
 					, wordpoints_get_points_type_setting( $points_type, 'name' )
 					, wordpoints_get_formatted_points(

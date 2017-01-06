@@ -23,6 +23,7 @@ function wordpoints_bp_ranks_points_members_profile_screen_content_stats( $point
 
 		echo wp_kses_post(
 			sprintf(
+				// translators: Rank name.
 				__( 'Rank: %s', 'wordpoints-bp' )
 				, wordpoints_get_formatted_user_rank(
 					bp_displayed_user_id()

@@ -1,6 +1,6 @@
 {
   "name": "wordpoints-buddypress",
-  "version": "1.0.0-alpha",
+  "version": "1.0.0",
   "description": "Integrates the WordPoints plugin with BuddyPress.",
   "repository": {
     "type": "git",
