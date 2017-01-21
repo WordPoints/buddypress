@@ -84,15 +84,15 @@
                 "parentheses": 1
             }
         },
-        "WordPoints_BP_Hook_Arg_User_Inviter": {
-            "708": {
+        "WordPoints_BP_Hook_Arg_User_Promoter": {
+            "665": {
                 "name": "array",
                 "type": "unknown",
                 "args_started": true,
                 "arg_count": 2,
                 "parentheses": 1
             },
-            "729": {
+            "689": {
                 "name": "array",
                 "type": "unknown",
                 "args_started": true,
@@ -100,22 +100,40 @@
                 "parentheses": 1
             }
         },
-        "WordPoints_Hook_Arg_Current_User": {
-            "764": {
+        "WordPoints_BP_Hook_Arg_User_Inviter": {
+            "710": {
                 "name": "array",
                 "type": "unknown",
                 "args_started": true,
                 "arg_count": 2,
                 "parentheses": 1
             },
-            "786": {
+            "734": {
+                "name": "array",
+                "type": "unknown",
+                "args_started": true,
+                "arg_count": 2,
+                "parentheses": 1
+            }
+        },
+        "WordPoints_BP_Hook_Arg_User_Accepting": {
+            "774": {
+                "name": "array",
+                "type": "unknown",
+                "args_started": true,
+                "arg_count": 2,
+                "parentheses": 1
+            }
+        },
+        "WordPoints_BP_Hook_Arg_User_Uploading": {
+            "796": {
                 "name": "array",
                 "type": "unknown",
                 "args_started": true,
                 "arg_count": 1,
                 "parentheses": 1
             },
-            "807": {
+            "817": {
                 "name": "array",
                 "type": "unknown",
                 "args_started": true,
