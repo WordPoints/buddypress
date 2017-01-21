@@ -50,6 +50,7 @@ return array(
 	'wordpoints_bp_hook_action_group_invite_user' => 'hook/action/group/invite/user.php',
 	'wordpoints_bp_hook_arg_user_accepting' => 'hook/arg/user/accepting.php',
 	'wordpoints_bp_hook_arg_user_inviter' => 'hook/arg/user/inviter.php',
+	'wordpoints_bp_hook_arg_user_promoter' => 'hook/arg/user/promoter.php',
 	'wordpoints_bp_hook_arg_user_uploading' => 'hook/arg/user/uploading.php',
 	'wordpoints_bp_hook_event_activity_comment_post' => 'hook/event/activity/comment/post.php',
 	'wordpoints_bp_hook_event_activity_favorite' => 'hook/event/activity/favorite.php',

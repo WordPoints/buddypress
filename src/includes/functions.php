@@ -660,8 +660,9 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 					),
 				),
 				'args'    => array(
-					'bp_group' => 'WordPoints_Hook_Arg',
-					'user'     => 'WordPoints_Hook_Arg',
+					'bp_group'     => 'WordPoints_Hook_Arg',
+					'user'         => 'WordPoints_Hook_Arg',
+					'current:user' => 'WordPoints_BP_Hook_Arg_User_Promoter',
 				),
 			)
 		);
@@ -683,8 +684,9 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 					),
 				),
 				'args'    => array(
-					'bp_group' => 'WordPoints_Hook_Arg',
-					'user'     => 'WordPoints_Hook_Arg',
+					'bp_group'     => 'WordPoints_Hook_Arg',
+					'user'         => 'WordPoints_Hook_Arg',
+					'current:user' => 'WordPoints_BP_Hook_Arg_User_Promoter',
 				),
 			)
 		);

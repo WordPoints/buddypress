@@ -21,6 +21,15 @@ class WordPoints_BP_Hook_Event_Group_Member_Promote_To_Admin_Test
 	extends WordPoints_PHPUnit_TestCase_Hook_Event {
 
 	/**
+	 * The status to promote the member to.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @var string
+	 */
+	protected $status = 'admin';
+
+	/**
 	 * @since 1.0.0
 	 */
 	protected $event_slug = 'bp_group_member_promote_to_admin';
@@ -37,6 +46,7 @@ class WordPoints_BP_Hook_Event_Group_Member_Promote_To_Admin_Test
 		array( 'bp_group', 'creator', 'user' ),
 		array( 'bp_group', 'parent', 'bp_group', 'creator', 'user' ),
 		array( 'user' ),
+		array( 'current:user' ),
 	);
 
 	/**
@@ -69,8 +79,11 @@ class WordPoints_BP_Hook_Event_Group_Member_Promote_To_Admin_Test
 			array( 'parent_id' => $this->factory->bp->group->create() )
 		);
 
+		$current_user_id = $this->factory->user->create();
+		wp_set_current_user( $current_user_id );
+
 		groups_join_group( $group_id, $user_id );
-		groups_promote_member( $user_id, $group_id, 'admin' );
+		groups_promote_member( $user_id, $group_id, $this->status );
 
 		// A group that the user will leave.
 		$user_id_2  = $this->factory->user->create();
@@ -78,8 +91,11 @@ class WordPoints_BP_Hook_Event_Group_Member_Promote_To_Admin_Test
 			array( 'parent_id' => $this->factory->bp->group->create() )
 		);
 
+		$current_user_id_2 = $this->factory->user->create();
+		wp_set_current_user( $current_user_id_2 );
+
 		groups_join_group( $group_id_2, $user_id_2 );
-		groups_promote_member( $user_id_2, $group_id_2, 'admin' );
+		groups_promote_member( $user_id_2, $group_id_2, $this->status );
 
 		// A group that the user will be banned from.
 		$user_id_3  = $this->factory->user->create();
@@ -87,8 +103,11 @@ class WordPoints_BP_Hook_Event_Group_Member_Promote_To_Admin_Test
 			array( 'parent_id' => $this->factory->bp->group->create() )
 		);
 
+		$current_user_id_3 = $this->factory->user->create();
+		wp_set_current_user( $current_user_id_3 );
+
 		groups_join_group( $group_id_3, $user_id_3 );
-		groups_promote_member( $user_id_3, $group_id_3, 'admin' );
+		groups_promote_member( $user_id_3, $group_id_3, $this->status );
 
 		// A group that the user will be removed from by a moderator.
 		$user_id_4  = $this->factory->user->create();
@@ -96,8 +115,11 @@ class WordPoints_BP_Hook_Event_Group_Member_Promote_To_Admin_Test
 			array( 'parent_id' => $this->factory->bp->group->create() )
 		);
 
+		$current_user_id_4 = $this->factory->user->create();
+		wp_set_current_user( $current_user_id_4 );
+
 		groups_join_group( $group_id_4, $user_id_4 );
-		groups_promote_member( $user_id_4, $group_id_4, 'admin' );
+		groups_promote_member( $user_id_4, $group_id_4, $this->status );
 
 		// A group that the user will be removed from when the group is deleted.
 		$user_id_5  = $this->factory->user->create();
@@ -105,15 +127,18 @@ class WordPoints_BP_Hook_Event_Group_Member_Promote_To_Admin_Test
 			array( 'parent_id' => $this->factory->bp->group->create() )
 		);
 
+		$current_user_id_5 = $this->factory->user->create();
+		wp_set_current_user( $current_user_id_5 );
+
 		groups_join_group( $group_id_5, $user_id_5 );
-		groups_promote_member( $user_id_5, $group_id_5, 'admin' );
+		groups_promote_member( $user_id_5, $group_id_5, $this->status );
 
 		return array(
-			array( 'bp_group' => $group_id, 'user' => $user_id ),
-			array( 'bp_group' => $group_id_2, 'user' => $user_id_2 ),
-			array( 'bp_group' => $group_id_3, 'user' => $user_id_3 ),
-			array( 'bp_group' => $group_id_4, 'user' => $user_id_4 ),
-			array( 'bp_group' => $group_id_5, 'user' => $user_id_5 ),
+			array( 'bp_group' => $group_id, 'user' => $user_id, 'current:user' => $current_user_id ),
+			array( 'bp_group' => $group_id_2, 'user' => $user_id_2, 'current:user' => $current_user_id_2 ),
+			array( 'bp_group' => $group_id_3, 'user' => $user_id_3, 'current:user' => $current_user_id_3 ),
+			array( 'bp_group' => $group_id_4, 'user' => $user_id_4, 'current:user' => $current_user_id_4 ),
+			array( 'bp_group' => $group_id_5, 'user' => $user_id_5, 'current:user' => $current_user_id_5 ),
 		);
 	}
 
