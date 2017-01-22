@@ -6,6 +6,17 @@ This module adheres to [Semantic Versioning](http://semver.org/) and [Keep a CHA
 
 ## [Unreleased]
 
+## [1.1.0] - 2017-01-23
+
+### Added 
+
+- The "Promoter" arg to the Promote Group Member to Mod/Admin hook events. #33
+
+### Changed
+
+- The title of the "Visitor" arg in the Group Avatar Upload and Group Cover Image Upload hook events to be "Uploading User" instead. #32
+- The title of the "Visitor" arg in the Group Membership Request Accept hook event to be "Accepting User" instead. #32
+
 ## [1.0.0] - 2017-01-06
 
 ### Added
@@ -38,4 +49,5 @@ This module adheres to [Semantic Versioning](http://semver.org/) and [Keep a CHA
  - Profile Avatar Upload and Cover Image Upload hook events.
 
 [unreleased]: https://github.com/WordPoints/wordpoints/compare/master...HEAD
+[1.1.0]: https://github.com/WordPoints/wordpoints/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/WordPoints/wordpoints/compare/...1.0.0
