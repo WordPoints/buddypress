@@ -38,7 +38,7 @@ class WordPoints_BP_Entity_Test extends WordPoints_PHPUnit_TestCase {
 		$entity = new WordPoints_BP_PHPUnit_Mock_Entity( 'test' );
 		$entity->is_bp_multi_network = true;
 
-		$this->assertEquals( 'network', $entity->get_context() );
+		$this->assertSame( 'network', $entity->get_context() );
 	}
 
 	/**
@@ -51,7 +51,7 @@ class WordPoints_BP_Entity_Test extends WordPoints_PHPUnit_TestCase {
 		$entity = new WordPoints_BP_PHPUnit_Mock_Entity( 'test' );
 		$entity->bp_component = 'friends';
 
-		$this->assertEquals(
+		$this->assertSame(
 			array(
 	             'type' => 'db',
 	             'info' => array(
@@ -74,7 +74,7 @@ class WordPoints_BP_Entity_Test extends WordPoints_PHPUnit_TestCase {
 		$entity->bp_component = 'messages';
 		$entity->bp_component_table_name = 'messages';
 
-		$this->assertEquals(
+		$this->assertSame(
 			array(
 				'type' => 'db',
 				'info' => array(
