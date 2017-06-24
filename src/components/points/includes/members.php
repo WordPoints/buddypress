@@ -186,4 +186,32 @@ function wordpoints_bp_points_members_profile_screen_content_logs( $points_type 
 	do_action( 'wordpoints_bp_points_members_profile_screen_after_logs', $points_type );
 }
 
+/**
+ * Gets the profile link for a user.
+ *
+ * @since 1.2.0
+ *
+ * @WordPress\filter wordpoints_points_logs_table_username
+ * @WordPress\filter wordpoints_points_top_users_username
+ *
+ * @param string      $username The username.
+ * @param int|WP_User $user_id  The user ID.
+ *
+ * @return string The profile link.
+ */
+function wordpoints_bp_points_members_get_profile_link( $username, $user_id ) {
+
+	if ( $user_id instanceof WP_User ) {
+		$user_id = $user_id->ID;
+	}
+
+	$link = bp_core_get_userlink( $user_id );
+
+	if ( ! $link ) {
+		return $username;
+	}
+
+	return $link;
+}
+
 // EOF
