@@ -48,7 +48,14 @@ class WordPoints_BP_Hook_Event_Activity_Comment_Post_Test
 		);
 
 		$with_parent = ( 'parent' === $this->target[1] );
-		$share_activity = $with_parent && 'activity' !== $this->target[3];
+		$share_activity = ( $with_parent && 'activity' !== $this->target[3] );
+		$the_activity_id = (
+			$share_activity
+				? $activity_id
+				: $this->factory->bp->activity->create(
+					array( 'user_id' => $this->factory->user->create() )
+				)
+			);
 
 		$user_id    = $this->factory->user->create();
 		$comment_id = $this->factory->bp->activity->create(
@@ -57,13 +64,7 @@ class WordPoints_BP_Hook_Event_Activity_Comment_Post_Test
 				'type'    => 'activity_comment',
 				'content' => 'Testing',
 				'user_id' => $user_id,
-				'item_id' => $the_activity_id = (
-					$share_activity
-						? $activity_id
-						: $this->factory->bp->activity->create(
-							array( 'user_id' => $this->factory->user->create() )
-						)
-				),
+				'item_id' => $the_activity_id,
 				'secondary_item_id' => ! $with_parent
 					? false
 					: bp_activity_new_comment(
@@ -94,18 +95,20 @@ class WordPoints_BP_Hook_Event_Activity_Comment_Post_Test
 
 		bp_activity_mark_as_ham( $by_ref );
 
+		$the_activity_id = (
+			$share_activity
+				? $activity_id
+				: $this->factory->bp->activity->create(
+					array( 'user_id' => $this->factory->user->create() )
+				)
+		);
+
 		// This triggers a different action.
 		$skip_notification = bp_activity_new_comment(
 			array(
 				'content'           => 'Testing',
 				'user_id'           => $this->factory->user->create(),
-				'activity_id'       => $the_activity_id = (
-					$share_activity
-						? $activity_id
-						: $this->factory->bp->activity->create(
-							array( 'user_id' => $this->factory->user->create() )
-						)
-				),
+				'activity_id'       => $the_activity_id,
 				'parent_id'         => ! $with_parent
 					? false
 					: bp_activity_new_comment(
@@ -120,19 +123,21 @@ class WordPoints_BP_Hook_Event_Activity_Comment_Post_Test
 			)
 		);
 
+		$the_activity_id = (
+			$share_activity
+				? $activity_id
+				: $this->factory->bp->activity->create(
+					array( 'user_id' => $this->factory->user->create() )
+				)
+		);
+
 		return array(
 			$skip_notification,
 			bp_activity_new_comment(
 				array(
 					'content'     => 'Testing',
 					'user_id'     => $this->factory->user->create(),
-					'activity_id'       => $the_activity_id = (
-						$share_activity
-							? $activity_id
-							: $this->factory->bp->activity->create(
-								array( 'user_id' => $this->factory->user->create() )
-							)
-					),
+					'activity_id' => $the_activity_id,
 					'parent_id'   => ! $with_parent
 						? false
 						: bp_activity_new_comment(

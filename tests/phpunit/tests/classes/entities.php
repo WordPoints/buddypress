@@ -42,7 +42,7 @@
  * @covers WordPoints_BP_Entity_Activity_Comment_Author
  * @covers WordPoints_BP_Entity_Activity_Comment_Parent
  */
-class WordPoints_BP_Entity_Message_Test
+class WordPoints_BP_Entities_Test
 	extends WordPoints_PHPUnit_TestCase_Entities {
 
 	/**
@@ -50,9 +50,9 @@ class WordPoints_BP_Entity_Message_Test
 	 */
 	public function data_provider_entities() {
 
-		$factory = $this->factory = new WP_UnitTest_Factory();
-		$factory->wordpoints = WordPoints_PHPUnit_Factory::$factory;
-		$factory->bp = new BP_UnitTest_Factory();
+		$this->factory             = new WP_UnitTest_Factory();
+		$this->factory->wordpoints = WordPoints_PHPUnit_Factory::$factory;
+		$this->factory->bp         = new BP_UnitTest_Factory();
 
 		return array(
 			'bp_message' => array(
@@ -70,7 +70,7 @@ class WordPoints_BP_Entity_Message_Test
 						),
 					),
 					'the_context'    => array(),
-					'create_func'    => array( $factory->bp->message, 'create_and_get' ),
+					'create_func'    => array( $this->factory->bp->message, 'create_and_get' ),
 					'delete_func'    => array( $this, 'delete_message' ),
 					'children'       => array(
 						'content' => array(
@@ -150,7 +150,7 @@ class WordPoints_BP_Entity_Message_Test
 						),
 					),
 					'the_context'    => array(),
-					'create_func'    => array( $factory->bp->friendship, 'create_and_get' ),
+					'create_func'    => array( $this->factory->bp->friendship, 'create_and_get' ),
 					'delete_func'    => array( $this, 'delete_friendship' ),
 					'children'       => array(
 						'date_created' => array(
@@ -206,7 +206,7 @@ class WordPoints_BP_Entity_Message_Test
 						),
 					),
 					'the_context'    => array(),
-					'create_func'    => array( $factory->bp->group, 'create_and_get' ),
+					'create_func'    => array( $this, 'create_group' ),
 					'delete_func'    => 'groups_delete_group',
 					'children'       => array(
 						'creator' => array(
@@ -306,7 +306,7 @@ class WordPoints_BP_Entity_Message_Test
 						),
 					),
 					'the_context'    => array(),
-					'create_func'    => array( $factory->bp->activity, 'create_and_get' ),
+					'create_func'    => array( $this, 'create_activity' ),
 					'delete_func'    => 'bp_activity_delete_by_activity_id',
 					'children'       => array(
 						'date' => array(
@@ -350,7 +350,7 @@ class WordPoints_BP_Entity_Message_Test
 						),
 					),
 					'the_context'    => array(),
-					'create_func'    => array( $factory->bp->activity, 'create_and_get' ),
+					'create_func'    => array( $this, 'create_activity' ),
 					'delete_func'    => 'bp_activity_delete_by_activity_id',
 					'children'       => array(
 						'author' => array(
@@ -405,7 +405,7 @@ class WordPoints_BP_Entity_Message_Test
 						),
 					),
 					'the_context'    => array(),
-					'create_func'    => array( $factory->bp->activity, 'create_and_get' ),
+					'create_func'    => array( $this, 'create_activity_comment' ),
 					'delete_func'    => 'bp_activity_delete_by_activity_id',
 					'children'       => array(
 						'activity' => array(
@@ -469,6 +469,49 @@ class WordPoints_BP_Entity_Message_Test
 					),
 				),
 			),
+		);
+	}
+
+	/**
+	 * Create a group.
+	 *
+	 * @since 1.2.0
+	 *
+	 * @return BP_Groups_Group The group object.
+	 */
+	public function create_group() {
+		return $this->factory->bp->group->create_and_get(
+			array( 'parent_id' => $this->factory->bp->group->create() )
+		);
+	}
+
+	/**
+	 * Create an activity item.
+	 *
+	 * @since 1.2.0
+	 *
+	 * @return BP_Activity_Activity The activity object.
+	 */
+	public function create_activity() {
+		return $this->factory->bp->activity->create_and_get(
+			array( 'user_id' => $this->factory->user->create() )
+		);
+	}
+
+	/**
+	 * Create an activity comment.
+	 *
+	 * @since 1.2.0
+	 *
+	 * @return BP_Activity_Activity The activity comment object.
+	 */
+	public function create_activity_comment() {
+		return $this->factory->bp->activity->create_and_get(
+			array(
+				'user_id' => $this->factory->user->create(),
+				'item_id' => $this->factory->bp->activity->create(),
+				'secondary_item_id' => $this->factory->bp->activity->create(),
+			)
 		);
 	}
 

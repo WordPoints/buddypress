@@ -21,7 +21,7 @@
  * ---------------------------------------------------------------------------------|
  *
  * @package WordPoints_BuddyPress
- * @version 1.1.0
+ * @version 1.2.0
  * @author  J.D. Grimes <jdg@codesymphony.co>
  * @license GPLv2+
  */
@@ -32,7 +32,7 @@ WordPoints_Modules::register(
 		Author:      J.D. Grimes
 		Author URI:  https://codesymphony.co/
 		Module URI:  https://wordpoints.org/modules/buddypress/
-		Version:     1.1.0
+		Version:     1.2.0
 		License:     GPLv2+
 		Description: Integrates WordPoints with BuddyPress.
 		Text Domain: wordpoints-bp
