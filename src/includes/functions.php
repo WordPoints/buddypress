@@ -1242,9 +1242,21 @@ function wordpoints_bp_xprofile_hook_actions_init( $actions ) {
 		)
 	);
 
+	// This is not currently used, but is here for back-compat for custom events.
 	$actions->register(
 		'bp_xprofile_cover_image_upload'
 		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'xprofile_cover_image_uploaded',
+			'data'   => array(
+				'arg_index' => array( 'user' => 0 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_xprofile_cover_image_set'
+		, 'WordPoints_BP_Hook_Action_Cover_Image_Set'
 		, array(
 			'action' => 'xprofile_cover_image_uploaded',
 			'data'   => array(
@@ -1304,7 +1316,7 @@ function wordpoints_bp_xprofile_hook_events_init( $events ) {
 			, 'WordPoints_BP_Hook_Event_XProfile_Cover_Image_Upload'
 			, array(
 				'actions' => array(
-					'toggle_on'  => 'bp_xprofile_cover_image_upload',
+					'toggle_on'  => 'bp_xprofile_cover_image_set',
 					'toggle_off' => 'bp_xprofile_cover_image_delete',
 				),
 				'args' => array(

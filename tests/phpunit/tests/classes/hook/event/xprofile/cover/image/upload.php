@@ -67,10 +67,35 @@ class WordPoints_BP_Hook_Event_XProfile_Cover_Image_Upload_Test
 
 		$user_id = $this->factory->user->create();
 
+		// Users may have a cover image set, so we need to delete it. Otherwise the
+		// event will not be triggered, since it only triggers when initially set.
+		bp_attachments_delete_file(
+			array(
+				'item_id'    => $user_id,
+				'object_dir' => 'members',
+				'type'       => 'cover-image',
+			)
+		);
+
 		$this->upload_cover_image( $user_id );
+
+		// A user whose cover image is replaced by a new upload.
+		$user_id_2 = $this->factory->user->create();
+
+		bp_attachments_delete_file(
+			array(
+				'item_id'    => $user_id_2,
+				'object_dir' => 'members',
+				'type'       => 'cover-image',
+			)
+		);
+
+		$this->upload_cover_image( $user_id_2 );
+		$this->upload_cover_image( $user_id_2 );
 
 		return array(
 			$user_id,
+			$user_id_2,
 		);
 	}
 
