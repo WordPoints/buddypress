@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Action and filter hooks for this module.
+ * Action and filter hooks for this extension.
  *
  * @package WordPoints_BuddyPress
  * @since 1.0.0

@@ -1,8 +1,8 @@
 # Change Log for WordPoints BuddyPress
 
-All notable changes to this module will be documented in this file.
+All notable changes to this extension will be documented in this file.
 
-This module adheres to [Semantic Versioning](http://semver.org/) and [Keep a CHANGELOG](http://keepachangelog.com/).
+This extension adheres to [Semantic Versioning](http://semver.org/) and [Keep a CHANGELOG](http://keepachangelog.com/).
 
 ## [Unreleased]
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Functions of the module.
+ * Functions of the extension.
  *
  * @package WordPoints_BuddyPress
  * @since 1.0.0

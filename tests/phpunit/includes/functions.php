@@ -8,7 +8,7 @@
  */
 
 /**
- * The module's tests directory.
+ * The extension's tests directory.
  *
  * @since 1.0.0
  *

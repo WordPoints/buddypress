@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Test case for the entities included in the module.
+ * Test case for the entities included in the extension.
  *
  * @package WordPoints_BuddyPress
  * @since 1.0.0
  */
 
 /**
- * Tests the entities included with the module.
+ * Tests the entities included with the extension.
  *
  * @since 1.0.0
  *

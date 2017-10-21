@@ -1,14 +1,14 @@
 <?php
 
 /**
- * The module's constants.
+ * The extension's constants.
  *
  * @package WordPoints_BuddyPress
  * @since 1.0.0
  */
 
 /**
- * The module's main directory path.
+ * The extension's main directory path.
  *
  * @since 1.0.0
  *
