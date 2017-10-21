@@ -97,7 +97,7 @@ function wordpoints_bp_messages_hook_events_init( $events ) {
 				// toggle_off actions. Unsending is different than deleting a sent
 				// message, since the message won't be deleted for the recipient, so
 				// the original action isn't really reversed.
-				'toggle_on'  => 'bp_message_send',
+				'toggle_on' => 'bp_message_send',
 			),
 			'args' => array(
 				'bp_message' => 'WordPoints_Hook_Arg',
@@ -406,7 +406,7 @@ function wordpoints_bp_groups_hook_actions_init( $actions ) {
 		, array(
 			'action' => 'groups_promote_member',
 			'data'   => array(
-				'arg_index' => array( 'bp_group' => 0, 'user' => 1 ),
+				'arg_index'    => array( 'bp_group' => 0, 'user' => 1 ),
 				'requirements' => array( 2 => 'mod' ),
 			),
 		)
@@ -418,7 +418,7 @@ function wordpoints_bp_groups_hook_actions_init( $actions ) {
 		, array(
 			'action' => 'groups_promote_member',
 			'data'   => array(
-				'arg_index' => array( 'bp_group' => 0, 'user' => 1 ),
+				'arg_index'    => array( 'bp_group' => 0, 'user' => 1 ),
 				'requirements' => array( 2 => 'admin' ),
 			),
 		)
@@ -734,8 +734,8 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 						'inviter:user' => 'WordPoints_BP_Hook_Arg_User_Inviter',
 					)
 					: array(
-						'bp_group'     => 'WordPoints_Hook_Arg',
-						'user'         => 'WordPoints_Hook_Arg',
+						'bp_group' => 'WordPoints_Hook_Arg',
+						'user'     => 'WordPoints_Hook_Arg',
 					)
 				),
 			)
@@ -748,7 +748,7 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 				'actions' => array(
 					// Currently there is no way to withdraw a request, so there is
 					// no toggle_off action.
-					'toggle_on'  => 'bp_group_membership_request_send',
+					'toggle_on' => 'bp_group_membership_request_send',
 				),
 				'args'    => array(
 					'bp_group' => 'WordPoints_Hook_Arg',
@@ -792,7 +792,7 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 					'toggle_off' => 'bp_group_avatar_delete',
 				),
 				'args' => array(
-					'bp_group' => 'WordPoints_Hook_Arg',
+					'bp_group'     => 'WordPoints_Hook_Arg',
 					'current:user' => 'WordPoints_BP_Hook_Arg_User_Uploading',
 				),
 			)
@@ -813,7 +813,7 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 					'toggle_off' => 'bp_group_cover_image_delete',
 				),
 				'args' => array(
-					'bp_group' => 'WordPoints_Hook_Arg',
+					'bp_group'     => 'WordPoints_Hook_Arg',
 					'current:user' => 'WordPoints_BP_Hook_Arg_User_Uploading',
 				),
 			)

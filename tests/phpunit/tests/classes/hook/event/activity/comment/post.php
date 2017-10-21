@@ -47,8 +47,8 @@ class WordPoints_BP_Hook_Event_Activity_Comment_Post_Test
 			array( 'user_id' => $this->factory->user->create() )
 		);
 
-		$with_parent = ( 'parent' === $this->target[1] );
-		$share_activity = ( $with_parent && 'activity' !== $this->target[3] );
+		$with_parent     = ( 'parent' === $this->target[1] );
+		$share_activity  = ( $with_parent && 'activity' !== $this->target[3] );
 		$the_activity_id = (
 			$share_activity
 				? $activity_id
@@ -60,11 +60,11 @@ class WordPoints_BP_Hook_Event_Activity_Comment_Post_Test
 		$user_id    = $this->factory->user->create();
 		$comment_id = $this->factory->bp->activity->create(
 			array(
-				'spam'    => 1,
-				'type'    => 'activity_comment',
-				'content' => 'Testing',
-				'user_id' => $user_id,
-				'item_id' => $the_activity_id,
+				'spam'              => 1,
+				'type'              => 'activity_comment',
+				'content'           => 'Testing',
+				'user_id'           => $user_id,
+				'item_id'           => $the_activity_id,
 				'secondary_item_id' => ! $with_parent
 					? false
 					: bp_activity_new_comment(
@@ -113,9 +113,9 @@ class WordPoints_BP_Hook_Event_Activity_Comment_Post_Test
 					? false
 					: bp_activity_new_comment(
 						array(
-							'content'     => 'Testing',
-							'user_id'     => $this->factory->user->create(),
-							'activity_id' => $the_activity_id,
+							'content'           => 'Testing',
+							'user_id'           => $this->factory->user->create(),
+							'activity_id'       => $the_activity_id,
 							'skip_notification' => true,
 						)
 					),

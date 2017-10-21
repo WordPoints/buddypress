@@ -169,7 +169,7 @@ function wordpoints_bp_points_members_profile_screen_content_logs( $points_type 
 
 	$query = new WordPoints_Points_Logs_Query(
 		array(
-			'user_id' => bp_displayed_user_id(),
+			'user_id'     => bp_displayed_user_id(),
 			'points_type' => $points_type,
 		)
 	);

@@ -76,7 +76,7 @@ class WordPoints_BP_Hook_Action_Avatar_Delete_Test
 			, array( array( 'item_id' => 1, 'object' => 'test' ), 'a' )
 			, array(
 				'bp_avatar_object_type' => 'test',
-				'requirements' => array( 1 => 'a' ),
+				'requirements'          => array( 1 => 'a' ),
 			)
 		);
 
@@ -95,7 +95,7 @@ class WordPoints_BP_Hook_Action_Avatar_Delete_Test
 			, array( array( 'item_id' => 1, 'object' => 'test' ), 'a' )
 			, array(
 				'bp_avatar_object_type' => 'test',
-				'requirements' => array( 1 => 'b' ),
+				'requirements'          => array( 1 => 'b' ),
 			)
 		);
 

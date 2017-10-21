@@ -20,8 +20,8 @@ class WordPoints_BP_Hook_Action_Group_Invite_User extends WordPoints_Hook_Action
 	public function get_arg_value( $arg_slug ) {
 
 		$map = array(
-			'user' => 'user_id',
-			'bp_group' => 'group_id',
+			'user'         => 'user_id',
+			'bp_group'     => 'group_id',
 			'inviter:user' => 'inviter_id',
 		);
 

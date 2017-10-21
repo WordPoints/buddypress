@@ -75,7 +75,7 @@ class WordPoints_BP_Hook_Event_Group_Avatar_Upload_Test
 		$group_id = $this->factory->bp->group->create(
 			array(
 				'creator_id' => $user_id,
-				'parent_id' => $this->factory->bp->group->create(),
+				'parent_id'  => $this->factory->bp->group->create(),
 			)
 		);
 

@@ -143,14 +143,15 @@ class WordPoints_BP_Hook_Event_XProfile_Cover_Image_Upload_Test
 		$_REQUEST['_wpnonce'] = wp_create_nonce( 'bp-uploader' );
 
 		$_POST['action'] = 'bp_cover_image_upload';
+
 		$_POST['bp_params']['object']  = $args['object'];
 		$_POST['bp_params']['item_id'] = $args['item_id'];
 
 		$_FILES['file'] = array(
 			'tmp_name' => $path,
-			'name' => 'test.png',
-			'type' => 'image/png',
-			'size' => '4221',
+			'name'     => 'test.png',
+			'type'     => 'image/png',
+			'size'     => '4221',
 		);
 
 		add_filter( 'wp_doing_ajax', '__return_true' );
@@ -199,7 +200,7 @@ class WordPoints_BP_Hook_Event_XProfile_Cover_Image_Upload_Test
 
 		$_REQUEST['nonce'] = wp_create_nonce( 'bp_delete_cover_image' );
 
-		$_POST['action'] = 'bp_cover_image_upload';
+		$_POST['action']  = 'bp_cover_image_upload';
 		$_POST['object']  = $args['object'];
 		$_POST['item_id'] = $args['item_id'];
 

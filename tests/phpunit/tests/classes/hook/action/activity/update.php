@@ -113,7 +113,7 @@ class WordPoints_BP_Hook_Action_Activity_Update_Test
 			'test_event'
 			, array( 'a', $this->factory->bp->activity->create_and_get() )
 			, array(
-				'arg_index' => array( 'bp_activity_update' => 1 ),
+				'arg_index'    => array( 'bp_activity_update' => 1 ),
 				'requirements' => array( 0 => 'a' ),
 			)
 		);
@@ -134,7 +134,7 @@ class WordPoints_BP_Hook_Action_Activity_Update_Test
 			'test_event'
 			, array( 'a', $this->factory->bp->activity->create_and_get() )
 			, array(
-				'arg_index' => array( 'bp_activity_update' => 1 ),
+				'arg_index'    => array( 'bp_activity_update' => 1 ),
 				'requirements' => array( 0 => 'b' ),
 			)
 		);

@@ -12,7 +12,7 @@
  *
  * @since 1.0.0
  */
-require_once( BP_TESTS_DIR . '/includes/factory.php' );
+require_once BP_TESTS_DIR . '/includes/factory.php';
 
 // Autoload the PHPUnit helper classes.
 WordPoints_PHPUnit_Class_Autoloader::register_dir(

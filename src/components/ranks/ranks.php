@@ -14,14 +14,14 @@ if ( wordpoints_component_is_active( 'points' ) ) {
 	 *
 	 * @since 1.0.0
 	 */
-	require_once( WORDPOINTS_BP_DIR . '/components/ranks/includes/integration/points/functions.php' );
+	require_once WORDPOINTS_BP_DIR . '/components/ranks/includes/integration/points/functions.php';
 
 	/**
 	 * Hooks up the actions and filters integrating ranks with the points component.
 	 *
 	 * @since 1.0.0
 	 */
-	require_once( WORDPOINTS_BP_DIR . '/components/ranks/includes/integration/points/actions.php' );
+	require_once WORDPOINTS_BP_DIR . '/components/ranks/includes/integration/points/actions.php';
 }
 
 // EOF

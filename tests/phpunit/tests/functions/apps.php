@@ -414,7 +414,7 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 
 		$this->factory->bp = new BP_UnitTest_Factory();
 
-		$group = $this->factory->bp->group->create_and_get();
+		$group    = $this->factory->bp->group->create_and_get();
 		$user_ids = $this->factory->user->create_many( 2 );
 
 		$mock = new WordPoints_PHPUnit_Mock_Filter();

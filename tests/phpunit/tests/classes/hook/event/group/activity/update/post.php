@@ -46,12 +46,12 @@ class WordPoints_BP_Hook_Event_Group_Activity_Update_Post_Test
 		// An activity to be maked as ham.
 		$activity_id = $this->factory->bp->activity->create(
 			array(
-				'spam'    => 1,
-				'type'    => 'activity_update',
+				'spam'      => 1,
+				'type'      => 'activity_update',
 				'component' => 'groups',
-				'content' => 'Testing',
-				'user_id' => $this->factory->user->create(),
-				'item_id' => $this->factory->bp->group->create(
+				'content'   => 'Testing',
+				'user_id'   => $this->factory->user->create(),
+				'item_id'   => $this->factory->bp->group->create(
 					array( 'parent_id' => $this->factory->bp->group->create() )
 				),
 			)
@@ -87,8 +87,8 @@ class WordPoints_BP_Hook_Event_Group_Activity_Update_Post_Test
 		return array(
 			groups_post_update(
 				array(
-					'content' => 'Testing',
-					'user_id' => $user_id,
+					'content'  => 'Testing',
+					'user_id'  => $user_id,
 					'group_id' => $group_id,
 				)
 			),
