@@ -393,7 +393,7 @@ class WordPoints_BP_Entities_Test
 			'bp_activity_comment' => array(
 				array(
 					'class'        => 'WordPoints_BP_Entity_Activity_Comment',
-					'slug'         => 'bp_activity_update_update',
+					'slug'         => 'bp_activity_comment',
 					'id_field'     => 'id',
 					'get_human_id' => array( $this, 'get_activity_human_id' ),
 					'context'      => '',
