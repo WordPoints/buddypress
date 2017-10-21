@@ -25,6 +25,11 @@ class WordPoints_BP_Entity_Activity extends WordPoints_BP_Entity {
 	protected $id_field = 'id';
 
 	/**
+	 * @since 1.2.1
+	 */
+	protected $id_is_int = true;
+
+	/**
 	 * @since 1.0.0
 	 */
 	protected function get_entity( $id ) {
