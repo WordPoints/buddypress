@@ -26,20 +26,20 @@
  * @license GPLv2+
  */
 
-WordPoints_Modules::register(
+wordpoints_register_extension(
 	'
-		Module Name: BuddyPress
-		Author:      J.D. Grimes
-		Author URI:  https://codesymphony.co/
-		Module URI:  https://wordpoints.org/modules/buddypress/
-		Version:     1.2.0
-		License:     GPLv2+
-		Description: Integrates WordPoints with BuddyPress.
-		Text Domain: wordpoints-bp
-		Domain Path: /languages
-		Channel:     wordpoints.org
-		ID:          944
-		Namespace:   BP
+		Extension Name: BuddyPress
+		Author:         J.D. Grimes
+		Author URI:     https://codesymphony.co/
+		Extension URI:  https://wordpoints.org/extensions/buddypress/
+		Version:        1.2.0
+		License:        GPLv2+
+		Description:    Integrates WordPoints with BuddyPress.
+		Text Domain:    wordpoints-bp
+		Domain Path:    /languages
+		Server:         wordpoints.org
+		ID:             944
+		Namespace:      BP
 	'
 	, __FILE__
 );
