@@ -54,7 +54,7 @@ class WordPoints_BP_Hook_Event_XProfile_Avatar_Upload_Test
 	protected function reverse_event( $arg_id, $index ) {
 
 		bp_core_delete_existing_avatar(
-			array( 'object' => 'user', 'item_id' => $arg_id )
+			array( 'object' => 'user', 'item_id' => (string) $arg_id )
 		);
 	}
 
@@ -100,7 +100,7 @@ class WordPoints_BP_Hook_Event_XProfile_Avatar_Upload_Test
 		$_REQUEST['nonce']      = wp_create_nonce( 'bp_avatar_cropstore' );
 		$_POST['type']          = 'crop';
 		$_POST['object']        = $args['object'];
-		$_POST['item_id']       = $args['item_id'];
+		$_POST['item_id']       = (string) $args['item_id'];
 		$_POST['original_file'] = $path;
 
 		add_filter( 'wp_doing_ajax', '__return_true' );
