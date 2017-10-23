@@ -23,6 +23,7 @@
  * @covers WordPoints_BP_Entity_Friendship_Friend
  * @covers WordPoints_BP_Entity_Friendship_Initiator
  * @covers WordPoints_BP_Entity_Group
+ * @covers WordPoints_BP_Entity_Group_Activity_Update_Group
  * @covers WordPoints_BP_Entity_Group_Creator
  * @covers WordPoints_BP_Entity_Group_Date_Created
  * @covers WordPoints_BP_Entity_Group_Description
@@ -425,9 +426,22 @@ class WordPoints_BP_Entities_Test
 						),
 					),
 					'the_context'  => array(),
-					'create_func'  => array( $this, 'create_activity' ),
+					'create_func'  => array( $this, 'create_group_activity' ),
 					'delete_func'  => 'bp_activity_delete_by_activity_id',
-					'children'     => array(),
+					'children'     => array(
+						'group' => array(
+							'class'        => 'WordPoints_BP_Entity_Group_Activity_Update_Group',
+							'primary'      => 'bp_group_activity_update',
+							'related'      => 'bp_group',
+							'storage_info' => array(
+								'type' => 'db',
+								'info' => array(
+									'type'  => 'field',
+									'field' => 'item_id',
+								),
+							),
+						),
+					),
 				),
 			),
 			'bp_activity_comment' => array(
@@ -528,6 +542,22 @@ class WordPoints_BP_Entities_Test
 	public function create_group() {
 		return $this->factory->bp->group->create_and_get(
 			array( 'parent_id' => $this->factory->bp->group->create() )
+		);
+	}
+
+	/**
+	 * Create a group activity item.
+	 *
+	 * @since 1.2.1
+	 *
+	 * @return BP_Activity_Activity The activity object.
+	 */
+	public function create_group_activity() {
+		return $this->factory->bp->activity->create_and_get(
+			array(
+				'user_id' => $this->factory->user->create(),
+				'item_id' => $this->factory->bp->group->create(),
+			)
 		);
 	}
 
