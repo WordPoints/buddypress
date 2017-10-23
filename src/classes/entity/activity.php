@@ -105,21 +105,6 @@ class WordPoints_BP_Entity_Activity extends WordPoints_BP_Entity {
 	}
 
 	/**
-	 * @since 1.0.0
-	 */
-	public function get_the_id() {
-
-		// See https://github.com/WordPoints/wordpoints/issues/556.
-		$the_id = parent::get_the_id();
-
-		if ( ! $the_id ) {
-			return $the_id;
-		}
-
-		return (int) $the_id;
-	}
-
-	/**
 	 * @since 1.2.1
 	 */
 	public function get_storage_info() {
