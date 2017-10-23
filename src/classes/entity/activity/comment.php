@@ -16,6 +16,11 @@ class WordPoints_BP_Entity_Activity_Comment
 	extends WordPoints_BP_Entity_Activity {
 
 	/**
+	 * @since 1.2.1
+	 */
+	protected $bp_activity_type = 'activity_comment';
+
+	/**
 	 * @since 1.0.0
 	 */
 	public function get_title() {

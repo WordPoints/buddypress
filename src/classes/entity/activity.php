@@ -15,6 +15,28 @@
 class WordPoints_BP_Entity_Activity extends WordPoints_BP_Entity {
 
 	/**
+	 * The activity type this object represents.
+	 *
+	 * Leaving this unset means that it represents any type of activity.
+	 *
+	 * @since 1.2.1
+	 *
+	 * @var string
+	 */
+	protected $bp_activity_type;
+
+	/**
+	 * The component that the activity this object represents is from.
+	 *
+	 * Leaving this unset means that it can be from any component.
+	 *
+	 * @since 1.2.0
+	 *
+	 * @var string
+	 */
+	protected $bp_activity_component;
+
+	/**
 	 * @since 1.0.0
 	 */
 	protected $bp_component = 'activity';
@@ -95,6 +117,30 @@ class WordPoints_BP_Entity_Activity extends WordPoints_BP_Entity {
 		}
 
 		return (int) $the_id;
+	}
+
+	/**
+	 * @since 1.2.1
+	 */
+	public function get_storage_info() {
+
+		$storage_info = parent::get_storage_info();
+
+		if ( isset( $this->bp_activity_component ) ) {
+			$storage_info['info']['conditions'][] = array(
+				'field' => 'component',
+				'value' => $this->bp_activity_component,
+			);
+		}
+
+		if ( isset( $this->bp_activity_type ) ) {
+			$storage_info['info']['conditions'][] = array(
+				'field' => 'type',
+				'value' => $this->bp_activity_type,
+			);
+		}
+
+		return $storage_info;
 	}
 }
 

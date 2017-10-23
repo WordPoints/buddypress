@@ -347,6 +347,16 @@ class WordPoints_BP_Entities_Test
 						'info' => array(
 							'type'       => 'table',
 							'table_name' => buddypress()->activity->table_name,
+							'conditions' => array(
+								array(
+									'field' => 'component',
+									'value' => 'activity',
+								),
+								array(
+									'field' => 'type',
+									'value' => 'activity_update',
+								),
+							),
 						),
 					),
 					'the_context'  => array(),
@@ -390,6 +400,36 @@ class WordPoints_BP_Entities_Test
 					),
 				),
 			),
+			'bp_group_activity_update' => array(
+				array(
+					'class'        => 'WordPoints_BP_Entity_Activity_Update',
+					'slug'         => 'bp_group_activity_update',
+					'id_field'     => 'id',
+					'get_human_id' => array( $this, 'get_activity_human_id' ),
+					'context'      => '',
+					'storage_info' => array(
+						'type' => 'db',
+						'info' => array(
+							'type'       => 'table',
+							'table_name' => buddypress()->activity->table_name,
+							'conditions' => array(
+								array(
+									'field' => 'component',
+									'value' => 'groups',
+								),
+								array(
+									'field' => 'type',
+									'value' => 'activity_update',
+								),
+							),
+						),
+					),
+					'the_context'  => array(),
+					'create_func'  => array( $this, 'create_activity' ),
+					'delete_func'  => 'bp_activity_delete_by_activity_id',
+					'children'     => array(),
+				),
+			),
 			'bp_activity_comment' => array(
 				array(
 					'class'        => 'WordPoints_BP_Entity_Activity_Comment',
@@ -402,6 +442,12 @@ class WordPoints_BP_Entities_Test
 						'info' => array(
 							'type'       => 'table',
 							'table_name' => buddypress()->activity->table_name,
+							'conditions' => array(
+								array(
+									'field' => 'type',
+									'value' => 'activity_comment',
+								),
+							),
 						),
 					),
 					'the_context'  => array(),
