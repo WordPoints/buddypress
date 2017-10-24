@@ -44,7 +44,30 @@ class WordPoints_BP_Hook_Action_Avatar_Delete extends WordPoints_Hook_Action {
 			return false;
 		}
 
+		// If this image is being deleted just because a new one is being uploaded,
+		// then don't trigger the action.
+		if ( $this->is_upload() ) {
+			return false;
+		}
+
 		return parent::should_fire();
+	}
+
+	/**
+	 * Checks if a new avatar is being uploaded.
+	 *
+	 * @since 1.2.1
+	 *
+	 * @return bool Whether or not a new avatar is being uploaded.
+	 */
+	protected function is_upload() {
+
+		return (bool) wordpoints_verify_nonce(
+			'nonce'
+			, 'bp_avatar_cropstore'
+			, null
+			, 'post'
+		);
 	}
 
 	/**

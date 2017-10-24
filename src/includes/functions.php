@@ -1223,9 +1223,21 @@ function wordpoints_bp_activity_split_before_delete_action( $activities ) {
  */
 function wordpoints_bp_xprofile_hook_actions_init( $actions ) {
 
+	// This is not currently used, but is here for back-compat for custom events.
 	$actions->register(
 		'bp_xprofile_avatar_upload'
 		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'xprofile_avatar_uploaded',
+			'data'   => array(
+				'arg_index' => array( 'user' => 0 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_xprofile_avatar_set'
+		, 'WordPoints_BP_Hook_Action_Avatar_Set'
 		, array(
 			'action' => 'xprofile_avatar_uploaded',
 			'data'   => array(
@@ -1296,7 +1308,7 @@ function wordpoints_bp_xprofile_hook_events_init( $events ) {
 			, 'WordPoints_BP_Hook_Event_XProfile_Avatar_Upload'
 			, array(
 				'actions' => array(
-					'toggle_on'  => 'bp_xprofile_avatar_upload',
+					'toggle_on'  => 'bp_xprofile_avatar_set',
 					'toggle_off' => 'bp_xprofile_avatar_delete',
 				),
 				'args' => array(
