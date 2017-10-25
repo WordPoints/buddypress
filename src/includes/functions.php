@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Functions of the module.
+ * Functions of the extension.
  *
  * @package WordPoints_BuddyPress
  * @since 1.0.0
@@ -97,7 +97,7 @@ function wordpoints_bp_messages_hook_events_init( $events ) {
 				// toggle_off actions. Unsending is different than deleting a sent
 				// message, since the message won't be deleted for the recipient, so
 				// the original action isn't really reversed.
-				'toggle_on'  => 'bp_message_send',
+				'toggle_on' => 'bp_message_send',
 			),
 			'args' => array(
 				'bp_message' => 'WordPoints_Hook_Arg',
@@ -406,7 +406,7 @@ function wordpoints_bp_groups_hook_actions_init( $actions ) {
 		, array(
 			'action' => 'groups_promote_member',
 			'data'   => array(
-				'arg_index' => array( 'bp_group' => 0, 'user' => 1 ),
+				'arg_index'    => array( 'bp_group' => 0, 'user' => 1 ),
 				'requirements' => array( 2 => 'mod' ),
 			),
 		)
@@ -418,7 +418,7 @@ function wordpoints_bp_groups_hook_actions_init( $actions ) {
 		, array(
 			'action' => 'groups_promote_member',
 			'data'   => array(
-				'arg_index' => array( 'bp_group' => 0, 'user' => 1 ),
+				'arg_index'    => array( 'bp_group' => 0, 'user' => 1 ),
 				'requirements' => array( 2 => 'admin' ),
 			),
 		)
@@ -498,6 +498,7 @@ function wordpoints_bp_groups_hook_actions_init( $actions ) {
 		)
 	);
 
+	// Not currently used, but still registered for the benefit of custom events.
 	$actions->register(
 		'bp_group_avatar_upload'
 		, 'WordPoints_Hook_Action'
@@ -510,19 +511,43 @@ function wordpoints_bp_groups_hook_actions_init( $actions ) {
 	);
 
 	$actions->register(
-		'bp_group_avatar_delete'
-		, 'WordPoints_BP_Hook_Action_Avatar_Delete'
+		'bp_group_avatar_set'
+		, 'WordPoints_BP_Hook_Action_Avatar_Set'
 		, array(
-			'action' => 'bp_core_delete_existing_avatar',
+			'action' => 'groups_avatar_uploaded',
 			'data'   => array(
-				'bp_avatar_object_type' => 'group',
+				'arg_index'             => array( 'bp_group' => 0 ),
+				'bp_avatar_object_type' => 'bp_group',
 			),
 		)
 	);
 
 	$actions->register(
+		'bp_group_avatar_delete'
+		, 'WordPoints_BP_Hook_Action_Avatar_Delete'
+		, array(
+			'action' => 'bp_core_delete_existing_avatar',
+			'data'   => array(
+				'bp_avatar_object_type' => 'bp_group',
+			),
+		)
+	);
+
+	// This is not currently used, but is here for back-compat for custom events.
+	$actions->register(
 		'bp_group_cover_image_upload'
 		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'groups_cover_image_uploaded',
+			'data'   => array(
+				'arg_index' => array( 'bp_group' => 0 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_group_cover_image_set'
+		, 'WordPoints_BP_Hook_Action_Cover_Image_Set'
 		, array(
 			'action' => 'groups_cover_image_uploaded',
 			'data'   => array(
@@ -734,8 +759,8 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 						'inviter:user' => 'WordPoints_BP_Hook_Arg_User_Inviter',
 					)
 					: array(
-						'bp_group'     => 'WordPoints_Hook_Arg',
-						'user'         => 'WordPoints_Hook_Arg',
+						'bp_group' => 'WordPoints_Hook_Arg',
+						'user'     => 'WordPoints_Hook_Arg',
 					)
 				),
 			)
@@ -748,7 +773,7 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 				'actions' => array(
 					// Currently there is no way to withdraw a request, so there is
 					// no toggle_off action.
-					'toggle_on'  => 'bp_group_membership_request_send',
+					'toggle_on' => 'bp_group_membership_request_send',
 				),
 				'args'    => array(
 					'bp_group' => 'WordPoints_Hook_Arg',
@@ -788,11 +813,11 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 			, 'WordPoints_BP_Hook_Event_Group_Avatar_Upload'
 			, array(
 				'actions' => array(
-					'toggle_on'  => 'bp_group_avatar_upload',
+					'toggle_on'  => 'bp_group_avatar_set',
 					'toggle_off' => 'bp_group_avatar_delete',
 				),
 				'args' => array(
-					'bp_group' => 'WordPoints_Hook_Arg',
+					'bp_group'     => 'WordPoints_Hook_Arg',
 					'current:user' => 'WordPoints_BP_Hook_Arg_User_Uploading',
 				),
 			)
@@ -809,11 +834,11 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 			, 'WordPoints_BP_Hook_Event_Group_Cover_Image_Upload'
 			, array(
 				'actions' => array(
-					'toggle_on'  => 'bp_group_cover_image_upload',
+					'toggle_on'  => 'bp_group_cover_image_set',
 					'toggle_off' => 'bp_group_cover_image_delete',
 				),
 				'args' => array(
-					'bp_group' => 'WordPoints_Hook_Arg',
+					'bp_group'     => 'WordPoints_Hook_Arg',
 					'current:user' => 'WordPoints_BP_Hook_Arg_User_Uploading',
 				),
 			)
@@ -1223,9 +1248,21 @@ function wordpoints_bp_activity_split_before_delete_action( $activities ) {
  */
 function wordpoints_bp_xprofile_hook_actions_init( $actions ) {
 
+	// This is not currently used, but is here for back-compat for custom events.
 	$actions->register(
 		'bp_xprofile_avatar_upload'
 		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'xprofile_avatar_uploaded',
+			'data'   => array(
+				'arg_index' => array( 'user' => 0 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_xprofile_avatar_set'
+		, 'WordPoints_BP_Hook_Action_Avatar_Set'
 		, array(
 			'action' => 'xprofile_avatar_uploaded',
 			'data'   => array(
@@ -1242,9 +1279,21 @@ function wordpoints_bp_xprofile_hook_actions_init( $actions ) {
 		)
 	);
 
+	// This is not currently used, but is here for back-compat for custom events.
 	$actions->register(
 		'bp_xprofile_cover_image_upload'
 		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'xprofile_cover_image_uploaded',
+			'data'   => array(
+				'arg_index' => array( 'user' => 0 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_xprofile_cover_image_set'
+		, 'WordPoints_BP_Hook_Action_Cover_Image_Set'
 		, array(
 			'action' => 'xprofile_cover_image_uploaded',
 			'data'   => array(
@@ -1284,7 +1333,7 @@ function wordpoints_bp_xprofile_hook_events_init( $events ) {
 			, 'WordPoints_BP_Hook_Event_XProfile_Avatar_Upload'
 			, array(
 				'actions' => array(
-					'toggle_on'  => 'bp_xprofile_avatar_upload',
+					'toggle_on'  => 'bp_xprofile_avatar_set',
 					'toggle_off' => 'bp_xprofile_avatar_delete',
 				),
 				'args' => array(
@@ -1304,7 +1353,7 @@ function wordpoints_bp_xprofile_hook_events_init( $events ) {
 			, 'WordPoints_BP_Hook_Event_XProfile_Cover_Image_Upload'
 			, array(
 				'actions' => array(
-					'toggle_on'  => 'bp_xprofile_cover_image_upload',
+					'toggle_on'  => 'bp_xprofile_cover_image_set',
 					'toggle_off' => 'bp_xprofile_cover_image_delete',
 				),
 				'args' => array(

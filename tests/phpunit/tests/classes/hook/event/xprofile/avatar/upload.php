@@ -35,16 +35,38 @@ class WordPoints_BP_Hook_Event_XProfile_Avatar_Upload_Test
 	);
 
 	/**
+	 * @since 1.2.1
+	 */
+	protected $backup_globals = array( '_SERVER', '_REQUEST', '_POST' );
+
+	/**
 	 * @since 1.0.0
 	 */
 	protected function fire_event( $arg, $reactor_slug ) {
 
 		$user_id = $this->factory->user->create();
 
+		// Users may have an avatar set, so we need to delete it. Otherwise the
+		// event will not be triggered, since it only triggers when initially set.
+		bp_core_delete_existing_avatar(
+			array( 'object' => 'user', 'item_id' => $user_id )
+		);
+
 		$this->upload_avatar( $user_id );
+
+		// A second user whose avatar is replaced by a new upload.
+		$user_id_2 = $this->factory->user->create();
+
+		bp_core_delete_existing_avatar(
+			array( 'object' => 'user', 'item_id' => $user_id_2 )
+		);
+
+		$this->upload_avatar( $user_id_2 );
+		$this->upload_avatar( $user_id_2 );
 
 		return array(
 			$user_id,
+			$user_id_2,
 		);
 	}
 
@@ -53,8 +75,10 @@ class WordPoints_BP_Hook_Event_XProfile_Avatar_Upload_Test
 	 */
 	protected function reverse_event( $arg_id, $index ) {
 
+		unset( $_POST['nonce'] );
+
 		bp_core_delete_existing_avatar(
-			array( 'object' => 'user', 'item_id' => $arg_id )
+			array( 'object' => 'user', 'item_id' => (string) $arg_id )
 		);
 	}
 
@@ -98,9 +122,10 @@ class WordPoints_BP_Hook_Event_XProfile_Avatar_Upload_Test
 		$_SERVER['REQUEST_METHOD'] = 'POST';
 
 		$_REQUEST['nonce']      = wp_create_nonce( 'bp_avatar_cropstore' );
+		$_POST['nonce']         = $_REQUEST['nonce'];
 		$_POST['type']          = 'crop';
 		$_POST['object']        = $args['object'];
-		$_POST['item_id']       = $args['item_id'];
+		$_POST['item_id']       = (string) $args['item_id'];
 		$_POST['original_file'] = $path;
 
 		add_filter( 'wp_doing_ajax', '__return_true' );

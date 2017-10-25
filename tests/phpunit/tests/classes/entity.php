@@ -49,16 +49,17 @@ class WordPoints_BP_Entity_Test extends WordPoints_PHPUnit_TestCase {
 	public function test_get_storage_info() {
 
 		$entity = new WordPoints_BP_PHPUnit_Mock_Entity( 'test' );
+
 		$entity->bp_component = 'friends';
 
 		$this->assertSame(
 			array(
-	             'type' => 'db',
-	             'info' => array(
-	                 'type'       => 'table',
-	                 'table_name' => buddypress()->friends->table_name,
-	             ),
-	         )
+				'type' => 'db',
+				'info' => array(
+					'type'       => 'table',
+					'table_name' => buddypress()->friends->table_name,
+				),
+			)
 			, $entity->get_storage_info()
 		);
 	}
@@ -71,7 +72,8 @@ class WordPoints_BP_Entity_Test extends WordPoints_PHPUnit_TestCase {
 	public function test_get_storage_info_table_name() {
 
 		$entity = new WordPoints_BP_PHPUnit_Mock_Entity( 'test' );
-		$entity->bp_component = 'messages';
+
+		$entity->bp_component            = 'messages';
 		$entity->bp_component_table_name = 'messages';
 
 		$this->assertSame(

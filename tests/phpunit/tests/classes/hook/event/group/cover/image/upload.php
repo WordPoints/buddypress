@@ -49,7 +49,17 @@ class WordPoints_BP_Hook_Event_Group_Cover_Image_Upload_Test
 		$group_id = $this->factory->bp->group->create(
 			array(
 				'creator_id' => $user_id,
-				'parent_id' => $this->factory->bp->group->create(),
+				'parent_id'  => $this->factory->bp->group->create(),
+			)
+		);
+
+		// Groups may have a cover image set, so we need to delete it. Otherwise the
+		// event will not be triggered, since it only triggers when initially set.
+		bp_attachments_delete_file(
+			array(
+				'item_id'    => $group_id,
+				'object_dir' => 'groups',
+				'type'       => 'cover-image',
 			)
 		);
 
@@ -58,6 +68,11 @@ class WordPoints_BP_Hook_Event_Group_Cover_Image_Upload_Test
 
 		// Reset this in case it has already been set in an earlier test.
 		buddypress()->groups->current_group = null;
+
+		$this->upload_cover_image(
+			$user_id
+			, array( 'item_id' => $group_id, 'object' => 'group' )
+		);
 
 		$this->upload_cover_image(
 			$user_id

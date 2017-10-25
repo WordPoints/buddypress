@@ -1,12 +1,21 @@
 # Change Log for WordPoints BuddyPress
 
-All notable changes to this module will be documented in this file.
+All notable changes to this extension will be documented in this file.
 
-This module adheres to [Semantic Versioning](http://semver.org/) and [Keep a CHANGELOG](http://keepachangelog.com/).
+This extension adheres to [Semantic Versioning](http://semver.org/) and [Keep a CHANGELOG](http://keepachangelog.com/).
 
 ## [Unreleased]
 
 Nothing documented right now.
+
+## [1.2.1] - 2017-10-25
+
+### Fixed
+
+- User and Group hook events for Avatar and Cover Image uploads to only award points on initial upload and remove them on deletion. 
+- Deprecated notices for the `Channel`, `Module Name`, and `Module URI` extension headers.
+- Entities not ensuring that the ID is cast to an integer.
+- Entities to specify conditions in storage info.
 
 ## [1.2.0] - 2017-06-24
 
@@ -58,6 +67,7 @@ Nothing documented right now.
   - Profile Avatar Upload and Cover Image Upload hook events.
 
 [unreleased]: https://github.com/WordPoints/wordpoints/compare/master...HEAD
+[1.2.1]: https://github.com/WordPoints/wordpoints/compare/1.2.0...1.2.1
 [1.2.0]: https://github.com/WordPoints/wordpoints/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/WordPoints/wordpoints/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/WordPoints/wordpoints/compare/...1.0.0

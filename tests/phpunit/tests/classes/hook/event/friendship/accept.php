@@ -41,7 +41,7 @@ class WordPoints_BP_Hook_Event_Friendship_Accept_Test
 	protected function fire_event( $arg, $reactor_slug ) {
 
 		$this->factory->bp = new BP_UnitTest_Factory();
-		$friendship = $this->factory->bp->friendship->create_and_get();
+		$friendship        = $this->factory->bp->friendship->create_and_get();
 
 		// Friendships can only be accepted for the current user.
 		// It has always been this way:

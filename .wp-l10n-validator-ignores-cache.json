@@ -147,7 +147,49 @@
             "24": false
         },
         "site": {
-            "58": false
+            "73": false
+        }
+    },
+    "\/classes\/entity\/activity\/update.php": {
+        "activity": {
+            "25": false
+        },
+        "group": {
+            "32": {
+                "name": "strpos",
+                "type": "unknown",
+                "args_started": true,
+                "arg_count": 1,
+                "parentheses": 1
+            }
+        },
+        "groups": {
+            "33": false
+        }
+    },
+    "\/classes\/entity\/activity.php": {
+        "component": {
+            "116": {
+                "name": "array",
+                "type": "unknown",
+                "args_started": true,
+                "arg_count": 0,
+                "parentheses": 1
+            }
+        },
+        "type": {
+            "123": {
+                "name": "array",
+                "type": "unknown",
+                "args_started": true,
+                "arg_count": 0,
+                "parentheses": 1
+            }
+        }
+    },
+    "\/classes\/hook\/action\/avatar.php": {
+        "user": {
+            "27": false
         }
     }
 }

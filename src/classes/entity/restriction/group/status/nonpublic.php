@@ -48,7 +48,7 @@ class WordPoints_BP_Entity_Restriction_Group_Status_Nonpublic
 	public function __construct( $entity_id, array $hierarchy ) {
 
 		$this->entity_id = $entity_id;
-		$this->group_id = $this->get_group_id();
+		$this->group_id  = $this->get_group_id();
 
 		$group = groups_get_group( $this->group_id );
 

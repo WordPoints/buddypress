@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Test case for the entities included in the module.
+ * Test case for the entities included in the extension.
  *
  * @package WordPoints_BuddyPress
  * @since 1.0.0
  */
 
 /**
- * Tests the entities included with the module.
+ * Tests the entities included with the extension.
  *
  * @since 1.0.0
  *
@@ -23,6 +23,7 @@
  * @covers WordPoints_BP_Entity_Friendship_Friend
  * @covers WordPoints_BP_Entity_Friendship_Initiator
  * @covers WordPoints_BP_Entity_Group
+ * @covers WordPoints_BP_Entity_Group_Activity_Update_Group
  * @covers WordPoints_BP_Entity_Group_Creator
  * @covers WordPoints_BP_Entity_Group_Date_Created
  * @covers WordPoints_BP_Entity_Group_Description
@@ -137,22 +138,22 @@ class WordPoints_BP_Entities_Test
 			),
 			'bp_friendship' => array(
 				array(
-					'class'          => 'WordPoints_BP_Entity_Friendship',
-					'slug'           => 'bp_friendship',
-					'id_field'       => 'id',
-					'get_human_id'   => array( $this, 'get_friendship_human_id' ),
-					'context'        => '',
-					'storage_info'   => array(
+					'class'        => 'WordPoints_BP_Entity_Friendship',
+					'slug'         => 'bp_friendship',
+					'id_field'     => 'id',
+					'get_human_id' => array( $this, 'get_friendship_human_id' ),
+					'context'      => '',
+					'storage_info' => array(
 						'type' => 'db',
 						'info' => array(
 							'type'       => 'table',
 							'table_name' => buddypress()->friends->table_name,
 						),
 					),
-					'the_context'    => array(),
-					'create_func'    => array( $this->factory->bp->friendship, 'create_and_get' ),
-					'delete_func'    => array( $this, 'delete_friendship' ),
-					'children'       => array(
+					'the_context'  => array(),
+					'create_func'  => array( $this->factory->bp->friendship, 'create_and_get' ),
+					'delete_func'  => array( $this, 'delete_friendship' ),
+					'children'     => array(
 						'date_created' => array(
 							'class'        => 'WordPoints_BP_Entity_Friendship_Date_Created',
 							'data_type'    => 'mysql_datetime',
@@ -293,22 +294,22 @@ class WordPoints_BP_Entities_Test
 			),
 			'bp_activity' => array(
 				array(
-					'class'          => 'WordPoints_BP_Entity_Activity',
-					'slug'           => 'bp_activity',
-					'id_field'       => 'id',
-					'get_human_id'   => array( $this, 'get_activity_human_id' ),
-					'context'        => '',
-					'storage_info'   => array(
+					'class'        => 'WordPoints_BP_Entity_Activity',
+					'slug'         => 'bp_activity',
+					'id_field'     => 'id',
+					'get_human_id' => array( $this, 'get_activity_human_id' ),
+					'context'      => '',
+					'storage_info' => array(
 						'type' => 'db',
 						'info' => array(
 							'type'       => 'table',
 							'table_name' => buddypress()->activity->table_name,
 						),
 					),
-					'the_context'    => array(),
-					'create_func'    => array( $this, 'create_activity' ),
-					'delete_func'    => 'bp_activity_delete_by_activity_id',
-					'children'       => array(
+					'the_context'  => array(),
+					'create_func'  => array( $this, 'create_activity' ),
+					'delete_func'  => 'bp_activity_delete_by_activity_id',
+					'children'     => array(
 						'date' => array(
 							'class'        => 'WordPoints_BP_Entity_Activity_Date',
 							'data_type'    => 'mysql_datetime',
@@ -337,22 +338,32 @@ class WordPoints_BP_Entities_Test
 			),
 			'bp_activity_update' => array(
 				array(
-					'class'          => 'WordPoints_BP_Entity_Activity_Update',
-					'slug'           => 'bp_activity_update',
-					'id_field'       => 'id',
-					'get_human_id'   => array( $this, 'get_activity_human_id' ),
-					'context'        => '',
-					'storage_info'   => array(
+					'class'        => 'WordPoints_BP_Entity_Activity_Update',
+					'slug'         => 'bp_activity_update',
+					'id_field'     => 'id',
+					'get_human_id' => array( $this, 'get_activity_human_id' ),
+					'context'      => '',
+					'storage_info' => array(
 						'type' => 'db',
 						'info' => array(
 							'type'       => 'table',
 							'table_name' => buddypress()->activity->table_name,
+							'conditions' => array(
+								array(
+									'field' => 'component',
+									'value' => 'activity',
+								),
+								array(
+									'field' => 'type',
+									'value' => 'activity_update',
+								),
+							),
 						),
 					),
-					'the_context'    => array(),
-					'create_func'    => array( $this, 'create_activity' ),
-					'delete_func'    => 'bp_activity_delete_by_activity_id',
-					'children'       => array(
+					'the_context'  => array(),
+					'create_func'  => array( $this, 'create_activity' ),
+					'delete_func'  => 'bp_activity_delete_by_activity_id',
+					'children'     => array(
 						'author' => array(
 							'class'        => 'WordPoints_BP_Entity_Activity_Update_Author',
 							'primary'      => 'bp_activity_update',
@@ -390,24 +401,73 @@ class WordPoints_BP_Entities_Test
 					),
 				),
 			),
-			'bp_activity_comment' => array(
+			'bp_group_activity_update' => array(
 				array(
-					'class'          => 'WordPoints_BP_Entity_Activity_Comment',
-					'slug'           => 'bp_activity_update_update',
-					'id_field'       => 'id',
-					'get_human_id'   => array( $this, 'get_activity_human_id' ),
-					'context'        => '',
-					'storage_info'   => array(
+					'class'        => 'WordPoints_BP_Entity_Activity_Update',
+					'slug'         => 'bp_group_activity_update',
+					'id_field'     => 'id',
+					'get_human_id' => array( $this, 'get_activity_human_id' ),
+					'context'      => '',
+					'storage_info' => array(
 						'type' => 'db',
 						'info' => array(
 							'type'       => 'table',
 							'table_name' => buddypress()->activity->table_name,
+							'conditions' => array(
+								array(
+									'field' => 'component',
+									'value' => 'groups',
+								),
+								array(
+									'field' => 'type',
+									'value' => 'activity_update',
+								),
+							),
 						),
 					),
-					'the_context'    => array(),
-					'create_func'    => array( $this, 'create_activity_comment' ),
-					'delete_func'    => 'bp_activity_delete_by_activity_id',
-					'children'       => array(
+					'the_context'  => array(),
+					'create_func'  => array( $this, 'create_group_activity' ),
+					'delete_func'  => 'bp_activity_delete_by_activity_id',
+					'children'     => array(
+						'group' => array(
+							'class'        => 'WordPoints_BP_Entity_Group_Activity_Update_Group',
+							'primary'      => 'bp_group_activity_update',
+							'related'      => 'bp_group',
+							'storage_info' => array(
+								'type' => 'db',
+								'info' => array(
+									'type'  => 'field',
+									'field' => 'item_id',
+								),
+							),
+						),
+					),
+				),
+			),
+			'bp_activity_comment' => array(
+				array(
+					'class'        => 'WordPoints_BP_Entity_Activity_Comment',
+					'slug'         => 'bp_activity_comment',
+					'id_field'     => 'id',
+					'get_human_id' => array( $this, 'get_activity_human_id' ),
+					'context'      => '',
+					'storage_info' => array(
+						'type' => 'db',
+						'info' => array(
+							'type'       => 'table',
+							'table_name' => buddypress()->activity->table_name,
+							'conditions' => array(
+								array(
+									'field' => 'type',
+									'value' => 'activity_comment',
+								),
+							),
+						),
+					),
+					'the_context'  => array(),
+					'create_func'  => array( $this, 'create_activity_comment' ),
+					'delete_func'  => 'bp_activity_delete_by_activity_id',
+					'children'     => array(
 						'activity' => array(
 							'class'        => 'WordPoints_BP_Entity_Activity_Comment_Activity',
 							'primary'      => 'bp_activity_comment',
@@ -486,6 +546,22 @@ class WordPoints_BP_Entities_Test
 	}
 
 	/**
+	 * Create a group activity item.
+	 *
+	 * @since 1.2.1
+	 *
+	 * @return BP_Activity_Activity The activity object.
+	 */
+	public function create_group_activity() {
+		return $this->factory->bp->activity->create_and_get(
+			array(
+				'user_id' => $this->factory->user->create(),
+				'item_id' => $this->factory->bp->group->create(),
+			)
+		);
+	}
+
+	/**
 	 * Create an activity item.
 	 *
 	 * @since 1.2.0
@@ -508,8 +584,8 @@ class WordPoints_BP_Entities_Test
 	public function create_activity_comment() {
 		return $this->factory->bp->activity->create_and_get(
 			array(
-				'user_id' => $this->factory->user->create(),
-				'item_id' => $this->factory->bp->activity->create(),
+				'user_id'           => $this->factory->user->create(),
+				'item_id'           => $this->factory->bp->activity->create(),
 				'secondary_item_id' => $this->factory->bp->activity->create(),
 			)
 		);

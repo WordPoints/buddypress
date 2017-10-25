@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Action and filter hooks for this module.
+ * Action and filter hooks for this extension.
  *
  * @package WordPoints_BuddyPress
  * @since 1.0.0
@@ -48,6 +48,9 @@ if ( function_exists( 'bp_is_active' ) ) {
 
 		add_action( 'wordpoints_init_app_registry-hooks-actions', 'wordpoints_bp_xprofile_hook_actions_init' );
 		add_action( 'wordpoints_init_app_registry-hooks-events', 'wordpoints_bp_xprofile_hook_events_init' );
+
+		add_filter( 'bp_core_pre_avatar_handle_crop', 'WordPoints_BP_Hook_Action_Avatar_Set::set_has_avatar', 10, 2 );
+		add_filter( 'bp_attachments_pre_cover_image_ajax_upload', 'WordPoints_BP_Hook_Action_Cover_Image_Set::set_has_cover_image', 10, 2 );
 	}
 
 } // End if ( BuddyPress installed ).

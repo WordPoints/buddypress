@@ -15,6 +15,28 @@
 class WordPoints_BP_Entity_Activity extends WordPoints_BP_Entity {
 
 	/**
+	 * The activity type this object represents.
+	 *
+	 * Leaving this unset means that it represents any type of activity.
+	 *
+	 * @since 1.2.1
+	 *
+	 * @var string
+	 */
+	protected $bp_activity_type;
+
+	/**
+	 * The component that the activity this object represents is from.
+	 *
+	 * Leaving this unset means that it can be from any component.
+	 *
+	 * @since 1.2.0
+	 *
+	 * @var string
+	 */
+	protected $bp_activity_component;
+
+	/**
 	 * @since 1.0.0
 	 */
 	protected $bp_component = 'activity';
@@ -23,6 +45,11 @@ class WordPoints_BP_Entity_Activity extends WordPoints_BP_Entity {
 	 * @since 1.0.0
 	 */
 	protected $id_field = 'id';
+
+	/**
+	 * @since 1.2.1
+	 */
+	protected $id_is_int = true;
 
 	/**
 	 * @since 1.0.0
@@ -78,18 +105,27 @@ class WordPoints_BP_Entity_Activity extends WordPoints_BP_Entity {
 	}
 
 	/**
-	 * @since 1.0.0
+	 * @since 1.2.1
 	 */
-	public function get_the_id() {
+	public function get_storage_info() {
 
-		// See https://github.com/WordPoints/wordpoints/issues/556.
-		$the_id = parent::get_the_id();
+		$storage_info = parent::get_storage_info();
 
-		if ( ! $the_id ) {
-			return $the_id;
+		if ( isset( $this->bp_activity_component ) ) {
+			$storage_info['info']['conditions'][] = array(
+				'field' => 'component',
+				'value' => $this->bp_activity_component,
+			);
 		}
 
-		return (int) $the_id;
+		if ( isset( $this->bp_activity_type ) ) {
+			$storage_info['info']['conditions'][] = array(
+				'field' => 'type',
+				'value' => $this->bp_activity_type,
+			);
+		}
+
+		return $storage_info;
 	}
 }
 

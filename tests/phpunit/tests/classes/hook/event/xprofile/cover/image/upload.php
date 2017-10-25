@@ -67,10 +67,35 @@ class WordPoints_BP_Hook_Event_XProfile_Cover_Image_Upload_Test
 
 		$user_id = $this->factory->user->create();
 
+		// Users may have a cover image set, so we need to delete it. Otherwise the
+		// event will not be triggered, since it only triggers when initially set.
+		bp_attachments_delete_file(
+			array(
+				'item_id'    => $user_id,
+				'object_dir' => 'members',
+				'type'       => 'cover-image',
+			)
+		);
+
 		$this->upload_cover_image( $user_id );
+
+		// A user whose cover image is replaced by a new upload.
+		$user_id_2 = $this->factory->user->create();
+
+		bp_attachments_delete_file(
+			array(
+				'item_id'    => $user_id_2,
+				'object_dir' => 'members',
+				'type'       => 'cover-image',
+			)
+		);
+
+		$this->upload_cover_image( $user_id_2 );
+		$this->upload_cover_image( $user_id_2 );
 
 		return array(
 			$user_id,
+			$user_id_2,
 		);
 	}
 
@@ -118,14 +143,15 @@ class WordPoints_BP_Hook_Event_XProfile_Cover_Image_Upload_Test
 		$_REQUEST['_wpnonce'] = wp_create_nonce( 'bp-uploader' );
 
 		$_POST['action'] = 'bp_cover_image_upload';
+
 		$_POST['bp_params']['object']  = $args['object'];
 		$_POST['bp_params']['item_id'] = $args['item_id'];
 
 		$_FILES['file'] = array(
 			'tmp_name' => $path,
-			'name' => 'test.png',
-			'type' => 'image/png',
-			'size' => '4221',
+			'name'     => 'test.png',
+			'type'     => 'image/png',
+			'size'     => '4221',
 		);
 
 		add_filter( 'wp_doing_ajax', '__return_true' );
@@ -174,7 +200,7 @@ class WordPoints_BP_Hook_Event_XProfile_Cover_Image_Upload_Test
 
 		$_REQUEST['nonce'] = wp_create_nonce( 'bp_delete_cover_image' );
 
-		$_POST['action'] = 'bp_cover_image_upload';
+		$_POST['action']  = 'bp_cover_image_upload';
 		$_POST['object']  = $args['object'];
 		$_POST['item_id'] = $args['item_id'];
 

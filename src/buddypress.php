@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Main file of the module.
+ * Main file of the extension.
  *
  * ---------------------------------------------------------------------------------|
  * Copyright 2015-17  J.D. Grimes  (email : jdg@codesymphony.co)
@@ -21,38 +21,38 @@
  * ---------------------------------------------------------------------------------|
  *
  * @package WordPoints_BuddyPress
- * @version 1.2.0
+ * @version 1.2.1
  * @author  J.D. Grimes <jdg@codesymphony.co>
  * @license GPLv2+
  */
 
-WordPoints_Modules::register(
+wordpoints_register_extension(
 	'
-		Module Name: BuddyPress
-		Author:      J.D. Grimes
-		Author URI:  https://codesymphony.co/
-		Module URI:  https://wordpoints.org/modules/buddypress/
-		Version:     1.2.0
-		License:     GPLv2+
-		Description: Integrates WordPoints with BuddyPress.
-		Text Domain: wordpoints-bp
-		Domain Path: /languages
-		Channel:     wordpoints.org
-		ID:          944
-		Namespace:   BP
+		Extension Name: BuddyPress
+		Author:         J.D. Grimes
+		Author URI:     https://codesymphony.co/
+		Extension URI:  https://wordpoints.org/extensions/buddypress/
+		Version:        1.2.1
+		License:        GPLv2+
+		Description:    Integrates WordPoints with BuddyPress.
+		Text Domain:    wordpoints-bp
+		Domain Path:    /languages
+		Server:         wordpoints.org
+		ID:             944
+		Namespace:      BP
 	'
 	, __FILE__
 );
 
 /**
- * The module's constants.
+ * The extension's constants.
  *
  * @since 1.0.0
  */
 require_once dirname( __FILE__ ) . '/includes/constants.php';
 
 /**
- * The module's functions.
+ * The extension's functions.
  *
  * @since 1.0.0
  */
@@ -61,7 +61,7 @@ require_once WORDPOINTS_BP_DIR . '/includes/functions.php';
 WordPoints_Class_Autoloader::register_dir( WORDPOINTS_BP_DIR . '/classes' );
 
 /**
- * The module's action hooks.
+ * The extension's action hooks.
  *
  * @since 1.0.0
  */
@@ -69,7 +69,7 @@ require_once WORDPOINTS_BP_DIR . '/includes/actions.php';
 
 if ( wordpoints_component_is_active( 'points' ) ) {
 	/**
-	 * The module's integration with the points component.
+	 * The extension's integration with the points component.
 	 *
 	 * @since 1.0.0
 	 */
@@ -78,7 +78,7 @@ if ( wordpoints_component_is_active( 'points' ) ) {
 
 if ( wordpoints_component_is_active( 'ranks' ) ) {
 	/**
-	 * The module's integration with the ranks component.
+	 * The extension's integration with the ranks component.
 	 *
 	 * @since 1.0.0
 	 */

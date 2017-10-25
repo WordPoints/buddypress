@@ -14,13 +14,13 @@
  *
  * @since 1.0.0
  */
-require_once( WORDPOINTS_BP_DIR . '/components/points/includes/members.php' );
+require_once WORDPOINTS_BP_DIR . '/components/points/includes/members.php';
 
 /**
  * Hook up the action and filter hooks relating to the points component.
  *
  * @since 1.0.0
  */
-require_once( WORDPOINTS_BP_DIR . '/components/points/includes/actions.php' );
+require_once WORDPOINTS_BP_DIR . '/components/points/includes/actions.php';
 
 // EOF

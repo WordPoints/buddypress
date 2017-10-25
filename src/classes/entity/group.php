@@ -25,6 +25,11 @@ class WordPoints_BP_Entity_Group extends WordPoints_BP_Entity {
 	protected $id_field = 'id';
 
 	/**
+	 * @since 1.2.1
+	 */
+	protected $id_is_int = true;
+
+	/**
 	 * @since 1.0.0
 	 */
 	protected $human_id_field = 'name';

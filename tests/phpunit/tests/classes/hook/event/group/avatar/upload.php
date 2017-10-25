@@ -75,8 +75,19 @@ class WordPoints_BP_Hook_Event_Group_Avatar_Upload_Test
 		$group_id = $this->factory->bp->group->create(
 			array(
 				'creator_id' => $user_id,
-				'parent_id' => $this->factory->bp->group->create(),
+				'parent_id'  => $this->factory->bp->group->create(),
 			)
+		);
+
+		// Groups may have an avatar set, so we need to delete it. Otherwise the
+		// event will not be triggered, since it only triggers when initially set.
+		bp_core_delete_existing_avatar(
+			array( 'object' => 'group', 'item_id' => $group_id )
+		);
+
+		$this->upload_avatar(
+			$user_id
+			, array( 'item_id' => $group_id, 'object' => 'group' )
 		);
 
 		$this->upload_avatar(
@@ -93,6 +104,8 @@ class WordPoints_BP_Hook_Event_Group_Avatar_Upload_Test
 	 * @since 1.0.0
 	 */
 	protected function reverse_event( $arg_id, $index ) {
+
+		unset( $_POST['nonce'] );
 
 		bp_core_delete_existing_avatar(
 			array( 'object' => 'group', 'item_id' => $arg_id['bp_group'] )

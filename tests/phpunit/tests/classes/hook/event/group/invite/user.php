@@ -62,31 +62,31 @@ class WordPoints_BP_Hook_Event_Group_Invite_User_Test
 		$this->factory->bp = new BP_UnitTest_Factory();
 
 		// A group that the user will be uninvited from.
-		$user_id  = $this->factory->user->create();
+		$user_id    = $this->factory->user->create();
 		$inviter_id = $this->factory->user->create();
-		$group_id = $this->factory->bp->group->create(
+		$group_id   = $this->factory->bp->group->create(
 			array( 'parent_id' => $this->factory->bp->group->create() )
 		);
 
 		groups_invite_user(
 			array(
-				'group_id' => $group_id,
-				'user_id' => $user_id,
+				'group_id'   => $group_id,
+				'user_id'    => $user_id,
 				'inviter_id' => $inviter_id,
 			)
 		);
 
 		// A group that the invite will be deleted from.
-		$user_id_2  = $this->factory->user->create();
+		$user_id_2    = $this->factory->user->create();
 		$inviter_id_2 = $this->factory->user->create();
-		$group_id_2 = $this->factory->bp->group->create(
+		$group_id_2   = $this->factory->bp->group->create(
 			array( 'parent_id' => $this->factory->bp->group->create() )
 		);
 
 		groups_invite_user(
 			array(
-				'group_id' => $group_id_2,
-				'user_id' => $user_id_2,
+				'group_id'   => $group_id_2,
+				'user_id'    => $user_id_2,
 				'inviter_id' => $inviter_id_2,
 			)
 		);
