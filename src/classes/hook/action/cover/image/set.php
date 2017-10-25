@@ -15,7 +15,7 @@
 class WordPoints_BP_Hook_Action_Cover_Image_Set extends WordPoints_Hook_Action {
 
 	/**
-	 * Whether the user already has a cover image.
+	 * Whether the object already has a cover image.
 	 *
 	 * @since 1.2.1
 	 *
@@ -36,7 +36,7 @@ class WordPoints_BP_Hook_Action_Cover_Image_Set extends WordPoints_Hook_Action {
 	}
 
 	/**
-	 * Set whether the user already has a cover image.
+	 * Set whether the object already has a cover image.
 	 *
 	 * @since 1.2.1
 	 *
@@ -49,10 +49,13 @@ class WordPoints_BP_Hook_Action_Cover_Image_Set extends WordPoints_Hook_Action {
 	 */
 	public static function set_has_cover_image( $var, $bp_params ) {
 
-		self::$has_cover_image = (
-			isset( $bp_params['item_id'] )
-			&& bp_attachments_get_user_has_cover_image( $bp_params['item_id'] )
-		);
+		if ( isset( $bp_params['item_id'], $bp_params['object'] ) ) {
+			if ( 'group' === $bp_params['object'] ) {
+				self::$has_cover_image = bp_attachments_get_group_has_cover_image( $bp_params['item_id'] );
+			} else {
+				self::$has_cover_image = bp_attachments_get_user_has_cover_image( $bp_params['item_id'] );
+			}
+		}
 
 		return $var;
 	}

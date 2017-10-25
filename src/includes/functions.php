@@ -533,9 +533,21 @@ function wordpoints_bp_groups_hook_actions_init( $actions ) {
 		)
 	);
 
+	// This is not currently used, but is here for back-compat for custom events.
 	$actions->register(
 		'bp_group_cover_image_upload'
 		, 'WordPoints_Hook_Action'
+		, array(
+			'action' => 'groups_cover_image_uploaded',
+			'data'   => array(
+				'arg_index' => array( 'bp_group' => 0 ),
+			),
+		)
+	);
+
+	$actions->register(
+		'bp_group_cover_image_set'
+		, 'WordPoints_BP_Hook_Action_Cover_Image_Set'
 		, array(
 			'action' => 'groups_cover_image_uploaded',
 			'data'   => array(
@@ -822,7 +834,7 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 			, 'WordPoints_BP_Hook_Event_Group_Cover_Image_Upload'
 			, array(
 				'actions' => array(
-					'toggle_on'  => 'bp_group_cover_image_upload',
+					'toggle_on'  => 'bp_group_cover_image_set',
 					'toggle_off' => 'bp_group_cover_image_delete',
 				),
 				'args' => array(
