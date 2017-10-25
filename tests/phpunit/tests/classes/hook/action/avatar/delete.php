@@ -112,11 +112,28 @@ class WordPoints_BP_Hook_Action_Avatar_Delete_Test
 		$action = new WordPoints_BP_Hook_Action_Avatar_Delete(
 			'test_event'
 			, array( array( 'item_id' => 1, 'object' => 'test' ) )
-			, array( 'bp_avatar_object_type' => 'test' )
+			, array( 'bp_avatar_object_type' => 'bp_test' )
 		);
 
 		$this->assertSame( 1, $action->get_arg_value( 'bp_test' ) );
 		$this->assertNull( $action->get_arg_value( 'test' ) );
+	}
+
+	/**
+	 * Test the group arg's value.
+	 *
+	 * @since 1.2.1
+	 */
+	public function test_get_arg_value_group() {
+
+		$action = new WordPoints_BP_Hook_Action_Avatar_Delete(
+			'test_event'
+			, array( array( 'item_id' => 1, 'object' => 'group' ) )
+			, array( 'bp_avatar_object_type' => 'group' )
+		);
+
+		$this->assertSame( 1, $action->get_arg_value( 'bp_group' ) );
+		$this->assertNull( $action->get_arg_value( 'group' ) );
 	}
 
 	/**
