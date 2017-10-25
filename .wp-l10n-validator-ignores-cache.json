@@ -147,7 +147,7 @@
             "24": false
         },
         "site": {
-            "58": false
+            "73": false
         }
     },
     "\/classes\/entity\/activity\/update.php": {
@@ -169,7 +169,7 @@
     },
     "\/classes\/entity\/activity.php": {
         "component": {
-            "131": {
+            "116": {
                 "name": "array",
                 "type": "unknown",
                 "args_started": true,
@@ -178,13 +178,18 @@
             }
         },
         "type": {
-            "138": {
+            "123": {
                 "name": "array",
                 "type": "unknown",
                 "args_started": true,
                 "arg_count": 0,
                 "parentheses": 1
             }
+        }
+    },
+    "\/classes\/hook\/action\/avatar.php": {
+        "user": {
+            "27": false
         }
     }
 }

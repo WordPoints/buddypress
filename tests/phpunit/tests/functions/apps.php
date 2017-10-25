@@ -282,6 +282,7 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 		$this->assertTrue( $actions->is_registered( 'bp_group_membership_request_accept' ) );
 
 		$this->assertTrue( $actions->is_registered( 'bp_group_avatar_upload' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_group_avatar_set' ) );
 		$this->assertTrue( $actions->is_registered( 'bp_group_avatar_delete' ) );
 
 		$this->assertTrue( $actions->is_registered( 'bp_group_cover_image_upload' ) );
@@ -608,9 +609,11 @@ class WordPoints_BP_Apps_Functions_Test extends WordPoints_PHPUnit_TestCase_Hook
 		wordpoints_bp_xprofile_hook_actions_init( $actions );
 
 		$this->assertTrue( $actions->is_registered( 'bp_xprofile_avatar_upload' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_xprofile_avatar_set' ) );
 		$this->assertTrue( $actions->is_registered( 'bp_xprofile_avatar_delete' ) );
 
 		$this->assertTrue( $actions->is_registered( 'bp_xprofile_cover_image_upload' ) );
+		$this->assertTrue( $actions->is_registered( 'bp_xprofile_cover_image_set' ) );
 		$this->assertTrue( $actions->is_registered( 'bp_xprofile_cover_image_delete' ) );
 	}
 

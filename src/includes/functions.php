@@ -498,6 +498,7 @@ function wordpoints_bp_groups_hook_actions_init( $actions ) {
 		)
 	);
 
+	// Not currently used, but still registered for the benefit of custom events.
 	$actions->register(
 		'bp_group_avatar_upload'
 		, 'WordPoints_Hook_Action'
@@ -510,12 +511,24 @@ function wordpoints_bp_groups_hook_actions_init( $actions ) {
 	);
 
 	$actions->register(
+		'bp_group_avatar_set'
+		, 'WordPoints_BP_Hook_Action_Avatar_Set'
+		, array(
+			'action' => 'groups_avatar_uploaded',
+			'data'   => array(
+				'arg_index'             => array( 'bp_group' => 0 ),
+				'bp_avatar_object_type' => 'bp_group',
+			),
+		)
+	);
+
+	$actions->register(
 		'bp_group_avatar_delete'
 		, 'WordPoints_BP_Hook_Action_Avatar_Delete'
 		, array(
 			'action' => 'bp_core_delete_existing_avatar',
 			'data'   => array(
-				'bp_avatar_object_type' => 'group',
+				'bp_avatar_object_type' => 'bp_group',
 			),
 		)
 	);
@@ -788,7 +801,7 @@ function wordpoints_bp_groups_hook_events_init( $events ) {
 			, 'WordPoints_BP_Hook_Event_Group_Avatar_Upload'
 			, array(
 				'actions' => array(
-					'toggle_on'  => 'bp_group_avatar_upload',
+					'toggle_on'  => 'bp_group_avatar_set',
 					'toggle_off' => 'bp_group_avatar_delete',
 				),
 				'args' => array(

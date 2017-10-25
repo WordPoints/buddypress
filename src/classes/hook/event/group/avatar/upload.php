@@ -8,7 +8,7 @@
  */
 
 /**
- * An event that fires when a new avatar for a group is uploaded.
+ * An event that fires when the avatar for a group is set.
  *
  * @since 1.0.0
  */
@@ -20,14 +20,14 @@ class WordPoints_BP_Hook_Event_Group_Avatar_Upload
 	 * @since 1.0.0
 	 */
 	public function get_title() {
-		return __( 'Upload Group Profile Photo', 'wordpoints-bp' );
+		return __( 'Set Group Profile Photo', 'wordpoints-bp' );
 	}
 
 	/**
 	 * @since 1.0.0
 	 */
 	public function get_description() {
-		return __( 'Uploading a profile photo for a group on the BuddyPress social network.', 'wordpoints-bp' );
+		return __( 'Setting the profile photo for a group on the BuddyPress social network.', 'wordpoints-bp' );
 	}
 
 	/**

@@ -12,24 +12,20 @@
  *
  * @since 1.0.0
  */
-class WordPoints_BP_Hook_Action_Avatar_Delete extends WordPoints_Hook_Action {
-
-	/**
-	 * The type of activity to check for.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @var string
-	 */
-	protected $bp_avatar_object_type = 'user';
+class WordPoints_BP_Hook_Action_Avatar_Delete
+	extends WordPoints_BP_Hook_Action_Avatar {
 
 	/**
 	 * @since 1.0.0
 	 */
 	public function __construct( $slug, array $action_args, array $args = array() ) {
 
-		if ( isset( $args['bp_avatar_object_type'] ) ) {
-			$this->bp_avatar_object_type = $args['bp_avatar_object_type'];
+		// Back-compat with pre-1.2.1.
+		if (
+			isset( $args['bp_avatar_object_type'] )
+			&& 'group' === $args['bp_avatar_object_type']
+		) {
+			$args['bp_avatar_object_type'] = 'bp_group';
 		}
 
 		parent::__construct( $slug, $action_args, $args );
@@ -39,10 +35,6 @@ class WordPoints_BP_Hook_Action_Avatar_Delete extends WordPoints_Hook_Action {
 	 * @since 1.0.0
 	 */
 	public function should_fire() {
-
-		if ( $this->bp_avatar_object_type !== $this->args[0]['object'] ) {
-			return false;
-		}
 
 		// If this image is being deleted just because a new one is being uploaded,
 		// then don't trigger the action.
@@ -79,11 +71,12 @@ class WordPoints_BP_Hook_Action_Avatar_Delete extends WordPoints_Hook_Action {
 
 		if ( 'blog' === $expected_arg_slug ) {
 			$expected_arg_slug = 'site';
-		} elseif ( 'user' !== $expected_arg_slug ) {
-			$expected_arg_slug = "bp_{$expected_arg_slug}";
 		}
 
-		if ( $arg_slug === $expected_arg_slug ) {
+		if (
+			$arg_slug === $expected_arg_slug
+			&& str_replace( 'bp_', '', $this->bp_avatar_object_type ) === $this->args[0]['object']
+		) {
 			return $this->args[0]['item_id'];
 		}
 

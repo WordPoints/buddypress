@@ -56,8 +56,8 @@
             "errors": false
         },
         "\/classes\/entity\/activity.php": {
-            "size": 2683,
-            "hash": "24700e18eac5d463ad2c10932699082d",
+            "size": 2453,
+            "hash": "72d20619163d4d27307abe0f2f889e5a",
             "errors": false
         },
         "\/classes\/entity\/friendship\/date\/created.php": {
@@ -186,8 +186,8 @@
             "errors": false
         },
         "\/classes\/hook\/action\/avatar\/delete.php": {
-            "size": 1350,
-            "hash": "ddeb0f7d63bf2b704da6b12cc5929351",
+            "size": 1657,
+            "hash": "0b4cc287f5d1e928726b054e5ea48266",
             "errors": false
         },
         "\/classes\/hook\/action\/cover\/image\/set.php": {
@@ -321,8 +321,8 @@
             "errors": false
         },
         "\/classes\/index.php": {
-            "size": 5391,
-            "hash": "9228722a1b722f35fecd3e5b0a56aaae",
+            "size": 5529,
+            "hash": "39f2ac86322760e9228100338ca588aa",
             "errors": false
         },
         "\/components\/points\/includes\/actions.php": {
@@ -356,8 +356,8 @@
             "errors": false
         },
         "\/includes\/actions.php": {
-            "size": 2588,
-            "hash": "811dbadabd57226a6c7b40d2db6fe0f5",
+            "size": 2701,
+            "hash": "3aa299381dd3a2136e3c7d71b5231da6",
             "errors": false
         },
         "\/includes\/constants.php": {
@@ -366,8 +366,18 @@
             "errors": false
         },
         "\/includes\/functions.php": {
-            "size": 34267,
-            "hash": "257e81f6d534f7af3b3129509be2954d",
+            "size": 34922,
+            "hash": "704d4c03e61d6c689fa18ae177286d6e",
+            "errors": false
+        },
+        "\/classes\/hook\/action\/avatar\/set.php": {
+            "size": 1181,
+            "hash": "5f3c352086dae34adc73f45d0368b02f",
+            "errors": false
+        },
+        "\/classes\/hook\/action\/avatar.php": {
+            "size": 1036,
+            "hash": "8faa078c47de31c43a088629013cb4cf",
             "errors": false
         }
     },

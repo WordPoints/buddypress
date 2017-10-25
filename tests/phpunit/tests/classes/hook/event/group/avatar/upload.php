@@ -79,6 +79,17 @@ class WordPoints_BP_Hook_Event_Group_Avatar_Upload_Test
 			)
 		);
 
+		// Groups may have an avatar set, so we need to delete it. Otherwise the
+		// event will not be triggered, since it only triggers when initially set.
+		bp_core_delete_existing_avatar(
+			array( 'object' => 'group', 'item_id' => $group_id )
+		);
+
+		$this->upload_avatar(
+			$user_id
+			, array( 'item_id' => $group_id, 'object' => 'group' )
+		);
+
 		$this->upload_avatar(
 			$user_id
 			, array( 'item_id' => $group_id, 'object' => 'group' )

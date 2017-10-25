@@ -12,10 +12,10 @@
  *
  * @since 1.2.1
  */
-class WordPoints_BP_Hook_Action_Avatar_Set extends WordPoints_Hook_Action {
+class WordPoints_BP_Hook_Action_Avatar_Set extends WordPoints_BP_Hook_Action_Avatar {
 
 	/**
-	 * Whether the user already has a cover image.
+	 * Whether the user already has an avatar.
 	 *
 	 * @since 1.2.1
 	 *
@@ -49,10 +49,13 @@ class WordPoints_BP_Hook_Action_Avatar_Set extends WordPoints_Hook_Action {
 	 */
 	public static function set_has_avatar( $var, $bp_params ) {
 
-		self::$has_avatar = (
-			isset( $bp_params['item_id'] )
-			&& bp_get_user_has_avatar( $bp_params['item_id'] )
-		);
+		if ( isset( $bp_params['item_id'], $bp_params['object'] ) ) {
+			if ( 'group' === $bp_params['object'] ) {
+				self::$has_avatar = bp_get_group_has_avatar( $bp_params['item_id'] );
+			} else {
+				self::$has_avatar = bp_get_user_has_avatar( $bp_params['item_id'] );
+			}
+		}
 
 		return $var;
 	}
