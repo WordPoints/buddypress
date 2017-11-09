@@ -7,16 +7,6 @@
  * @since 1.0.0
  */
 
-activate_plugin( 'buddypress/bp-loader.php' );
-
-system(
-	WP_PHP_BINARY
-	. ' ' . escapeshellarg( getenv( 'BP_TESTS_DIR' ) . '/includes/install.php' )
-	. ' ' . escapeshellarg( getenv( 'WP_TESTS_DIR' ) . '/../../wp-tests-config.php' )
-	. ' ' . escapeshellarg( getenv( 'WP_TESTS_DIR' ) )
-	. ' ' . is_multisite()
-);
-
 $I = new AcceptanceTester( $scenario );
 $I->wantTo( 'Viewing points info on my profile' );
 $I->hadCreatedAPointsType( array( 'prefix' => '$', 'suffix' => '' ) );
