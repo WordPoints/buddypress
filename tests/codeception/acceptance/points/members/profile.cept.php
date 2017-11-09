@@ -24,6 +24,8 @@ $I->hadCreatedAPointsType( array( 'name' => 'XP' ) );
 $I->havePoints( 5, 'points' );
 $I->havePoints( 3, 'xp' );
 $I->amLoggedInAsAdminOnPage( 'members/admin/' );
+$I->see( 'Points: $5', '.wordpoints-bp-member-profile-meta' );
+$I->see( 'XP: 3', '.wordpoints-bp-member-profile-meta' );
 $I->see( 'Points', '#object-nav' );
 $I->click( 'Points', '#object-nav' );
 $I->see( 'Points', '#object-nav .current' );

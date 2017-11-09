@@ -39,4 +39,36 @@ function wordpoints_bp_ranks_points_members_profile_screen_content_stats( $point
 	<?php
 }
 
+/**
+ * Displays the rank meta in the members profile header.
+ *
+ * @since 1.3.0
+ *
+ * @param string $points_type The slug of the points type being displayed.
+ */
+function wordpoints_bp_ranks_points_members_profile_header_meta( $points_type ) {
+
+	?>
+
+	<div class="wordpoints-bp-member-profile-meta-item">
+		<?php
+
+		echo wp_kses_post(
+			sprintf(
+				// translators: Rank name.
+				__( 'Rank: %s', 'wordpoints-bp' )
+				, wordpoints_get_formatted_user_rank(
+					bp_displayed_user_id()
+					, "points_type-$points_type"
+					, 'bp_members_profile_meta'
+				)
+			)
+		);
+
+		?>
+	</div>
+
+	<?php
+}
+
 // EOF

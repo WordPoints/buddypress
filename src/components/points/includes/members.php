@@ -214,4 +214,69 @@ function wordpoints_bp_points_members_get_profile_link( $username, $user_id ) {
 	return $link;
 }
 
+/**
+ * Displays the points meta in the profile header.
+ *
+ * @since 1.3.0
+ */
+function wordpoints_bp_points_profile_header_meta() {
+
+	/**
+	 * Fires before the points meta is displayed on the member profile.
+	 *
+	 * @since 1.3.0
+	 */
+	do_action( 'wordpoints_bp_points_members_profile_header_before_meta' );
+
+	?>
+
+	<div class="wordpoints-bp-member-profile-meta">
+		<?php foreach ( wordpoints_get_points_types() as $points_type => $data ) : ?>
+			<div class="wordpoints-bp-member-profile-meta-item">
+				<?php
+
+				echo esc_html(
+					sprintf(
+						// translators: 1: Points type name; 2: Formatted points amount.
+						__( '%1$s: %2$s', 'wordpoints-bp' )
+						, $data['name']
+						, wordpoints_get_formatted_points(
+							bp_displayed_user_id()
+							, $points_type
+							, 'bp_members_profile_meta'
+						)
+					)
+				);
+
+				?>
+			</div>
+			<?php
+
+			/**
+			 * Fires when the points meta is displayed on the member profile.
+			 *
+			 * @since 1.3.0
+			 *
+			 * @param string $points_type The slug of the points type meta is being
+			 *                            displayed for.
+			 */
+			do_action(
+				'wordpoints_bp_points_members_profile_header_meta'
+				, $points_type
+			);
+
+			?>
+		<?php endforeach; ?>
+	</div>
+
+	<?php
+
+	/**
+	 * Fires after the points meta is displayed on the member profile.
+	 *
+	 * @since 1.3.0
+	 */
+	do_action( 'wordpoints_bp_points_members_profile_header_after_meta' );
+}
+
 // EOF
