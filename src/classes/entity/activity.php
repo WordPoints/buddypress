@@ -95,7 +95,7 @@ class WordPoints_BP_Entity_Activity extends WordPoints_BP_Entity {
 			 *
 			 * @param int $length Character length for activity excerpts.
 			 */
-			$excerpt_length = (int) apply_filters( 'bp_activity_excerpt_length', 358 );
+			$excerpt_length = (int) apply_filters( 'bp_activity_excerpt_length', 358 ); // WPCS: prefix OK.
 		}
 
 		// Based on bp_get_activity_latest_update().

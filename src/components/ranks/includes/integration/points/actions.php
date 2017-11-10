@@ -8,5 +8,6 @@
  */
 
 add_action( 'wordpoints_bp_points_members_profile_screen_stats', 'wordpoints_bp_ranks_points_members_profile_screen_content_stats' );
+add_action( 'wordpoints_bp_points_members_profile_header_meta', 'wordpoints_bp_ranks_points_members_profile_header_meta' );
 
 // EOF

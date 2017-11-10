@@ -14,10 +14,18 @@ env:
     - TRAVISCI_RUN=codesniff
     - TRAVISCI_RUN=phpunit WP_VERSION=develop WORDPOINTS_VERSION=develop BP_VERSION=master
     - TRAVISCI_RUN=phpunit WP_VERSION=develop WORDPOINTS_VERSION=develop BP_VERSION=2.9.1
+    - TRAVISCI_RUN=phpunit WP_VERSION=develop WORDPOINTS_VERSION=master BP_VERSION=master
+    - TRAVISCI_RUN=phpunit WP_VERSION=develop WORDPOINTS_VERSION=master BP_VERSION=2.9.1
     - TRAVISCI_RUN=phpunit WP_VERSION=4.8 WORDPOINTS_VERSION=develop BP_VERSION=master
     - TRAVISCI_RUN=phpunit WP_VERSION=4.8 WORDPOINTS_VERSION=develop BP_VERSION=2.9.1
+    - TRAVISCI_RUN=phpunit WP_VERSION=4.8 WORDPOINTS_VERSION=master BP_VERSION=master
+    - TRAVISCI_RUN=phpunit WP_VERSION=4.8 WORDPOINTS_VERSION=master BP_VERSION=2.9.1
     - TRAVISCI_RUN=phpunit WP_VERSION=4.7 WORDPOINTS_VERSION=develop BP_VERSION=master
     - TRAVISCI_RUN=phpunit WP_VERSION=4.7 WORDPOINTS_VERSION=develop BP_VERSION=2.9.1
+    - TRAVISCI_RUN=phpunit WP_VERSION=4.7 WORDPOINTS_VERSION=master BP_VERSION=master
+    - TRAVISCI_RUN=phpunit WP_VERSION=4.7 WORDPOINTS_VERSION=master BP_VERSION=2.9.1
+
+dist: trusty
 
 sudo: false
 
@@ -38,17 +46,35 @@ matrix:
       env: TRAVISCI_RUN=phpunit WP_VERSION=develop WORDPOINTS_VERSION=develop BP_VERSION=2.9.1
     - php: 5.3
       dist: precise
+      env: TRAVISCI_RUN=phpunit WP_VERSION=develop WORDPOINTS_VERSION=master BP_VERSION=master
+    - php: 5.3
+      dist: precise
+      env: TRAVISCI_RUN=phpunit WP_VERSION=develop WORDPOINTS_VERSION=master BP_VERSION=2.9.1
+    - php: 5.3
+      dist: precise
       env: TRAVISCI_RUN=phpunit WP_VERSION=4.8 WORDPOINTS_VERSION=develop BP_VERSION=master
     - php: 5.3
       dist: precise
       env: TRAVISCI_RUN=phpunit WP_VERSION=4.8 WORDPOINTS_VERSION=develop BP_VERSION=2.9.1
     - php: 5.3
       dist: precise
+      env: TRAVISCI_RUN=phpunit WP_VERSION=4.8 WORDPOINTS_VERSION=master BP_VERSION=master
+    - php: 5.3
+      dist: precise
+      env: TRAVISCI_RUN=phpunit WP_VERSION=4.8 WORDPOINTS_VERSION=master BP_VERSION=2.9.1
+    - php: 5.3
+      dist: precise
       env: TRAVISCI_RUN=phpunit WP_VERSION=4.7 WORDPOINTS_VERSION=develop BP_VERSION=master
     - php: 5.3
       dist: precise
       env: TRAVISCI_RUN=phpunit WP_VERSION=4.7 WORDPOINTS_VERSION=develop BP_VERSION=2.9.1
-   # Only run nightly against trunk.
+    - php: 5.3
+      dist: precise
+      env: TRAVISCI_RUN=phpunit WP_VERSION=4.7 WORDPOINTS_VERSION=master BP_VERSION=master
+    - php: 5.3
+      dist: precise
+      env: TRAVISCI_RUN=phpunit WP_VERSION=4.7 WORDPOINTS_VERSION=master BP_VERSION=2.9.1
+    # Only run nightly against trunk.
     - php: nightly
       env: TRAVISCI_RUN=phpunit WP_VERSION=develop BP_VERSION=master
   exclude:
