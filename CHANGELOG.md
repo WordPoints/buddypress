@@ -8,6 +8,17 @@ This extension adheres to [Semantic Versioning](http://semver.org/) and [Keep a 
 
 Nothing documented right now.
 
+## [1.3.0] - 2017-11-10
+
+### Added
+
+- Points and rank info is now displayed in the profile header meta.
+  - Adds the `wordpoints_bp_points_members_profile_header_before_meta`, `wordpoints_bp_points_members_profile_header_meta`, and `wordpoints_bp_points_members_profile_header_after_meta` actions.
+
+### Fixed
+
+- "Rank:" being displayed even when no ranks had been set up for a points type.
+
 ## [1.2.1] - 2017-10-25
 
 ### Fixed
@@ -67,6 +78,7 @@ Nothing documented right now.
   - Profile Avatar Upload and Cover Image Upload hook events.
 
 [unreleased]: https://github.com/WordPoints/wordpoints/compare/master...HEAD
+[1.3.0]: https://github.com/WordPoints/wordpoints/compare/1.2.1...1.3.0
 [1.2.1]: https://github.com/WordPoints/wordpoints/compare/1.2.0...1.2.1
 [1.2.0]: https://github.com/WordPoints/wordpoints/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/WordPoints/wordpoints/compare/1.0.0...1.1.0
